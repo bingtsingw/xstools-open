@@ -17,5 +17,5 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false
   },
-  "include": ["index.ts", "**/*.ts", "**/*.tsx", "**/**/*.ts", "**/**/*.tsx"]
+  "include": ["src"]
 }

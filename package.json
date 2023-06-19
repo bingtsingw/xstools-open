@@ -1,11 +1,15 @@
 {
   "name": "@bingtsingw-c/xstools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "exports": {
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsup",
     "clean": "rimraf dist",
@@ -104,7 +108,7 @@
   },
   "tsup": {
     "entry": [
-      "index.ts"
+      "src/index.ts"
     ],
     "format": [
       "esm",
