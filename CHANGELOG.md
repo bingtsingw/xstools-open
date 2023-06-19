@@ -1,5 +1,17 @@
 
 
+## [0.1.1](https://github.com/bingtsingw/xstools/compare/0.1.0...0.1.1) (2023-06-19)
+
+
+### Chores
+
+* update npmrc ([ce61726](https://github.com/bingtsingw/xstools/commit/ce61726ef03c6556034ef8a38a112a018bf48caa))
+
+
+### Build System
+
+* add module type and exports ([c51eb30](https://github.com/bingtsingw/xstools/commit/c51eb30a75d9aed4b507b160455a4f35b29a6f1d))
+
 ## 0.1.0 (2023-06-19)
 
 
