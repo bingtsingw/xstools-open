@@ -9,6 +9,7 @@
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
+  "types": "./src/index.ts",
   "files": [
     "dist",
     "src"
