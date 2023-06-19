@@ -1,5 +1,13 @@
 
 
+## [0.1.3](https://github.com/bingtsingw/xstools/compare/0.1.1...0.1.3) (2023-06-19)
+
+
+### Build System
+
+* optimize release process ([ff2fc77](https://github.com/bingtsingw/xstools/commit/ff2fc77baa8ebb71504ea3c16240769df6d7862d))
+* update publish related config ([24fc6ef](https://github.com/bingtsingw/xstools/commit/24fc6ef222ef0f9f5795c25cd007fab99d162773))
+
 ## [0.1.1](https://github.com/bingtsingw/xstools/compare/0.1.0...0.1.1) (2023-06-19)
 
 
