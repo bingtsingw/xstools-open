@@ -2,13 +2,17 @@
   "name": "@bingtsingw-c/xstools",
   "version": "0.0.1",
   "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist",
     "commit": "cz",
+    "dev": "tsup --watch",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
     "mrm": "mrm --preset=@bingtsingw/mrm-preset",
-    "prepare": "if [ -d './node_modules/husky' ]; then husky install; fi"
+    "prepare": "if [ -d './node_modules/husky' ]; then husky install; fi",
+    "release": "release-it"
   },
   "commitlint": {
     "extends": [
@@ -35,6 +39,12 @@
     "trailingComma": "all"
   },
   "eslintConfig": {
+    "env": {
+      "jest/globals": true
+    },
+    "plugins": [
+      "jest"
+    ],
     "extends": [
       "alloy",
       "alloy/typescript"
@@ -56,26 +66,34 @@
     "build",
     "out"
   ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/eslint-parser": "^7.22.5",
     "@bingtsingw/mrm-preset": "^0.10.0",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "@types/jest": "^29.5.2",
     "@types/lodash": "^4.14.195",
     "@types/node": "^20.3.1",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.42.0",
+    "eslint": "^8.43.0",
     "eslint-config-alloy": "^5.0.0",
+    "eslint-plugin-jest": "^27.2.1",
     "husky": "^8.0.3",
+    "jest": "^29.5.0",
     "lint-staged": "^13.2.2",
     "mrm": "^4.1.14",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
+    "release-it": "^15.11.0",
     "tsup": "^7.0.0",
     "typescript": "^5.1.3"
   },
