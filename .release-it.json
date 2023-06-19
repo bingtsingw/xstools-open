@@ -4,7 +4,8 @@
   },
   "github": {
     "release": true,
-    "releaseName": "v${version}"
+    "releaseName": "v${version}",
+    "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
