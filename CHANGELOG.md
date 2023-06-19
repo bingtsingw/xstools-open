@@ -1,5 +1,12 @@
 
 
+## [0.1.4](https://github.com/bingtsingw/xstools/compare/0.1.3...0.1.4) (2023-06-19)
+
+
+### Build System
+
+* add types field ([7939e8f](https://github.com/bingtsingw/xstools/commit/7939e8fc86f39f762b52c7d0148a56dd49db61c2))
+
 ## [0.1.3](https://github.com/bingtsingw/xstools/compare/0.1.1...0.1.3) (2023-06-19)
 
 
