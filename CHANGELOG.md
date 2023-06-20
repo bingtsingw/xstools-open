@@ -1,5 +1,12 @@
 
 
+## [0.2.1](https://github.com/bingtsingw/xstools/compare/0.2.0...0.2.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* export exception.BaseException ([03164b7](https://github.com/bingtsingw/xstools/commit/03164b7a4fc6665343dd6733419f505a004106b1))
+
 ## [0.2.0](https://github.com/bingtsingw/xstools/compare/0.1.4...0.2.0) (2023-06-20)
 
 
