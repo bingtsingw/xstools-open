@@ -1,5 +1,12 @@
 
 
+## [0.2.0](https://github.com/bingtsingw/xstools/compare/0.1.4...0.2.0) (2023-06-20)
+
+
+### Features
+
+* add exceptions ([efbf071](https://github.com/bingtsingw/xstools/commit/efbf071b7739a7cb1a472d7f2550037f5c8bdc70))
+
 ## [0.1.4](https://github.com/bingtsingw/xstools/compare/0.1.3...0.1.4) (2023-06-19)
 
 
