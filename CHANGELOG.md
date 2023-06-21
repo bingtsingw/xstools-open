@@ -1,5 +1,12 @@
 
 
+## [0.2.3](https://github.com/bingtsingw/xstools/compare/0.2.1...0.2.3) (2023-06-21)
+
+
+### Build System
+
+* default to cjs ([695fa62](https://github.com/bingtsingw/xstools/commit/695fa6243bc23b81f9e650c68dd7d7f5e5e114a3))
+
 ## [0.2.1](https://github.com/bingtsingw/xstools/compare/0.2.0...0.2.1) (2023-06-20)
 
 
