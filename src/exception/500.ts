@@ -1,7 +1,7 @@
 import { BaseException } from './base';
 
-export class ForbiddenException extends BaseException {
+export class InternalServerErrorException extends BaseException {
   public constructor(message?: string, code?: string) {
-    super(403, message, code);
+    super(500, message, code);
   }
 }
