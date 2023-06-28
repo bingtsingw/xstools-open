@@ -28,7 +28,7 @@ export const ossImageCrop = ({ src, width, height, aspect, position = 'center' }
   let offsetY = 0;
 
   if (position === 'center') {
-    const offsetY = Math.floor((oHeight - cHeight) / 2);
+    offsetY = Math.floor((oHeight - cHeight) / 2);
   }
 
   return `${src}?x-oss-process=image/crop,x_${offsetX},y_${offsetY},w_${cWidth},h_${cHeight}`;
