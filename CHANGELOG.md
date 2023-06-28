@@ -1,5 +1,12 @@
 
 
+## [0.3.1](https://github.com/bingtsingw/xstools/compare/0.3.0...0.3.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* declared but never read ([92e4a9f](https://github.com/bingtsingw/xstools/commit/92e4a9fd106da7b951fff2e9428c745f0b7d49c5))
+
 ## [0.3.0](https://github.com/bingtsingw/xstools/compare/0.2.3...0.3.0) (2023-06-28)
 
 
