@@ -1,5 +1,12 @@
 
 
+## [0.3.3](https://github.com/bingtsingw/xstools/compare/0.3.2...0.3.3) (2023-06-30)
+
+
+### Bug Fixes
+
+* exception accept optional messages ([ca995f4](https://github.com/bingtsingw/xstools/commit/ca995f42d2a4c90f17451a2a5825c74e66fccb3e))
+
 ## [0.3.2](https://github.com/bingtsingw/xstools/compare/0.3.1...0.3.2) (2023-06-30)
 
 
