@@ -1,5 +1,12 @@
 
 
+## [0.3.2](https://github.com/bingtsingw/xstools/compare/0.3.1...0.3.2) (2023-06-30)
+
+
+### Bug Fixes
+
+* update exception signature ([e5014cc](https://github.com/bingtsingw/xstools/commit/e5014cc8df013a6732ffacae58bebd9fc56fde4f))
+
 ## [0.3.1](https://github.com/bingtsingw/xstools/compare/0.3.0...0.3.1) (2023-06-28)
 
 
