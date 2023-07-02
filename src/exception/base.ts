@@ -1,24 +1,19 @@
 import { get, replace, snakeCase, startCase } from 'lodash';
 
 export class BaseException extends Error {
-  public name: string;
+  public status: number;
+  public code: string;
   public message: string;
 
   private _messages: unknown;
-  private _code: string;
-  private _status: number;
 
-  public constructor(status: number, messages?: unknown, code?: string) {
+  public constructor(status: number, messages: unknown, code: string) {
     super();
-    this._status = status;
+    this.status = status;
 
-    const baseName = startCase(replace(this.name, /Exception$/, ''));
-
-    this._code = snakeCase(`E ${code ? code : baseName}`).toUpperCase();
-    this._messages = messages ? messages : baseName;
-
-    this.message = `${this._code}: ${this.getFirstMessage()}`;
-    this.name = this.constructor.name;
+    this.code = snakeCase(`E ${startCase(replace(code, /Exception$/, ''))}`).toUpperCase();
+    this._messages = messages;
+    this.message = this.getFirstMessage();
 
     Error.captureStackTrace(this, this.constructor);
   }
@@ -35,9 +30,5 @@ export class BaseException extends Error {
     }
 
     return '';
-  }
-
-  public getStatus(): number {
-    return this._status;
   }
 }

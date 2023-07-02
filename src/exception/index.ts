@@ -1,6 +1,6 @@
 import { BadRequestException } from './400';
 import { UnauthorizedException } from './401';
-import { ForbiddenException } from './403';
+import { ForbiddenException, NeedVipException } from './403';
 import { NotFoundException } from './404';
 import { ClientErrorException } from './4xx';
 import { InternalErrorException } from './500';
@@ -19,5 +19,6 @@ export const exception = {
   BadRequestException,
   UnauthorizedException,
   ForbiddenException,
+  NeedVipException,
   NotFoundException,
 };
