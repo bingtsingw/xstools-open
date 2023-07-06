@@ -11,8 +11,9 @@ export class BaseException extends Error {
     super();
     this.status = status;
 
-    this.code = snakeCase(`E ${startCase(replace(code, /Exception$/, ''))}`).toUpperCase();
-    this._messages = messages;
+    const normalizedCode = startCase(replace(code, /Exception$/, ''));
+    this.code = snakeCase(`E ${normalizedCode}`).toUpperCase();
+    this._messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
 
     Error.captureStackTrace(this, this.constructor);
