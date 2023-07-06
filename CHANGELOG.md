@@ -1,5 +1,12 @@
 
 
+## [0.4.1](https://github.com/bingtsingw/xstools/compare/0.4.0...0.4.1) (2023-07-06)
+
+
+### Bug Fixes
+
+* exceptions support null message ([31f101b](https://github.com/bingtsingw/xstools/commit/31f101b0f273ae9dfd438ebe9ba3cda4060637eb))
+
 ## [0.4.0](https://github.com/bingtsingw/xstools/compare/0.3.3...0.4.0) (2023-07-02)
 
 
