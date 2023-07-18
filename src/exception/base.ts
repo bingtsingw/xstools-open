@@ -16,7 +16,9 @@ export class BaseException extends Error {
     this._messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
 
-    Error.captureStackTrace(this, this.constructor);
+    if (Error.captureStackTrace && typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, this.constructor);
+    }
   }
 
   public getFirstMessage(): string {
