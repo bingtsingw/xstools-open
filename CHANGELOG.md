@@ -1,5 +1,12 @@
 
 
+## [0.5.1](https://github.com/bingtsingw/xstools/compare/0.5.0...0.5.1) (2023-07-18)
+
+
+### Chores
+
+* update scripts ([43f5375](https://github.com/bingtsingw/xstools/commit/43f5375ceef2274d9bfa61629df5bc6ca78c48b4))
+
 ## [0.5.0](https://github.com/bingtsingw/xstools/compare/0.4.2...0.5.0) (2023-07-18)
 
 
