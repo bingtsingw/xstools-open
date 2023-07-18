@@ -1,5 +1,12 @@
 
 
+## [0.5.2](https://github.com/bingtsingw/xstools/compare/0.5.1...0.5.2) (2023-07-18)
+
+
+### Bug Fixes
+
+* remove captureStackTrace ([aa95024](https://github.com/bingtsingw/xstools/commit/aa950244d800ab7a55e27eca7bf9db56221edc0b))
+
 ## [0.5.1](https://github.com/bingtsingw/xstools/compare/0.5.0...0.5.1) (2023-07-18)
 
 
