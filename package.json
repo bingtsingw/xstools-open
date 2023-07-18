@@ -21,7 +21,7 @@
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
     "mrm": "mrm --preset=@bingtsingw/mrm-preset",
     "prepare": "if [ -d './node_modules/husky' ]; then husky install; fi",
-    "release": "release-it"
+    "release": "release-it --ci"
   },
   "commitlint": {
     "extends": [
