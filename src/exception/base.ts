@@ -15,10 +15,6 @@ export class BaseException extends Error {
     this.code = snakeCase(`E ${normalizedCode}`).toUpperCase();
     this._messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
-
-    if (Error.captureStackTrace && typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, this.constructor);
-    }
   }
 
   public getFirstMessage(): string {
