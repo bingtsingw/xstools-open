@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/bingtsingw/xstools/compare/0.4.1...0.4.2) (2023-07-18)
+
+
+### Bug Fixes
+
+* guard Error.captureStackTrace ([34a6d4a](https://github.com/bingtsingw/xstools/commit/34a6d4a6ba00416be5a325f41b5e68bad7a86221))
+
 ## [0.4.1](https://github.com/bingtsingw/xstools/compare/0.4.0...0.4.1) (2023-07-06)
 
 
