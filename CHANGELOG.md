@@ -1,5 +1,12 @@
 
 
+## [0.5.0](https://github.com/bingtsingw/xstools/compare/0.4.2...0.5.0) (2023-07-18)
+
+
+### Features
+
+* add util sleep function ([e56edb3](https://github.com/bingtsingw/xstools/commit/e56edb3297af8d22854d4a22b36056f469286442))
+
 ## [0.4.2](https://github.com/bingtsingw/xstools/compare/0.4.1...0.4.2) (2023-07-18)
 
 
