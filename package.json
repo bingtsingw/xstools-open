@@ -1,6 +1,6 @@
 {
   "name": "@bingtsingw-c/xstools",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.js"

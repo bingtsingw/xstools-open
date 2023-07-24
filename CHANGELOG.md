@@ -1,5 +1,12 @@
 
 
+## [0.6.0](https://github.com/bingtsingw/xstools/compare/0.5.2...0.6.0) (2023-07-24)
+
+
+### Features
+
+* add datetime util ([1a68f8c](https://github.com/bingtsingw/xstools/commit/1a68f8c579245a27af91fd610d700f6da4178fbe))
+
 ## [0.5.2](https://github.com/bingtsingw/xstools/compare/0.5.1...0.5.2) (2023-07-18)
 
 
