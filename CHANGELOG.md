@@ -1,5 +1,12 @@
 
 
+## [0.7.0](https://github.com/bingtsingw/xstools/compare/0.6.0...0.7.0) (2023-08-24)
+
+
+### Features
+
+* add format.currency function ([4d87324](https://github.com/bingtsingw/xstools/commit/4d87324f8f1123bf3ce5b0a498f1366515498996))
+
 ## [0.6.0](https://github.com/bingtsingw/xstools/compare/0.5.2...0.6.0) (2023-07-24)
 
 
