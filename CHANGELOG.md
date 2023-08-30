@@ -1,5 +1,12 @@
 
 
+## [0.7.1](https://github.com/bingtsingw/xstools/compare/0.7.0...0.7.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* update format.currency ([fee1f26](https://github.com/bingtsingw/xstools/commit/fee1f26a60d7ee5499a9c141b2b8566dddde65c6))
+
 ## [0.7.0](https://github.com/bingtsingw/xstools/compare/0.6.0...0.7.0) (2023-08-24)
 
 
