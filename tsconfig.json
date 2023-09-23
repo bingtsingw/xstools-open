@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["bun-types"],
     "target": "ESNext",
     "lib": ["ESNext"],
     "allowJs": true,
