@@ -1,5 +1,17 @@
 
 
+## [0.8.0](https://github.com/bingtsingw/xstools/compare/0.7.1...0.8.0) (2023-09-23)
+
+
+### Features
+
+* add lang.stringify function ([99189fe](https://github.com/bingtsingw/xstools/commit/99189fed00ebd32861b716a4fc743374c3478826))
+
+
+### Chores
+
+* bun support ([f8652b8](https://github.com/bingtsingw/xstools/commit/f8652b831cf7a428329bd37bafb7e39e733befb7))
+
 ## [0.7.1](https://github.com/bingtsingw/xstools/compare/0.7.0...0.7.1) (2023-08-30)
 
 
