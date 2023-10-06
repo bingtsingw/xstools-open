@@ -1,5 +1,7 @@
+import { sleep } from './sleep';
 import { stringify } from './stringify';
 
-export const lang = {
+export const _lang = {
   stringify,
+  sleep,
 };

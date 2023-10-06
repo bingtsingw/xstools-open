@@ -7,7 +7,7 @@ import { InternalErrorException } from './500';
 import { ServerErrorException } from './5xx';
 import { BaseException } from './base';
 
-export const exception = {
+export const _exception = {
   client: {
     ClientErrorException,
     ServerErrorException,

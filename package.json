@@ -88,6 +88,7 @@
     "bun-types": "^1.0.3",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
+    "dayjs": "^1.11.10",
     "eslint": "^8.50.0",
     "eslint-config-alloy": "^5.1.2",
     "husky": "^8.0.3",
@@ -99,6 +100,9 @@
     "release-it": "^16.1.5",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
+  },
+  "optionalDependencies": {
+    "dayjs": "^1.11.10"
   },
   "tsup": {
     "entry": [
