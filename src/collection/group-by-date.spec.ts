@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { groupByDate } from './group-by-date';
 
 describe('collection', () => {
-  test('group-by-date', () => {
+  test('groupByDate', () => {
     const datas = [
       { score: 10, 'test-key': '2022-10-01 00:00:00' },
       { score: 20, 'test-key': '2022-10-02 00:00:00' },

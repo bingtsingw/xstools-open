@@ -14,7 +14,7 @@ export const isOverlap = (one: CompareDatetime, two: CompareDatetime) => {
     throw new _exception.server.InternalErrorException('时间段无效');
   }
 
-  if (one.end <= two.start || two.end <= one.start) {
+  if (one.end < two.start || two.end < one.start) {
     return false;
   }
 
