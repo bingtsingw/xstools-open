@@ -1,5 +1,17 @@
 
 
+## [0.9.0](https://github.com/bingtsingw/xstools/compare/0.8.0...0.9.0) (2023-10-06)
+
+
+### Features
+
+* add datetime.cnWeekDay and refactor module name ([cd0af6c](https://github.com/bingtsingw/xstools/commit/cd0af6c5a4d18f1a26db627a80a7ef1799f2e265))
+
+
+### Tests
+
+* add overlap.spec ([539bc5a](https://github.com/bingtsingw/xstools/commit/539bc5af93d0f35449d7d7f2dfc66d9e8832541a))
+
 ## [0.8.0](https://github.com/bingtsingw/xstools/compare/0.7.1...0.8.0) (2023-09-23)
 
 
