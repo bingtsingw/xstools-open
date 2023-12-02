@@ -15,11 +15,6 @@ dependencies:
     specifier: ^4.17.21
     version: 4.17.21
 
-optionalDependencies:
-  dayjs:
-    specifier: ^1.11.10
-    version: 1.11.10
-
 devDependencies:
   '@babel/core':
     specifier: ^7.23.5
@@ -2321,12 +2316,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.5
     dev: false
-
-  /dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
-    requiresBuild: true
-    dev: false
-    optional: true
 
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
