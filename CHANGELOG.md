@@ -1,5 +1,23 @@
 
 
+## [0.10.0](https://github.com/bingtsingw/xstools/compare/0.9.0...0.10.0) (2023-12-02)
+
+
+### Features
+
+* add fns-tz ([9951b3b](https://github.com/bingtsingw/xstools/commit/9951b3b38d55c55782cf6e673b53d6bf62283e5e))
+
+
+### Documentation
+
+* add readme ([6fa6608](https://github.com/bingtsingw/xstools/commit/6fa66084b83c4fe3c548eb837c06e60490b92251))
+
+
+### Chores
+
+* update package.json ([be5c2b0](https://github.com/bingtsingw/xstools/commit/be5c2b0ef008dfbc043372bdfd86c2b90272f930))
+* upgrade deps ([b524097](https://github.com/bingtsingw/xstools/commit/b524097d83c76f784c64b740fd972180fb8cecf1))
+
 ## [0.9.0](https://github.com/bingtsingw/xstools/compare/0.8.0...0.9.0) (2023-10-06)
 
 
