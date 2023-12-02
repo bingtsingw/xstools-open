@@ -1,6 +1,15 @@
 {
-  "name": "@bingtsingw-c/xstools",
+  "name": "@xstools/utility",
   "version": "0.9.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bingtsingw/xstools"
+  },
+  "author": {
+    "name": "bingtsingw",
+    "email": "bingtsingw@gmail.com",
+    "url": "https://github.com/bingtsingw"
+  },
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.js"
@@ -105,6 +114,11 @@
   },
   "optionalDependencies": {
     "dayjs": "^1.11.10"
+  },
+  "packageManager": "pnpm@8.11.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "tsup": {
     "entry": [
