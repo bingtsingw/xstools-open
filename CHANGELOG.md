@@ -1,5 +1,18 @@
 
 
+## [0.11.0](https://github.com/bingtsingw/xstools/compare/0.10.1...0.11.0) (2023-12-30)
+
+
+### Features
+
+* add format/starlize and format test ([e3853ce](https://github.com/bingtsingw/xstools/commit/e3853ce4d8e6beaea9dab65f615505f4a3d75293))
+
+
+### Chores
+
+* replace bun-types with @types/bun ([d3aa1ba](https://github.com/bingtsingw/xstools/commit/d3aa1ba4f4e14d28ddc233486d5e766521c8f379))
+* upgrade deps ([484bf7d](https://github.com/bingtsingw/xstools/commit/484bf7d59064b8687043f083b71b8723df9029e3))
+
 ## [0.10.1](https://github.com/bingtsingw/xstools/compare/0.10.0...0.10.1) (2023-12-02)
 
 
