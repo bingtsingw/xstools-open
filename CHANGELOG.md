@@ -1,5 +1,12 @@
 
 
+## [0.11.2](https://github.com/bingtsingw/xstools/compare/0.11.1...0.11.2) (2023-12-30)
+
+
+### Chores
+
+* update release-it hooks ([a6d4703](https://github.com/bingtsingw/xstools/commit/a6d47036333c8bfbade6e91bca305ace3b35182f))
+
 ## [0.11.1](https://github.com/bingtsingw/xstools/compare/0.11.0...0.11.1) (2023-12-30)
 
 
