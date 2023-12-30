@@ -1,4 +1,4 @@
-export const currency = (
+export const formatCurrency = (
   currency: number,
   options?: { decimals?: number; symbol?: string; sign?: boolean; F2Y?: boolean },
 ) => {
