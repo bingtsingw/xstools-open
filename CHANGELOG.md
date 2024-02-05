@@ -1,5 +1,12 @@
 
 
+## [0.12.1](https://github.com/bingtsingw/xstools/compare/0.12.0...0.12.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* forget export ([76c59e0](https://github.com/bingtsingw/xstools/commit/76c59e052e0995d9607af32cfe70dea034df8918))
+
 ## [0.12.0](https://github.com/bingtsingw/xstools/compare/0.11.2...0.12.0) (2024-02-05)
 
 
