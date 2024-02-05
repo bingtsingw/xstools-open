@@ -1,5 +1,17 @@
 
 
+## [0.12.0](https://github.com/bingtsingw/xstools/compare/0.11.2...0.12.0) (2024-02-05)
+
+
+### Features
+
+* add getDistance ([08ac433](https://github.com/bingtsingw/xstools/commit/08ac433d3999106b4bc0cb37c3da734bb47c53d0))
+
+
+### Code Refactoring
+
+* move lang to misc ([721c0a0](https://github.com/bingtsingw/xstools/commit/721c0a0bf24e96e8cf63db5ae041fc28ddc46d95))
+
 ## [0.11.2](https://github.com/bingtsingw/xstools/compare/0.11.1...0.11.2) (2023-12-30)
 
 
