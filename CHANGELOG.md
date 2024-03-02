@@ -1,5 +1,12 @@
 
 
+## [0.12.2](https://github.com/bingtsingw/xstools/compare/0.12.1...0.12.2) (2024-03-02)
+
+
+### Chores
+
+* rename functions and export types from d.ts ([b74732b](https://github.com/bingtsingw/xstools/commit/b74732b95ad33d00bc1740ba887cd527f81e8c42))
+
 ## [0.12.1](https://github.com/bingtsingw/xstools/compare/0.12.0...0.12.1) (2024-02-05)
 
 
