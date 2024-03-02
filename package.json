@@ -14,10 +14,10 @@
     "import": "./dist/index.mjs",
     "require": "./dist/index.js"
   },
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
@@ -125,6 +125,7 @@
       "esm",
       "cjs"
     ],
+    "dts": true,
     "treeshake": true,
     "clean": true,
     "minify": true

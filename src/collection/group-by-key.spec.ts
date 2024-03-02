@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
-import { groupByDate } from './group-by-date';
+import { groupByKey } from './group-by-key';
 
 describe('collection', () => {
-  test('groupByDate', () => {
+  test('groupByKey', () => {
     const datas = [
       { score: 10, 'test-key': '2022-10-01 00:00:00' },
       { score: 20, 'test-key': '2022-10-02 00:00:00' },
@@ -12,7 +12,7 @@ describe('collection', () => {
       { score: 60, 'test-key': '2022-10-03 00:00:00' },
     ];
 
-    expect(groupByDate(datas, 'test-key', (data) => new Date(data).toISOString().substring(0, 10))).toEqual({
+    expect(groupByKey(datas, 'test-key', (data) => new Date(data).toISOString().substring(0, 10))).toEqual({
       '2022-10-01': [
         { score: 10, 'test-key': '2022-10-01 00:00:00' },
         { score: 30, 'test-key': '2022-10-01 00:00:00' },

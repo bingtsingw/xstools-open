@@ -1,5 +1,5 @@
 import { number, object, safeParse } from 'valibot';
-import { _exception } from '../exception';
+import { Exception } from '../exception';
 
 const vPoint = object({
   latitude: number(),
@@ -26,7 +26,7 @@ export const getDistance = (
   point2: { latitude: number; longitude: number },
 ) => {
   if (!safeParse(vPoint, point1).success || !safeParse(vPoint, point2).success) {
-    throw new _exception.BadRequestException('坐标参数错误');
+    throw new Exception.BadRequestException('坐标参数错误');
   }
 
   // 将两个点的纬度转换为弧度

@@ -1,25 +1,29 @@
 import { describe, expect, test } from 'bun:test';
-import { isOverlap, isOverlaps } from './overlap';
+import { areIntervalsOverlap, areIntervalsOverlaps } from './interval-overlap';
 
-describe('datetime', () => {
-  test('isOverlap', () => {
+describe('interval-overlap', () => {
+  test('areIntervalsOverlap', () => {
     const oneStart = new Date('2023-01-01');
     const oneEnd = new Date('2023-12-30');
     const oneEndPlus = new Date('2023-12-31');
     const twoStart = new Date('2023-05-01');
     const twoEnd = new Date('2024-12-31');
 
-    expect(isOverlap({ start: oneStart, end: oneEnd }, { start: twoStart, end: twoEnd })).toBe(true);
-    expect(isOverlap({ start: oneStart, end: oneEnd }, { start: oneEnd, end: twoEnd })).toBe(true);
-    expect(isOverlap({ start: oneStart, end: oneEnd }, { start: oneEndPlus, end: twoEnd })).toBe(false);
-    expect(isOverlap({ start: oneStart, end: oneStart }, { start: twoStart, end: twoStart })).toBe(false);
-    expect(isOverlap({ start: oneStart, end: oneStart }, { start: oneStart, end: oneStart })).toBe(true);
+    expect(areIntervalsOverlap({ start: oneStart, end: oneEnd }, { start: twoStart, end: twoEnd })).toBe(true);
+    expect(areIntervalsOverlap({ start: oneStart, end: oneEnd }, { start: oneEnd, end: twoEnd })).toBe(true);
+    expect(areIntervalsOverlap({ start: oneStart, end: oneEnd }, { start: oneEndPlus, end: twoEnd })).toBe(false);
+    expect(areIntervalsOverlap({ start: oneStart, end: oneStart }, { start: twoStart, end: twoStart })).toBe(false);
+    expect(areIntervalsOverlap({ start: oneStart, end: oneStart }, { start: oneStart, end: oneStart })).toBe(true);
 
-    expect(() => isOverlap({ start: oneEnd, end: oneStart }, { start: twoStart, end: twoEnd })).toThrow('时间段无效');
-    expect(() => isOverlap({ start: oneStart, end: oneEnd }, { start: twoEnd, end: twoStart })).toThrow('时间段无效');
+    expect(() => areIntervalsOverlap({ start: oneEnd, end: oneStart }, { start: twoStart, end: twoEnd })).toThrow(
+      '时间段无效',
+    );
+    expect(() => areIntervalsOverlap({ start: oneStart, end: oneEnd }, { start: twoEnd, end: twoStart })).toThrow(
+      '时间段无效',
+    );
   });
 
-  test('isOverlaps', () => {
+  test('areIntervalsOverlaps', () => {
     const notOverlayDates = [
       { start: new Date('2023-01-02'), end: new Date('2023-01-03') },
       { start: new Date('2023-01-02'), end: new Date('2023-01-03') },
@@ -28,7 +32,7 @@ describe('datetime', () => {
     ];
 
     expect(
-      isOverlaps(
+      areIntervalsOverlaps(
         {
           start: new Date('2023-01-01'),
           end: new Date('2023-01-01'),
@@ -38,7 +42,7 @@ describe('datetime', () => {
     ).toBe(false);
 
     expect(
-      isOverlaps(
+      areIntervalsOverlaps(
         {
           start: new Date('2023-01-01'),
           end: new Date('2023-01-01'),

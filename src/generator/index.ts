@@ -1,7 +1,2 @@
-import { oid } from './oid';
-import { ossImageCrop } from './oss-image-crop';
-
-export const _generator = {
-  oid,
-  ossImageCrop,
-};
+export * from './oid';
+export * from './oss-image-crop';

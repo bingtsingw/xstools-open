@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
-import { rank } from './rank';
+import { rankByPath } from './rank-by-path';
 
 describe('collection', () => {
-  test('rank', () => {
+  test('rankByPath', () => {
     const data = [
       { exam: { score: 70 } },
       { exam: { score: 70 } },
@@ -12,7 +12,7 @@ describe('collection', () => {
       { exam: { score: 100 } },
     ];
 
-    expect(rank(data, 'exam.score')).toEqual([
+    expect(rankByPath(data, 'exam.score')).toEqual([
       { _rank: 1, exam: { score: 100 } },
       { _rank: 1, exam: { score: 100 } },
       { _rank: 3, exam: { score: 90 } },

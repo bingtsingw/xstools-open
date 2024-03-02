@@ -2,7 +2,7 @@ import { get, orderBy } from 'lodash';
 
 type WithRank<T> = T & { _rank: number };
 
-export const rank = <T>(collection: T[], path: string): Array<WithRank<T>> => {
+export const rankByPath = <T>(collection: T[], path: string): Array<WithRank<T>> => {
   let lastRank = 1;
   let lastNumber = 0;
   const items: Array<WithRank<T>> = [];

@@ -1,7 +1,2 @@
-import { groupByDate } from './group-by-date';
-import { rank } from './rank';
-
-export const _collection = {
-  rank,
-  groupByDate,
-};
+export * from './group-by-key';
+export * from './rank-by-path';

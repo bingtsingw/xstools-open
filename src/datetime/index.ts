@@ -1,9 +1,3 @@
-import { cnWeekDay } from './cn-week-day';
-import { isOverlap, isOverlaps } from './overlap';
+export * from './cn-week-day';
 export * from './fns-tz';
-
-export const _datetime = {
-  isOverlap,
-  isOverlaps,
-  cnWeekDay,
-};
+export * from './interval-overlap';
