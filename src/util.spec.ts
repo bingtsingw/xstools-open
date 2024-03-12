@@ -188,6 +188,18 @@ describe('getDistrictFromAddress', () => {
           cityWhiteList: ['广东省'],
           expected: '',
         },
+        {
+          address: '广东省深圳市福田区莲花街道红荔路6030号',
+          title: '莲花山公园福田',
+          cityWhiteList: ['广东省'],
+          expected: '',
+        },
+        {
+          address: '广东省深圳市福田区莲花街道红荔路6030号',
+          title: '莲花山公园【福田】',
+          cityWhiteList: ['广东省'],
+          expected: '',
+        },
       ],
     },
     {
