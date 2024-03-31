@@ -1,5 +1,12 @@
 
 
+## [0.12.3](https://github.com/bingtsingw/xstools/compare/0.12.2...0.12.3) (2024-03-31)
+
+
+### Bug Fixes
+
+* skip private property in dts ([ef2fbd7](https://github.com/bingtsingw/xstools/commit/ef2fbd7360700308ef9314630417b556adf97da1))
+
 ## [0.12.2](https://github.com/bingtsingw/xstools/compare/0.12.1...0.12.2) (2024-03-02)
 
 
