@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "stripInternal": true
   },
   "include": ["src"]
 }

@@ -5,6 +5,7 @@ export class BaseException extends Error {
   public code: string;
   public message: string;
 
+  /** @internal */
   private _messages: unknown;
 
   public constructor(status: number, messages: unknown, code: string) {
