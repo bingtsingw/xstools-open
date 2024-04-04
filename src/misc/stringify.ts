@@ -1,7 +1,7 @@
 import { InternalErrorException } from '../exception/500';
 
 // https://stackoverflow.com/questions/9804777/how-to-test-if-a-string-is-json-or-not
-const isJson = (value: any) => {
+const isJson = (value: any): boolean => {
   let _value = typeof value !== 'string' ? JSON.stringify(value) : value;
 
   try {
@@ -12,7 +12,7 @@ const isJson = (value: any) => {
   }
 };
 
-export const stringify = (value: any) => {
+export const stringify = (value: any): string => {
   if (!isJson(value)) {
     throw new InternalErrorException('Not Valid JSON');
   }

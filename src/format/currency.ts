@@ -1,7 +1,7 @@
 export const formatCurrency = (
   currency: number,
   options?: { decimals?: number; symbol?: string; sign?: boolean; F2Y?: boolean },
-) => {
+): string => {
   const { decimals = 2, symbol = '¥', sign = false } = options || {};
 
   const dm = decimals < 0 ? 0 : decimals;

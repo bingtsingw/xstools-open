@@ -1,6 +1,6 @@
 import { Exception } from '../exception';
 
-export const areIntervalsOverlap = (intervalLeft: Interval, intervalRight: Interval) => {
+export const areIntervalsOverlap = (intervalLeft: Interval, intervalRight: Interval): boolean | never => {
   if (intervalLeft.start > intervalLeft.end || intervalRight.start > intervalRight.end) {
     throw new Exception.Server.InternalErrorException('时间段无效');
   }
