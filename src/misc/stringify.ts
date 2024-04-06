@@ -7,7 +7,7 @@ const isJson = (value: any): boolean => {
   try {
     const _parse = JSON.parse(_value);
     return typeof _parse === 'object' && _parse !== null;
-  } catch (e) {
+  } catch (_e) {
     return false;
   }
 };
