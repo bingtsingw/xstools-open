@@ -1,6 +1,6 @@
 {
   "name": "@xstools/utility",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/bingtsingw/xstools"
@@ -54,9 +54,9 @@
     "extends": "@xstools-dev/eslint-config/base"
   },
   "dependencies": {
+    "@bingtsingw/radash": "^0.1.1",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
-    "lodash": "^4.17.21",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
@@ -66,7 +66,6 @@
     "@commitlint/config-conventional": "^19.1.0",
     "@release-it/conventional-changelog": "^8.0.1",
     "@types/bun": "^1.0.12",
-    "@types/lodash": "^4.17.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.0.11",
@@ -74,8 +73,8 @@
     "mrm": "^4.1.22",
     "release-it": "^17.1.1",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.3",
-    "xstools-dev": "^0.0.4"
+    "typescript": "^5.4.4",
+    "xstools-dev": "^0.1.0"
   },
   "packageManager": "^pnpm@8.15.0",
   "publishConfig": {
