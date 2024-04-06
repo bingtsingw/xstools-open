@@ -1,5 +1,25 @@
 
 
+## [0.13.0](https://github.com/bingtsingw/xstools/compare/0.12.3...0.13.0) (2024-04-06)
+
+
+### Features
+
+* move lodash to @bingtsingw/radash ([d1c6f61](https://github.com/bingtsingw/xstools/commit/d1c6f61db24044854fc15ce1aefc891b642f0528))
+
+
+### Bug Fixes
+
+* lint error ([7ccbd28](https://github.com/bingtsingw/xstools/commit/7ccbd28de8a7f40aea47c183455e5d6dc9fc4772))
+
+
+### Chores
+
+* add xstools-dev ([542a251](https://github.com/bingtsingw/xstools/commit/542a251a9d4711f41d60de5c220d6833c188fb00))
+* change module type && add return types ([6d78dbe](https://github.com/bingtsingw/xstools/commit/6d78dbeb890b45871e961b83abeefa5703749799))
+* update husky config ([5ded317](https://github.com/bingtsingw/xstools/commit/5ded317655af40b5aa3c90b6824d0653f1f0085c))
+* upgrade deps ([6351b6b](https://github.com/bingtsingw/xstools/commit/6351b6b2194493d757fbe4c152f835de5857dd9d))
+
 ## [0.12.3](https://github.com/bingtsingw/xstools/compare/0.12.2...0.12.3) (2024-03-31)
 
 
