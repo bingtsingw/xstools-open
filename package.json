@@ -1,18 +1,19 @@
 {
   "name": "@xstools/utility",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bingtsingw/xstools"
+    "url": "https://github.com/bingtsingw/xstools-utility"
   },
   "author": {
     "name": "bingtsingw",
     "email": "bingtsingw@gmail.com",
     "url": "https://github.com/bingtsingw"
   },
+  "type": "module",
   "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,7 +22,6 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf dist",
     "commit": "cz",
     "dev": "tsup --watch",
     "format": "prettier . --check",
@@ -29,10 +29,11 @@
     "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
     "mrm": "mrm --preset=@bingtsingw/mrm-preset",
-    "prepare": "if [ -d './node_modules/husky' ]; then husky install; fi",
+    "prepare": "if [ -d './node_modules/husky' ]; then husky; fi",
     "release": "release-it --ci",
     "test": "bun test",
-    "test:dev": "bun test --watch"
+    "test:dev": "bun test --watch",
+    "typecheck": "tsc --noEmit"
   },
   "commitlint": {
     "extends": [
@@ -48,71 +49,34 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-packagejson",
-      "prettier-plugin-organize-imports"
-    ],
-    "printWidth": 120,
-    "proseWrap": "never",
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
+  "prettier": "@xstools-dev/prettier-config/base",
   "eslintConfig": {
-    "extends": [
-      "alloy",
-      "alloy/typescript"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "*.config.js"
-        ],
-        "rules": {
-          "@typescript-eslint/no-require-imports": "off",
-          "import/no-commonjs": "off"
-        }
-      }
-    ]
+    "extends": "@xstools-dev/eslint-config/base"
   },
-  "eslintIgnore": [
-    "dist",
-    "build",
-    "out"
-  ],
   "dependencies": {
+    "@bingtsingw/radash": "^0.1.1",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
-    "lodash": "^4.17.21",
-    "valibot": "^0.27.1"
+    "valibot": "^0.30.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/eslint-parser": "^7.23.3",
-    "@bingtsingw/mrm-preset": "^0.10.0",
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
+    "@babel/core": "^7.24.4",
+    "@bingtsingw/mrm-preset": "^0.11.1",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@release-it/conventional-changelog": "^8.0.1",
-    "@types/bun": "^1.0.0",
-    "@types/lodash": "^4.14.202",
-    "@types/node": "^20.10.6",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
-    "@typescript-eslint/parser": "^6.16.0",
+    "@types/bun": "^1.1.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.56.0",
-    "eslint-config-alloy": "^5.1.2",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "mrm": "^4.1.22",
-    "prettier": "^3.1.1",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "prettier-plugin-packagejson": "^2.4.8",
-    "release-it": "^17.0.1",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "release-it": "^17.2.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "xstools-dev": "^0.2.1"
   },
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "^pnpm@8.15.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"

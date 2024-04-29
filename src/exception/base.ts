@@ -1,18 +1,19 @@
-import { get, replace, snakeCase, startCase } from 'lodash';
+import { get, snake, title } from '@bingtsingw/radash';
 
 export class BaseException extends Error {
   public status: number;
   public code: string;
   public message: string;
 
+  /** @internal */
   private _messages: unknown;
 
   public constructor(status: number, messages: unknown, code: string) {
     super();
     this.status = status;
 
-    const normalizedCode = startCase(replace(code, /Exception$/, ''));
-    this.code = snakeCase(`E ${normalizedCode}`).toUpperCase();
+    const normalizedCode = title(code.replace(/Exception$/, ''));
+    this.code = snake(`E ${normalizedCode}`).toUpperCase();
     this._messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
   }

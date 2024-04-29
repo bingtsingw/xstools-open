@@ -24,5 +24,8 @@ describe('collection', () => {
         { score: 60, 'test-key': '2022-10-03 00:00:00' },
       ],
     });
+
+    // @ts-expect-error Argument of type '"score"' is not assignable to parameter of type '"test-key"'
+    groupByKey(datas, 'score', () => ({}));
   });
 });
