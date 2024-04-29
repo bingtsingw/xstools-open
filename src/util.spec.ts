@@ -113,6 +113,67 @@ describe('getDistrictFromAddress', () => {
           cityWhiteList: ['广东省'],
           expected: '罗湖区',
         },
+        // 无白名单
+        {
+          address: '北京市北京市大兴区行远街道101号',
+          title: '星巴克',
+          expected: '大兴区',
+        },
+        {
+          address: '北京市西城区复兴门内大街101号',
+          title: '百盛购物中心(复兴门店)',
+          expected: '西城区',
+        },
+        {
+          address: '北京市东城区安定门外大街',
+          title: '地坛公园',
+          expected: '东城区',
+        },
+        {
+          address: '上海市普陀区曹杨路1040弄1-2号',
+          title: '伟龙商务楼',
+          expected: '普陀区',
+        },
+        {
+          address: '上海市静安区梅园路360号',
+          title: '环龙商场',
+          expected: '静安区',
+        },
+        {
+          address: '上海市黄浦区淮海中路282~283号',
+          title: '上海香港广场',
+          expected: '黄浦区',
+        },
+        {
+          address: '重庆市渝北区洪湖东路1号',
+          title: '财富MALL',
+          expected: '渝北区',
+        },
+        {
+          address: '重庆市北部新区泰山大道东段62号',
+          title: '动力时光购物中心',
+          expected: '北部新区',
+        },
+        {
+          address: '重庆市江北区观音桥步行街6号',
+          title: '重庆新世界百货',
+          expected: '江北区',
+        },
+        {
+          address: '广东省深圳市福田区莲花街道红荔路6030号',
+          title: '莲花山公园',
+          expected: '福田区',
+        },
+        {
+          address: '广东省深圳市罗湖区解放路2001号',
+          title: '太阳百货',
+          expected: '罗湖区',
+        },
+        {
+          address: '广东省深圳市罗湖区宝安南路1881号',
+          title: '深圳万象城',
+          expected: '罗湖区',
+        },
       ],
     },
     {
