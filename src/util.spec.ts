@@ -1,22 +1,23 @@
+import { draw } from '@bingtsingw/radash';
 import { describe, expect, test } from 'bun:test';
 import { getDistrictFromAddress } from './util';
 
-const generateRandomAddresses = ({ provinces, cities }: { provinces: string[]; cities: string[] }, count: number) => {
-  const districts = ['朝阳区', '海淀区', '西城区', '东城区', '大兴区', '丰台区', '昌平区', '通州区'];
+const randomAddresses = () => {
+  const provinces = ['广东省', '北京市', '上海市', '重庆市'];
+  const cities = ['深圳市', '北京市', '上海市', '重庆市'];
+  const areas = ['朝阳区', '海淀区', '西城区', '东城区', '大兴区', '丰台区', '昌平区', '通州区'];
   const streets = ['和平街', '长安街', '园林路', '光明路', '科技园路', '建国路', '民主路', '行远街'];
-  const addresses = [];
 
-  for (let i = 0; i < count; i++) {
-    const province = provinces[Math.floor(Math.random() * provinces.length)];
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    const district = districts[Math.floor(Math.random() * districts.length)];
-    const street = streets[Math.floor(Math.random() * streets.length)];
+  const addresses = [];
+  for (let i = 0; i < 100; i++) {
+    const province = draw(provinces)!;
+    const city = draw(cities)!;
+    const area = draw(areas)!;
+    const street = draw(streets)!;
     const number = Math.floor(Math.random() * 500) + 1;
-    const address = `${province}${city}${district}${street}${number}号`;
-    addresses.push({
-      address: address,
-      district: district as string,
-    });
+    const address = `${province}${city}${area}${street}${number}号`;
+
+    addresses.push({ address: address, area: area });
   }
 
   return addresses;
@@ -24,19 +25,18 @@ const generateRandomAddresses = ({ provinces, cities }: { provinces: string[]; c
 
 describe('getDistrictFromAddress', () => {
   test('基本随机地址', () => {
-    const addresses = generateRandomAddresses(
-      { provinces: ['广东省', '北京市', '上海市', '重庆市'], cities: ['深圳市', '北京市', '上海市', '重庆市'] },
-      100,
-    );
+    const addresses = randomAddresses();
+
     addresses.forEach((address) => {
       const district = getDistrictFromAddress({
         address: address.address,
         title: '星巴克',
         cityWhiteList: ['深圳市', '北京市', '上海市', '重庆市'],
       });
-      expect(district).toBe(address.district);
+      expect(district).toBe(address.area);
     });
   });
+
   const testCases = [
     {
       description: '合法地址',
