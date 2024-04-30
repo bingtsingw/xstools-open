@@ -1,6 +1,6 @@
 import { draw } from '@bingtsingw/radash';
 import { describe, expect, test } from 'bun:test';
-import { getDistrictFromAddress } from './util';
+import { getArea } from './get-area';
 
 const randomAddresses = () => {
   const provinces = ['广东省', '北京市', '上海市', '重庆市'];
@@ -23,17 +23,17 @@ const randomAddresses = () => {
   return addresses;
 };
 
-describe('getDistrictFromAddress', () => {
-  test('基本随机地址', () => {
+describe('getArea', () => {
+  test('随机标准地址', () => {
     const addresses = randomAddresses();
 
     addresses.forEach((address) => {
-      const district = getDistrictFromAddress({
+      const area = getArea({
         address: address.address,
         title: '星巴克',
         cityWhiteList: ['深圳市', '北京市', '上海市', '重庆市'],
       });
-      expect(district).toBe(address.area);
+      expect(area).toBe(address.area);
     });
   });
 
@@ -324,8 +324,8 @@ describe('getDistrictFromAddress', () => {
   testCases.forEach(({ description, cases }) => {
     test(description, () => {
       cases.forEach(({ address, title, cityWhiteList, expected }) => {
-        const district = getDistrictFromAddress({ address, title, cityWhiteList });
-        expect(district).toBe(expected);
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
       });
     });
   });

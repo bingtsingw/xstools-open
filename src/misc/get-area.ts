@@ -1,4 +1,4 @@
-export const getDistrictFromAddress = ({
+export const getArea = ({
   title,
   address,
   cityWhiteList,
