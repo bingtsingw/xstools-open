@@ -35,12 +35,8 @@ describe('getArea', () => {
       });
       expect(area).toBe(address.area);
     });
-  });
-
-  const testCases = [
-    {
-      description: '合法地址',
-      cases: [
+    test('合法地址', () => {
+      [
         {
           address: '北京市北京市大兴区行远街道101号',
           title: '星巴克',
@@ -174,11 +170,14 @@ describe('getArea', () => {
           title: '深圳万象城',
           expected: '罗湖区',
         },
-      ],
-    },
-    {
-      description: '合法地址：title为空',
-      cases: [
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
+      });
+    });
+
+    test('合法地址：title为空', () => {
+      [
         {
           address: '北京市北京市大兴区行远街道101号',
           title: '',
@@ -191,11 +190,14 @@ describe('getArea', () => {
           cityWhiteList: ['北京市'],
           expected: '西城区',
         },
-      ],
-    },
-    {
-      description: '非法地址：不再白名单（return ""）',
-      cases: [
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
+      });
+    });
+
+    test('非法地址：不再白名单（return ""）', () => {
+      [
         {
           address: '北京市北京市大兴区行远街道101号',
           title: '星巴克',
@@ -220,11 +222,13 @@ describe('getArea', () => {
           cityWhiteList: ['北京市'],
           expected: '',
         },
-      ],
-    },
-    {
-      description: '非法地址：title包含区（return ""）',
-      cases: [
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
+      });
+    });
+    test('非法地址：title包含区（return ""）', () => {
+      [
         {
           address: '北京市北京市大兴区行远街道101号',
           title: '大兴星巴克',
@@ -261,11 +265,13 @@ describe('getArea', () => {
           cityWhiteList: ['广东省'],
           expected: '',
         },
-      ],
-    },
-    {
-      description: '非法地址：白名单为空（return ""）',
-      cases: [
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
+      });
+    });
+    test('非法地址：白名单为空（return ""', () => {
+      [
         {
           address: '北京市北京市大兴区行远街道101号',
           title: '大兴星巴克',
@@ -288,11 +294,13 @@ describe('getArea', () => {
           cityWhiteList: [''],
           expected: '',
         },
-      ],
-    },
-    {
-      description: '非法地址：address为空（return ""）',
-      cases: [
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
+        const area = getArea({ address, title, cityWhiteList });
+        expect(area).toBe(expected);
+      });
+    });
+    test('非法地址：address为空（return ""）', () => {
+      [
         {
           address: '',
           title: '大兴星巴克',
@@ -317,13 +325,7 @@ describe('getArea', () => {
           cityWhiteList: [''],
           expected: '',
         },
-      ],
-    },
-  ];
-  /* eslint-disable max-nested-callbacks */
-  testCases.forEach(({ description, cases }) => {
-    test(description, () => {
-      cases.forEach(({ address, title, cityWhiteList, expected }) => {
+      ].forEach(({ address, title, cityWhiteList, expected }) => {
         const area = getArea({ address, title, cityWhiteList });
         expect(area).toBe(expected);
       });
