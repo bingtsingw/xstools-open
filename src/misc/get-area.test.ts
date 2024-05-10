@@ -258,13 +258,13 @@ describe('getArea', () => {
         address: '广东省深圳市福田区莲花街道红荔路6030号',
         title: '莲花山公园福田',
         cityWhiteList: ['广东省'],
-        expected: '',
+        expected: '福田区',
       },
       {
         address: '广东省深圳市福田区莲花街道红荔路6030号',
         title: '莲花山公园【福田】',
         cityWhiteList: ['广东省'],
-        expected: '',
+        expected: '福田区',
       },
     ].forEach(({ address, title, cityWhiteList, expected }) => {
       const area = getArea({ address, title, cityWhiteList });
@@ -325,6 +325,32 @@ describe('getArea', () => {
         title: '(福田区)莲花山公园',
         cityWhiteList: [''],
         expected: '',
+      },
+    ].forEach(({ address, title, cityWhiteList, expected }) => {
+      const area = getArea({ address, title, cityWhiteList });
+      expect(area).toBe(expected);
+    });
+  });
+
+  test('其他地址：随时补充', () => {
+    [
+      {
+        address: '上海市上海市黄浦区南京西路325号上海市历史博物馆内',
+        title: 'MAPOLY COFFEE满坡栗咖啡(上海历史博物馆臻选店）',
+        expected: '黄浦区',
+        cityWhiteList: [],
+      },
+      {
+        address: '上海市静安区乌鲁木齐北路4号(近市西中学后门)',
+        title: 'SilverFlow银流咖啡(元善里店)',
+        expected: '静安区',
+        cityWhiteList: [],
+      },
+      {
+        address: '吉林省长春市朝阳区吉大南校北门致远街408号',
+        title: 'Im Fine Cafe Bar 吉林省长春市朝阳区吉大南校',
+        expected: '朝阳区',
+        cityWhiteList: [],
       },
     ].forEach(({ address, title, cityWhiteList, expected }) => {
       const area = getArea({ address, title, cityWhiteList });
