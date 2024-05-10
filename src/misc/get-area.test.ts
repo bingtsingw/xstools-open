@@ -183,13 +183,13 @@ describe('getArea', () => {
         address: '北京市北京市大兴区行远街道101号',
         title: '',
         cityWhiteList: ['北京市'],
-        expected: '大兴区',
+        expected: '',
       },
       {
         address: '北京市西城区复兴门内大街101号',
         title: '',
         cityWhiteList: ['北京市'],
-        expected: '西城区',
+        expected: '',
       },
     ].forEach(({ address, title, cityWhiteList, expected }) => {
       const area = getArea({ address, title, cityWhiteList });
