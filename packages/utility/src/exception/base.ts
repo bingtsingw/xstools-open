@@ -1,4 +1,4 @@
-import { get, snake, title } from '@bingtsingw/radash';
+import { get, snake, title } from '@xstools/radash';
 
 export class BaseException extends Error {
   public status: number;

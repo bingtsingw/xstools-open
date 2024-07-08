@@ -1,4 +1,4 @@
-import { get, sort } from '@bingtsingw/radash';
+import { get, sort } from '@xstools/radash';
 
 type WithRank<T> = T & { _rank: number };
 

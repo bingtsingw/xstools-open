@@ -1,4 +1,3 @@
-export * from '@bingtsingw/radash';
 export * from './collection';
 export * from './datetime';
 export * from './exception';

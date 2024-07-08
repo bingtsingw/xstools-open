@@ -1,6 +1,7 @@
 {
-  "name": "@xstools/utility",
-  "version": "0.14.0",
+  "name": "@xstools/radash",
+  "version": "0.1.1",
+  "description": "Personal fork of original rayepps/radash",
   "repository": {
     "type": "git",
     "url": "https://github.com/bingtsingw/xstools-open"
@@ -11,16 +12,17 @@
     "email": "bingtsingw@gmail.com",
     "url": "https://github.com/bingtsingw"
   },
+  "contributors": [
+    {
+      "name": "rayepps",
+      "url": "https://github.com/rayepps"
+    }
+  ],
+  "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./radash": {
-      "default": "./dist/radash.js",
-      "types": "./dist/radash.d.ts"
-    }
+    "default": "./dist/index.js",
+    "types": "./dist/index.d.ts"
   },
   "files": [
     "dist"
@@ -36,20 +38,13 @@
   "eslintConfig": {
     "extends": "@xstools-dev/eslint-config/base"
   },
-  "dependencies": {
-    "@xstools/radash": "workspace:^",
-    "date-fns": "2.30.0",
-    "date-fns-tz": "2.0.0",
-    "valibot": "^0.30.0"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
   "tsup": {
     "entry": [
-      "src/index.ts",
-      "src/radash.ts"
+      "src/index.ts"
     ],
     "format": [
       "esm"

@@ -1,4 +1,4 @@
-import { get } from '@bingtsingw/radash';
+import { get } from '@xstools/radash';
 
 type Key<T> = {
   [K in keyof T]: K extends string ? (T[K] extends string ? K : never) : never;

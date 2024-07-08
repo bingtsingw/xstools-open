@@ -21,11 +21,13 @@ importers:
         specifier: ^5.5.3
         version: 5.5.3
 
+  packages/radash: {}
+
   packages/utility:
     dependencies:
-      '@bingtsingw/radash':
-        specifier: ^0.1.1
-        version: 0.1.1
+      '@xstools/radash':
+        specifier: workspace:^
+        version: link:../radash
       date-fns:
         specifier: 2.30.0
         version: 2.30.0
@@ -1104,9 +1106,6 @@ packages:
   '@babel/types@7.24.7':
     resolution: {integrity: sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==}
     engines: {node: '>=6.9.0'}
-
-  '@bingtsingw/radash@0.1.1':
-    resolution: {integrity: sha512-YGdX1h10RKnlrMGfhwc1XswKhXukN5Bfrwd9vujGeb+dqLnGVutS+1AT4ydHZZ12HDE/Joyx+udPgk2uEyroGw==}
 
   '@changesets/apply-release-plan@7.0.4':
     resolution: {integrity: sha512-HLFwhKWayKinWAul0Vj+76jVx1Pc2v55MGPVjZ924Y/ROeSsBMFutv9heHmCUj48lJyRfOTJG5+ar+29FUky/A==}
@@ -9670,8 +9669,6 @@ snapshots:
       '@babel/helper-string-parser': 7.24.7
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
-
-  '@bingtsingw/radash@0.1.1': {}
 
   '@changesets/apply-release-plan@7.0.4':
     dependencies:

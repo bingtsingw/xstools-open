@@ -1,6 +1,7 @@
 {
   "name": "xstools-open",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "turbo run build",
     "changeset-add": "changeset add",
