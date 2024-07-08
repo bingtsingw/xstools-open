@@ -15,5 +15,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bingtsingw/composite-actions/pnpm-install@v1
       - run: |
-          pnpm run check-mono
           pnpm run check-publish
+          pnpm run check-mono

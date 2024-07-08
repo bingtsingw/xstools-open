@@ -1,7 +1,11 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
@@ -11,8 +15,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: bingtsingw/composite-actions/pnpm-install@v1
-
-      - run: pnpm run build
 
       - uses: changesets/action@v1
         with:
