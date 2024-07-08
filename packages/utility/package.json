@@ -1,0 +1,55 @@
+{
+  "name": "@xstools/utility",
+  "version": "0.14.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bingtsingw/xstools-open"
+  },
+  "author": {
+    "name": "bingtsingw",
+    "email": "bingtsingw@gmail.com",
+    "url": "https://github.com/bingtsingw"
+  },
+  "type": "module",
+  "exports": {
+    "default": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "check-type": "tsc --noEmit",
+    "dev": "tsup --watch",
+    "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
+    "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
+    "test": "bun test"
+  },
+  "eslintConfig": {
+    "extends": "@xstools-dev/eslint-config/base"
+  },
+  "dependencies": {
+    "@bingtsingw/radash": "^0.1.1",
+    "date-fns": "2.30.0",
+    "date-fns-tz": "2.0.0",
+    "valibot": "^0.30.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm"
+    ],
+    "dts": true,
+    "sourcemap": true,
+    "clean": true,
+    "treeshake": true,
+    "minify": true
+  }
+}

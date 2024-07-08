@@ -16,6 +16,7 @@ deploy_versions
 .cache
 .vercel
 .malagu
+.turbo
 
 # Logs
 logs

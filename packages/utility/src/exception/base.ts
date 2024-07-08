@@ -3,7 +3,7 @@ import { get, snake, title } from '@bingtsingw/radash';
 export class BaseException extends Error {
   public status: number;
   public code: string;
-  public message: string;
+  public override message: string;
 
   /** @internal */
   private _messages: unknown;

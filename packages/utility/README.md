@@ -1,4 +1,4 @@
-# xstools
+# @xstools/utility
 
 `xs`代表非常小的意思.
 

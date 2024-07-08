@@ -1,38 +1,23 @@
 {
-  "name": "@xstools/utility",
-  "version": "0.13.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bingtsingw/xstools-utility"
-  },
-  "author": {
-    "name": "bingtsingw",
-    "email": "bingtsingw@gmail.com",
-    "url": "https://github.com/bingtsingw"
-  },
-  "type": "module",
-  "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "name": "xstools-open",
+  "private": true,
   "scripts": {
-    "build": "tsup",
-    "check-type": "tsc --noEmit",
+    "build": "turbo run build",
+    "changeset-add": "changeset add",
+    "changeset-publish": "npm run check-publish && changeset publish",
+    "changeset-version": "changeset version",
+    "check-mono": "sherif",
+    "check-publish": "npm run build && npm run format && npm run lint:js && npm run check-type && npm run test",
+    "check-type": "turbo run check-type",
+    "clean": "del **/dist **/.build **/.swc **/.malagu **/.turbo **/node_modules !node_modules",
     "commit": "cz",
-    "dev": "tsup --watch",
+    "dev": "turbo run dev",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
-    "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:js": "turbo run lint:js",
+    "lint:js:fix": "turbo run lint:js:fix",
     "prepare": "simple-git-hooks",
-    "release": "release-it --ci",
-    "test": "bun test",
-    "test:dev": "bun test --watch"
+    "test": "turbo run test"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
@@ -56,34 +41,11 @@
   "eslintConfig": {
     "extends": "@xstools-dev/eslint-config/base"
   },
-  "dependencies": {
-    "@bingtsingw/radash": "^0.1.1",
-    "date-fns": "2.30.0",
-    "date-fns-tz": "2.0.0",
-    "valibot": "^0.30.0"
-  },
   "devDependencies": {
     "@types/bun": "^1.1.6",
     "@types/node": "^20.14.10",
     "@xstools-dev/mix": "^0.3.6",
     "typescript": "^5.5.3"
   },
-  "packageManager": "pnpm@9.5.0",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org"
-  },
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "dts": true,
-    "treeshake": true,
-    "clean": true,
-    "minify": true
-  }
+  "packageManager": "pnpm@9.5.0"
 }

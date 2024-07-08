@@ -7,19 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@bingtsingw/radash':
-        specifier: ^0.1.1
-        version: 0.1.1
-      date-fns:
-        specifier: 2.30.0
-        version: 2.30.0
-      date-fns-tz:
-        specifier: 2.0.0
-        version: 2.0.0(date-fns@2.30.0)
-      valibot:
-        specifier: ^0.30.0
-        version: 0.30.0
     devDependencies:
       '@types/bun':
         specifier: ^1.1.6
@@ -33,6 +20,21 @@ importers:
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
+
+  packages/utility:
+    dependencies:
+      '@bingtsingw/radash':
+        specifier: ^0.1.1
+        version: 0.1.1
+      date-fns:
+        specifier: 2.30.0
+        version: 2.30.0
+      date-fns-tz:
+        specifier: 2.0.0
+        version: 2.0.0(date-fns@2.30.0)
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
 
 packages:
 
