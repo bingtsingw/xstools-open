@@ -1,1 +1,0 @@
-bun run --no -- commitlint --edit $1

@@ -22,18 +22,21 @@
   ],
   "scripts": {
     "build": "tsup",
+    "check-type": "tsc --noEmit",
     "commit": "cz",
     "dev": "tsup --watch",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
-    "mrm": "mrm --preset=@bingtsingw/mrm-preset",
-    "prepare": "if [ -d './node_modules/husky' ]; then husky; fi",
+    "prepare": "simple-git-hooks",
     "release": "release-it --ci",
     "test": "bun test",
-    "test:dev": "bun test --watch",
-    "typecheck": "tsc --noEmit"
+    "test:dev": "bun test --watch"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx commitlint --edit $1"
   },
   "commitlint": {
     "extends": [
@@ -55,28 +58,17 @@
   },
   "dependencies": {
     "@bingtsingw/radash": "^0.1.1",
-    "date-fns": "^2.30.0",
-    "date-fns-tz": "^2.0.0",
+    "date-fns": "2.30.0",
+    "date-fns-tz": "2.0.0",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@bingtsingw/mrm-preset": "^0.11.1",
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@release-it/conventional-changelog": "^8.0.1",
-    "@types/bun": "^1.1.0",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "mrm": "^4.1.22",
-    "release-it": "^17.2.1",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5",
-    "xstools-dev": "^0.2.1"
+    "@types/bun": "^1.1.6",
+    "@types/node": "^20.14.10",
+    "@xstools-dev/mix": "^0.3.6",
+    "typescript": "^5.5.3"
   },
-  "packageManager": "^pnpm@8.15.0",
+  "packageManager": "pnpm@9.5.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
