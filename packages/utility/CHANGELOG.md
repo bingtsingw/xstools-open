@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.16.0
+
+### Minor Changes
+
+- [`23fe2dc`](https://github.com/bingtsingw/xstools-open/commit/23fe2dcb36ab07d635cfcd960f2465f4c3d8793c) Thanks [@bingtsingw](https://github.com/bingtsingw)! - upgrade valibot
+
 ## 0.15.0
 
 ### Minor Changes
