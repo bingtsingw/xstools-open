@@ -5,8 +5,7 @@ export class BaseException extends Error {
   public code: string;
   public override message: string;
 
-  /** @internal */
-  private _messages: unknown;
+  #_messages: unknown;
 
   public constructor(status: number, messages: unknown, code: string) {
     super();
@@ -14,12 +13,12 @@ export class BaseException extends Error {
 
     const normalizedCode = title(code.replace(/Exception$/, ''));
     this.code = snake(`E ${normalizedCode}`).toUpperCase();
-    this._messages = messages ?? normalizedCode;
+    this.#_messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
   }
 
   public getFirstMessage(): string {
-    const messages = this._messages;
+    const messages = this.#_messages;
 
     if (typeof messages === 'string') {
       return messages;

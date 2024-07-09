@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.16.1
+
+### Patch Changes
+
+- 使用es6标准的私有属性
+
 ## 0.16.0
 
 ### Minor Changes
