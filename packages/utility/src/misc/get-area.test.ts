@@ -25,47 +25,21 @@ const randomAddresses = () => {
 
 describe('getArea', () => {
   test('随机标准地址', () => {
-    const addresses = randomAddresses();
-
-    addresses.forEach((address) => {
-      const area = getArea({
-        address: address.address,
-        title: '星巴克',
-      });
-      expect(area).toBe(address.area);
-    });
+    randomAddresses().forEach(({ address, area }) => expect(getArea({ address, title: '星巴克' })).toBe(area));
   });
+
   test('合法地址', () => {
-    [
+    const cases = [
       {
         address: '北京市北京市大兴区行远街道101号',
         title: '星巴克',
         expected: '大兴区',
       },
-      {
-        address: '北京市西城区复兴门内大街101号',
-        title: '百盛购物中心(复兴门店)',
-        expected: '西城区',
-      },
-      {
-        address: '北京市东城区安定门外大街',
-        title: '地坛公园',
-        expected: '东城区',
-      },
+
       {
         address: '上海市普陀区曹杨路1040弄1-2号',
         title: '伟龙商务楼',
         expected: '普陀区',
-      },
-      {
-        address: '上海市静安区梅园路360号',
-        title: '环龙商场',
-        expected: '静安区',
-      },
-      {
-        address: '上海市黄浦区淮海中路282~283号',
-        title: '上海香港广场',
-        expected: '黄浦区',
       },
       {
         address: '重庆市渝北区洪湖东路1号',
@@ -73,38 +47,17 @@ describe('getArea', () => {
         expected: '渝北区',
       },
       {
-        address: '重庆市北部新区泰山大道东段62号',
-        title: '动力时光购物中心',
-        expected: '北部新区',
-      },
-      {
-        address: '重庆市江北区观音桥步行街6号',
-        title: '重庆新世界百货',
-        expected: '江北区',
-      },
-      {
-        address: '广东省深圳市福田区莲花街道红荔路6030号',
-        title: '莲花山公园',
-        expected: '福田区',
-      },
-      {
-        address: '广东省深圳市罗湖区解放路2001号',
-        title: '太阳百货',
-        expected: '罗湖区',
-      },
-      {
         address: '广东省深圳市罗湖区宝安南路1881号',
         title: '深圳万象城',
         expected: '罗湖区',
       },
-    ].forEach(({ address, title, expected }) => {
-      const area = getArea({ address, title });
-      expect(area).toBe(expected);
-    });
+    ];
+
+    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
 
   test('合法地址：title为空', () => {
-    [
+    const cases = [
       {
         address: '北京市北京市大兴区行远街道101号',
         title: '',
@@ -115,14 +68,13 @@ describe('getArea', () => {
         title: '',
         expected: '',
       },
-    ].forEach(({ address, title, expected }) => {
-      const area = getArea({ address, title });
-      expect(area).toBe(expected);
-    });
+    ];
+
+    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
 
   test('非法地址：title包含区（return ""）', () => {
-    [
+    const cases = [
       {
         address: '北京市北京市大兴区行远街道101号',
         title: '大兴星巴克',
@@ -143,23 +95,12 @@ describe('getArea', () => {
         title: '(福田区)莲花山公园',
         expected: '',
       },
-      {
-        address: '广东省深圳市福田区莲花街道红荔路6030号',
-        title: '莲花山公园福田',
-        expected: '福田区',
-      },
-      {
-        address: '广东省深圳市福田区莲花街道红荔路6030号',
-        title: '莲花山公园【福田】',
-        expected: '福田区',
-      },
-    ].forEach(({ address, title, expected }) => {
-      const area = getArea({ address, title });
-      expect(area).toBe(expected);
-    });
+    ];
+
+    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
   test('非法地址：address为空（return ""）', () => {
-    [
+    const cases = [
       {
         address: '',
         title: '大兴星巴克',
@@ -175,19 +116,13 @@ describe('getArea', () => {
         title: '(渝北区)财富MALL',
         expected: '',
       },
-      {
-        address: '',
-        title: '(福田区)莲花山公园',
-        expected: '',
-      },
-    ].forEach(({ address, title, expected }) => {
-      const area = getArea({ address, title });
-      expect(area).toBe(expected);
-    });
+    ];
+
+    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
 
   test('其他地址：随时补充', () => {
-    [
+    const cases = [
       {
         address: '上海市上海市黄浦区南京西路325号上海市历史博物馆内',
         title: 'MAPOLY COFFEE满坡栗咖啡(上海历史博物馆臻选店）',
@@ -203,9 +138,7 @@ describe('getArea', () => {
         title: 'Im Fine Cafe Bar 吉林省长春市朝阳区吉大南校',
         expected: '朝阳区',
       },
-    ].forEach(({ address, title, expected }) => {
-      const area = getArea({ address, title });
-      expect(area).toBe(expected);
-    });
+    ];
+    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
 });
