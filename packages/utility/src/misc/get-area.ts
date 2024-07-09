@@ -1,3 +1,13 @@
+const generateParenthesisRegex = (brackets: string) => {
+  const pairs = brackets.split(',').map((pair) => pair.trim());
+  const regexParts = pairs.map((pair) => {
+    const [open, close] = pair.split('').filter((char) => char.trim());
+    return `\\${open}[^\\${open}\\${close}]*\\${close}`;
+  });
+  const regexPattern = regexParts.join('|');
+  return new RegExp(regexPattern, 'g');
+};
+
 /**
  * 地址清洗
  * - 去除括号内的内容
@@ -5,7 +15,7 @@
  * - 后续可以添加更多的规则
  */
 export const addressNormalizer = (address: string) => {
-  const parenthesisRegex = /[\(\（][^()\（\）]*[\)\）]|[\[\【][^[\]\】\[\【]*[\]\】]/g;
+  const parenthesisRegex = generateParenthesisRegex('(), [], {}, <>,（）,【】,｛｝,《》,〈〉,〔〕,〖〗,〘〙');
   const afterStreetTextRegex = /((?:街|道|路)\d+号).*/;
   return address.replace(parenthesisRegex, '').replace(afterStreetTextRegex, '$1');
 };

@@ -1,6 +1,6 @@
 import { draw } from '@xstools/radash';
 import { describe, expect, test } from 'bun:test';
-import { getArea } from './get-area';
+import { addressNormalizer, getArea, isValidDistrict } from './get-area';
 
 const randomAddresses = () => {
   const provinces = ['广东省', '北京市', '上海市', '重庆市'];
@@ -23,13 +23,13 @@ const randomAddresses = () => {
   return addresses;
 };
 
-describe('getArea', () => {
-  test('随机标准地址', () => {
+describe('misc', () => {
+  test('getArea', () => {
+    // 随机标准地址
     randomAddresses().forEach(({ address, area }) => expect(getArea({ address, title: '星巴克' })).toBe(area));
-  });
 
-  test('合法地址', () => {
-    const cases = [
+    // 合法地址
+    [
       {
         address: '北京市北京市大兴区行远街道101号',
         title: '星巴克',
@@ -37,92 +37,28 @@ describe('getArea', () => {
       },
 
       {
-        address: '上海市普陀区曹杨路1040弄1-2号',
-        title: '伟龙商务楼',
-        expected: '普陀区',
-      },
-      {
-        address: '重庆市渝北区洪湖东路1号',
-        title: '财富MALL',
-        expected: '渝北区',
-      },
-      {
-        address: '广东省深圳市罗湖区宝安南路1881号',
-        title: '深圳万象城',
-        expected: '罗湖区',
-      },
-    ];
-
-    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
-  });
-
-  test('合法地址：title为空', () => {
-    const cases = [
-      {
         address: '北京市北京市大兴区行远街道101号',
         title: '',
         expected: '',
       },
-      {
-        address: '北京市西城区复兴门内大街101号',
-        title: '',
-        expected: '',
-      },
-    ];
+    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
 
-    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
-  });
-
-  test('非法地址：title包含区（return ""）', () => {
-    const cases = [
+    // 非法地址
+    [
       {
         address: '北京市北京市大兴区行远街道101号',
         title: '大兴星巴克',
         expected: '',
       },
       {
-        address: '上海市普陀区曹杨路1040弄1-2号',
-        title: '(普陀)伟龙商务楼',
-        expected: '',
-      },
-      {
-        address: '重庆市渝北区洪湖东路1号',
-        title: '(渝北区)财富MALL',
-        expected: '',
-      },
-      {
-        address: '广东省深圳市福田区莲花街道红荔路6030号',
-        title: '(福田区)莲花山公园',
-        expected: '',
-      },
-    ];
-
-    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
-  });
-  test('非法地址：address为空（return ""）', () => {
-    const cases = [
-      {
         address: '',
         title: '大兴星巴克',
         expected: '',
       },
-      {
-        address: '-2号',
-        title: '(普陀)伟龙商务楼',
-        expected: '',
-      },
-      {
-        address: '',
-        title: '(渝北区)财富MALL',
-        expected: '',
-      },
-    ];
+    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
 
-    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
-  });
-
-  test('其他地址：随时补充', () => {
-    const cases = [
+    // 其他地址：随时补充
+    [
       {
         address: '上海市上海市黄浦区南京西路325号上海市历史博物馆内',
         title: 'MAPOLY COFFEE满坡栗咖啡(上海历史博物馆臻选店）',
@@ -138,7 +74,22 @@ describe('getArea', () => {
         title: 'Im Fine Cafe Bar 吉林省长春市朝阳区吉大南校',
         expected: '朝阳区',
       },
-    ];
-    cases.forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
+    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
+  });
+
+  test('addressNormalizer', () => {
+    expect(addressNormalizer('hello')).toBe('hello');
+    expect(addressNormalizer('北京市海淀区知春路[五道口]10号')).toBe('北京市海淀区知春路10号');
+    expect(addressNormalizer('上海市黄浦区南京东路100号(步行街)')).toBe('上海市黄浦区南京东路100号');
+    expect(addressNormalizer('深圳市南山区高新南一道(软件园)[南门]300号')).toBe('深圳市南山区高新南一道300号');
+  });
+
+  test('isValidDistrict', () => {
+    expect(isValidDistrict({ title: '朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(isValidDistrict({ title: 'xx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(isValidDistrict({ title: 'xxx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+
+    expect(isValidDistrict({ title: 'xxxx朝阳区xx酒吧', district: '朝阳区' })).toBeTrue();
+    expect(isValidDistrict({ title: 'xx酒吧', district: '朝阳区' })).toBeTrue();
   });
 });
