@@ -1,23 +1,23 @@
-const generateParenthesisRegex = (brackets: string) => {
+export const trimParenthesis = (address: string) => {
+  const brackets = '(), [], {}, <>,（）,【】,｛｝,《》,〈〉,〔〕,〖〗,〘〙';
   const pairs = brackets.split(',').map((pair) => pair.trim());
-  const regexParts = pairs.map((pair) => {
+  const left: string[] = [];
+  const right: string[] = [];
+
+  pairs.forEach((pair) => {
     const [open, close] = pair.split('').filter((char) => char.trim());
-    return `\\${open}[^\\${open}\\${close}]*\\${close}`;
+    left.push(open!);
+    right.push(close!);
   });
+
+  const regexParts = left.flatMap((open) => right.map((close) => `\\${open}[^\\${open}\\${close}]*\\${close}`));
+
   const regexPattern = regexParts.join('|');
-  return new RegExp(regexPattern, 'g');
+  return address.replace(new RegExp(regexPattern, 'g'), '');
 };
 
-/**
- * 地址清洗
- * - 去除括号内的内容
- * - 保留街道号
- * - 后续可以添加更多的规则
- */
-export const addressNormalizer = (address: string) => {
-  const parenthesisRegex = generateParenthesisRegex('(), [], {}, <>,（）,【】,｛｝,《》,〈〉,〔〕,〖〗,〘〙');
-  const afterStreetTextRegex = /((?:街|道|路)\d+号).*/;
-  return address.replace(parenthesisRegex, '').replace(afterStreetTextRegex, '$1');
+export const trimStreetEnd = (address: string) => {
+  return address.replace(/((?:街|道|路)\d+号).*/, '$1');
 };
 
 /**
@@ -41,7 +41,7 @@ export const getArea = ({ title, address }: { title?: string; address?: string }
     return '';
   }
 
-  const cleanedAddress = addressNormalizer(address);
+  const cleanedAddress = trimStreetEnd(trimParenthesis(address));
 
   const regex =
     /(?<_>[^省]+省|.+自治区|[^澳门]+澳门|[^香港]+香港|[^市]+市)?(?<__>[^自治州]+自治州|[^特别行政区]+特别行政区|[^市]+市|.*?地区|.*?行政单位|.+盟|市辖区|[^县]+县)(?<district>[^县]+县|[^市]+市|[^镇]+镇|[^区]+区|[^乡]+乡|.+场|.+旗|.+海域|.+岛)?(?<___>.*)/;

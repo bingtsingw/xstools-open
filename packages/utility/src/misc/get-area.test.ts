@@ -1,6 +1,6 @@
 import { draw } from '@xstools/radash';
 import { describe, expect, test } from 'bun:test';
-import { addressNormalizer, getArea, isValidDistrict } from './get-area';
+import { getArea, isValidDistrict, trimParenthesis, trimStreetEnd } from './get-area';
 
 const randomAddresses = () => {
   const provinces = ['广东省', '北京市', '上海市', '重庆市'];
@@ -77,11 +77,16 @@ describe('misc', () => {
     ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
   });
 
-  test('addressNormalizer', () => {
-    expect(addressNormalizer('hello')).toBe('hello');
-    expect(addressNormalizer('北京市海淀区知春路[五道口]10号')).toBe('北京市海淀区知春路10号');
-    expect(addressNormalizer('上海市黄浦区南京东路100号(步行街)')).toBe('上海市黄浦区南京东路100号');
-    expect(addressNormalizer('深圳市南山区高新南一道(软件园)[南门]300号')).toBe('深圳市南山区高新南一道300号');
+  test('trimParenthesis', () => {
+    expect(trimParenthesis('hello')).toBe('hello');
+    expect(trimParenthesis('北京市海淀区知春路[五道口]10号')).toBe('北京市海淀区知春路10号');
+    expect(trimParenthesis('上海市黄浦区南京东路100号(步行街)')).toBe('上海市黄浦区南京东路100号');
+    expect(trimParenthesis('深圳市南山区高新南一道(软件园)[南门]300号')).toBe('深圳市南山区高新南一道300号');
+  });
+
+  test('trimStreetEnd', () => {
+    expect(trimStreetEnd('hello')).toBe('hello');
+    expect(trimStreetEnd('北京市海淀区知春路10号xxxx')).toBe('北京市海淀区知春路10号');
   });
 
   test('isValidDistrict', () => {
