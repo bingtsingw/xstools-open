@@ -1,6 +1,6 @@
 import { draw } from '@xstools/radash';
 import { describe, expect, test } from 'bun:test';
-import { getArea, isValidDistrict, trimParenthesis, trimStreetEnd } from './get-area';
+import { addressTrimEnd, addressTrimParenthesis, districtStartWith, getDistrict } from './get-district';
 
 const randomAddresses = () => {
   const provinces = ['广东省', '北京市', '上海市', '重庆市'];
@@ -24,9 +24,9 @@ const randomAddresses = () => {
 };
 
 describe('misc', () => {
-  test('getArea', () => {
+  test('getDistrict', () => {
     // 随机标准地址
-    randomAddresses().forEach(({ address, area }) => expect(getArea({ address, title: '星巴克' })).toBe(area));
+    randomAddresses().forEach(({ address, area }) => expect(getDistrict({ address, title: '星巴克' })).toBe(area));
 
     // 合法地址
     [
@@ -41,7 +41,7 @@ describe('misc', () => {
         title: '',
         expected: '',
       },
-    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
+    ].forEach(({ address, title, expected }) => expect(getDistrict({ address, title })).toBe(expected));
 
     // 非法地址
     [
@@ -55,13 +55,13 @@ describe('misc', () => {
         title: '大兴星巴克',
         expected: '',
       },
-    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
+    ].forEach(({ address, title, expected }) => expect(getDistrict({ address, title })).toBe(expected));
 
     // 其他地址：随时补充
     [
       {
         address: '上海市上海市黄浦区南京西路325号上海市历史博物馆内',
-        title: 'MAPOLY COFFEE满坡栗咖啡(上海历史博物馆臻选店）',
+        title: 'COFFEE满坡栗咖啡(上海历史博物馆臻选店）',
         expected: '黄浦区',
       },
       {
@@ -74,27 +74,27 @@ describe('misc', () => {
         title: 'Im Fine Cafe Bar 吉林省长春市朝阳区吉大南校',
         expected: '朝阳区',
       },
-    ].forEach(({ address, title, expected }) => expect(getArea({ address, title })).toBe(expected));
+    ].forEach(({ address, title, expected }) => expect(getDistrict({ address, title })).toBe(expected));
   });
 
-  test('trimParenthesis', () => {
-    expect(trimParenthesis('hello')).toBe('hello');
-    expect(trimParenthesis('北京市海淀区知春路[五道口]10号')).toBe('北京市海淀区知春路10号');
-    expect(trimParenthesis('上海市黄浦区南京东路100号(步行街)')).toBe('上海市黄浦区南京东路100号');
-    expect(trimParenthesis('深圳市南山区高新南一道(软件园)[南门]300号')).toBe('深圳市南山区高新南一道300号');
+  test('addressTrimParenthesis', () => {
+    expect(addressTrimParenthesis('hello')).toBe('hello');
+    expect(addressTrimParenthesis('北京市海淀区知春路[五道口]10号')).toBe('北京市海淀区知春路10号');
+    expect(addressTrimParenthesis('上海市黄浦区南京东路100号(步行街)')).toBe('上海市黄浦区南京东路100号');
+    expect(addressTrimParenthesis('深圳市南山区高新南一道(软件园)[南门]300号')).toBe('深圳市南山区高新南一道300号');
   });
 
-  test('trimStreetEnd', () => {
-    expect(trimStreetEnd('hello')).toBe('hello');
-    expect(trimStreetEnd('北京市海淀区知春路10号xxxx')).toBe('北京市海淀区知春路10号');
+  test('addressTrimEnd', () => {
+    expect(addressTrimEnd('hello')).toBe('hello');
+    expect(addressTrimEnd('北京市海淀区知春路10号xxxx')).toBe('北京市海淀区知春路10号');
   });
 
-  test('isValidDistrict', () => {
-    expect(isValidDistrict({ title: '朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
-    expect(isValidDistrict({ title: 'xx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
-    expect(isValidDistrict({ title: 'xxx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+  test('districtStartWith', () => {
+    expect(districtStartWith({ title: '朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(districtStartWith({ title: 'xx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(districtStartWith({ title: 'xxx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
 
-    expect(isValidDistrict({ title: 'xxxx朝阳区xx酒吧', district: '朝阳区' })).toBeTrue();
-    expect(isValidDistrict({ title: 'xx酒吧', district: '朝阳区' })).toBeTrue();
+    expect(districtStartWith({ title: 'xxxx朝阳区xx酒吧', district: '朝阳区' })).toBeTrue();
+    expect(districtStartWith({ title: 'xx酒吧', district: '朝阳区' })).toBeTrue();
   });
 });
