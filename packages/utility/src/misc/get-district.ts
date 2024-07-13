@@ -35,8 +35,8 @@ export const districtStartWith = ({ title, district }: { title: string; district
   return true;
 };
 
-export const getDistrict = ({ title, address }: { title?: string; address?: string }): string => {
-  if (!address || !title) {
+export const getDistrict = ({ title = '', address }: { title?: string; address?: string }): string => {
+  if (!address) {
     return '';
   }
 
