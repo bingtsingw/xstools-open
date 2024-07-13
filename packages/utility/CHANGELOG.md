@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.17.0
+
+### Minor Changes
+
+- [#5](https://github.com/bingtsingw/xstools-open/pull/5) [`bb9cbb5`](https://github.com/bingtsingw/xstools-open/commit/bb9cbb599b1c9bc8db22cbfe1710956ecef9da13) Thanks [@KenjiGinjo](https://github.com/KenjiGinjo)! - 增加 getDistrict: 根据title address 获取城市区名
+
 ## 0.16.1
 
 ### Patch Changes
