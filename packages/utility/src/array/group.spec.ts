@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { groupBy } from './group';
 
 describe('groupBy', () => {
-  test('conventional usage', () => {
+  test('normal usage', () => {
     expect(groupBy([6.1, 4.2, 6.3], Math.floor)).toEqual({ 4: [4.2], 6: [6.1, 6.3] });
     expect(groupBy(['one', 'two', 'three'], (v) => v.length)).toEqual({ 3: ['one', 'two'], 5: ['three'] });
     expect(

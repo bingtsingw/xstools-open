@@ -6,7 +6,14 @@ interface IOssImageCrop {
   position: 'center' | 'top';
 }
 
-export const ossImageCrop = ({ src, width, height, aspect, position = 'center' }: IOssImageCrop): string => {
+/**
+ * 生成阿里云oss图片裁剪地址
+ *
+ * @example
+ * ossImageCrop({ src: 'test.jpg', width: 100, height: 100, aspect: 1, position: 'center' }) // => test.jpg
+ * ossImageCrop({ src: 'test.jpg', width: 200, height: 100, aspect: 1, position: 'center' }) // => test.jpg?x-oss-process=image/crop,x_50,y_0,w_100,h_100
+ */
+export const ossImageCrop = ({ src, width, height, aspect, position }: IOssImageCrop): string => {
   let cWidth: number;
   let cHeight: number;
   const oWidth = parseInt(width.toString(), 10);

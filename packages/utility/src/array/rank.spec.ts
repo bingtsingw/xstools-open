@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { rankByPath } from './rank';
 
 describe('rankByPath', () => {
-  test('conventional usage', () => {
+  test('normal usage', () => {
     const data = [
       { exam: { score: 70 } },
       { exam: { score: 70 } },

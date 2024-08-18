@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { sample } from './sample';
 
 describe('sample', () => {
-  test('conventional usage', () => {
+  test('normal usage', () => {
     const arr = [1, 2, 3];
     expect(arr.includes(sample(arr)!)).toBeTrue();
   });
