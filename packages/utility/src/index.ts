@@ -1,4 +1,5 @@
 export * from './array';
+export * from './async';
 export * from './datetime';
 export * from './exception';
 export * from './format';
