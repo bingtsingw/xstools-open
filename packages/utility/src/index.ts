@@ -1,4 +1,4 @@
-export * from './collection';
+export * from './array';
 export * from './datetime';
 export * from './exception';
 export * from './format';

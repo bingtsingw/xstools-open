@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
-import { rankByPath } from './rank-by-path';
+import { rankByPath } from './rank';
 
-describe('collection', () => {
-  test('rankByPath', () => {
+describe('rankByPath', () => {
+  test('conventional usage', () => {
     const data = [
       { exam: { score: 70 } },
       { exam: { score: 70 } },
@@ -20,5 +20,13 @@ describe('collection', () => {
       { _rank: 5, exam: { score: 70 } },
       { _rank: 5, exam: { score: 70 } },
     ]);
+  });
+
+  test('empty array', () => {
+    expect(rankByPath([] as { category: string; name: string }[], 'category')).toEqual([]);
+  });
+
+  test('array with one element', () => {
+    expect(rankByPath([{ score: 59 }], 'score')).toEqual([{ _rank: 1, score: 59 }]);
   });
 });
