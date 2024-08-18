@@ -5,3 +5,4 @@ export * from './exception';
 export * from './format';
 export * from './generator';
 export * from './misc';
+export * from './string';
