@@ -1,8 +1,13 @@
-import { number, object, safeParse } from 'valibot';
 import { Exception } from '../exception';
 
 const deg2rad = (deg: number): number => {
   return deg * (Math.PI / 180);
+};
+
+const validatePoint = ({ longitude, latitude }: { longitude: number; latitude: number }) => {
+  if (typeof longitude !== 'number' || typeof latitude !== 'number') {
+    throw new Exception.BadRequestException('坐标参数类型错误');
+  }
 };
 
 /**
@@ -20,11 +25,8 @@ export const getDistance = (
   point1: { latitude: number; longitude: number },
   point2: { latitude: number; longitude: number },
 ): number => {
-  const vPoint = object({ latitude: number(), longitude: number() });
-
-  if (!safeParse(vPoint, point1).success || !safeParse(vPoint, point2).success) {
-    throw new Exception.BadRequestException('坐标参数错误');
-  }
+  validatePoint(point1);
+  validatePoint(point2);
 
   // 将两个点的纬度转换为弧度
   const radLat1 = deg2rad(point1.latitude);

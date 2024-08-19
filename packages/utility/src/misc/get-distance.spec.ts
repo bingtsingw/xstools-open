@@ -7,7 +7,7 @@ describe('misc', () => {
 
     expect(() => {
       getDistance({ latitude: '11' as any, longitude: 1 }, { latitude: 1, longitude: 1 });
-    }).toThrow('坐标参数错误');
+    }).toThrow('坐标参数类型错误');
 
     const distance = getDistance(
       { latitude: 39.916668, longitude: 116.383331 },
