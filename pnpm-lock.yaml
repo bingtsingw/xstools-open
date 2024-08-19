@@ -21,8 +21,6 @@ importers:
         specifier: ^5.5.3
         version: 5.5.3
 
-  packages/radash: {}
-
   packages/utility:
     dependencies:
       date-fns:
