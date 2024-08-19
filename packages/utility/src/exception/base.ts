@@ -1,4 +1,5 @@
-import { get, snake, title } from '@xstools/radash';
+import { get } from '../object';
+import { caseSnake, caseStart } from '../string';
 
 export class BaseException extends Error {
   public status: number;
@@ -11,8 +12,9 @@ export class BaseException extends Error {
     super();
     this.status = status;
 
-    const normalizedCode = title(code.replace(/Exception$/, ''));
-    this.code = snake(`E ${normalizedCode}`).toUpperCase();
+    const normalizedCode = caseStart(code.replace(/^Exception|Exception$/, ''));
+    this.code = caseSnake(`E ${normalizedCode}`).toUpperCase();
+
     this.#_messages = messages ?? normalizedCode;
     this.message = this.getFirstMessage();
   }
@@ -25,7 +27,20 @@ export class BaseException extends Error {
     }
 
     if (Array.isArray(messages) && messages.length > 0) {
-      return typeof messages[0] === 'string' ? messages[0] : get(messages[0], 'message', '');
+      let message = messages[0];
+      if (typeof message === 'string') {
+        return message;
+      }
+
+      message = get(message, 'message', '');
+      if (typeof message === 'string') {
+        return message;
+      }
+    }
+
+    const message = get(messages, 'message', '');
+    if (typeof message === 'string') {
+      return message;
     }
 
     return '';

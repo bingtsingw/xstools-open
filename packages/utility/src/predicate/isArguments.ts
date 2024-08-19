@@ -8,9 +8,9 @@ import { getTag } from '../object';
  * const strictArgs = (function() { 'use strict'; return arguments; })();
  * const value = [1, 2, 3];
  *
- * console.log(isArguments(args)); // => true
- * console.log(isArguments(strictArgs)); // => true
- * console.log(isArguments(value)); // => false
+ * isArguments(args); // => true
+ * isArguments(strictArgs); // => true
+ * isArguments(value); // => false
  */
 export function isArguments(value?: unknown): value is IArguments {
   return value !== null && typeof value === 'object' && getTag(value) === '[object Arguments]';

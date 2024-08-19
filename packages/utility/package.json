@@ -16,10 +16,6 @@
     ".": {
       "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./radash": {
-      "default": "./dist/radash.js",
-      "types": "./dist/radash.d.ts"
     }
   },
   "files": [
@@ -37,7 +33,6 @@
     "extends": "@xstools-dev/eslint-config/base"
   },
   "dependencies": {
-    "@xstools/radash": "workspace:^",
     "date-fns": "2.30.0",
     "date-fns-tz": "2.0.0",
     "valibot": "^0.36.0"
@@ -48,8 +43,7 @@
   },
   "tsup": {
     "entry": [
-      "src/index.ts",
-      "src/radash.ts"
+      "src/index.ts"
     ],
     "format": [
       "esm"

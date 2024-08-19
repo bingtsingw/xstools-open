@@ -1,4 +1,4 @@
-import { get } from '@xstools/radash';
+import { get } from '../object';
 
 type WithRank<T> = T & { _rank: number };
 
