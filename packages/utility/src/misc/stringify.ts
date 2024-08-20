@@ -14,6 +14,7 @@ const isJson = (value: any): boolean => {
 
 /**
  * Stringify JSON
+ * 
  * @example
  * stringify({ a: '1' }) // => '{"a":"1"}'
  * stringify('{"a":"1"}') // => '{"a":"1"}'

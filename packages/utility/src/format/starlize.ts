@@ -1,5 +1,6 @@
 /**
  * Format name in the middle will be replaced with *. (string length > 2)
+ *
  * @example
  * starlizeName('张三') // => '张*'
  * starlizeName('张三李') // => '张*李'
@@ -21,6 +22,7 @@ export const starlizeName = (name: string): string => {
 
 /**
  * Format card number or other string in the middle will be replaced with *. (string length > front + after)
+ *
  * @example
  * starlizeCard('000', 1, 1) // => '0*0'
  * starlizeCard('0000', 1, 1) // => '0**0'
