@@ -4,7 +4,7 @@ type WithRank<T> = T & { _rank: number };
 
 /**
  * Rank an array of objects by a given path.
- *
+ * 
  * @example
  * rankByPath([ { a: 1 }, { a: 3 }, { a: 1 } ], 'a') // => [ { _rank: 1, a: 1 }, { _rank: 1, a: 1 }, { _rank: 3, a: 3 } ]
  */

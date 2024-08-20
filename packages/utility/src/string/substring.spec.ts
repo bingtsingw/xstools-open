@@ -6,6 +6,12 @@ describe('substring', () => {
     expect(substring('123', 2)).toBe('12');
     expect(substring('123', 10)).toBe('123');
 
+    expect(substring('hello world', 5)).toBe('hello');
+    expect(substring('hello🌸', 5)).toBe('hello');
+    expect(substring('hello🌸', 6)).toBe('hello🌸');
+    expect(substring('hello🌸', 10)).toBe('hello🌸');
+    expect(substring('hello world', 7)).toBe('hello w');
+
     expect(substring('今天很开心🌸🌸🌸', 6)).toBe('今天很开心🌸');
     expect('今天很开心🌸🌸🌸'.substring(0, 6)).toBe('今天很开心\ud83c');
   });

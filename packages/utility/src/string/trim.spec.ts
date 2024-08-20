@@ -3,6 +3,12 @@ import { WHITESPACE } from '../constants';
 import { trim, trimEnd, trimStart } from './trim';
 
 describe('trim', () => {
+  test('normal usage', () => {
+    expect(trim('  a b c  ')).toBe('a b c');
+    // TODO: add more tests from test blow to here
+    // trimStart and trimEnd are similar to trim
+  });
+
   test('should work for empty string', () => {
     expect(trim(null, '_')).toBe('');
     expect(trim('', '_')).toBe('');

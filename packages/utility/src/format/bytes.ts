@@ -1,3 +1,11 @@
+/**
+ * Format bytes to human readable string.
+ *
+ * @example
+ * formatBytes(1024) // => '1 KB'
+ * formatBytes(1024, 0) // => '1 KB' /error
+ * formatBytes(1024, 1) // => '1.0 KB'  /error
+ */
 export const formatBytes = (bytes: number, decimals = 2): string => {
   if (bytes === 0) return '0 B';
 
