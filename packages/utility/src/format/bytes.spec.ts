@@ -21,12 +21,4 @@ describe('formatBytes', () => {
     expect(formatBytes(Math.pow(1024, 9))).toEqual('1024 YB');
     expect(formatBytes(Math.pow(1024, 10))).toEqual('1048576 YB');
   });
-
-  // test('with decimals', () => {
-  //   expect(formatBytes(1024, 0)).toEqual('1 KB');
-
-  //   // TODO: error
-  //   expect(formatBytes(1024, 1)).toEqual('1 KB');
-  //   expect(formatBytes(1024, 2)).toEqual('1.00 KB');
-  // })
 });
