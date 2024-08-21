@@ -3,7 +3,14 @@
  *
  * @example
  * formatBytes(1024) // => '1 KB'
+ * formatBytes(2048) // => '2 KB'
+ * formatBytes(2560) // => '2.5 KB'
  * formatBytes(2560000)) // => '2.44 MB'
+ *
+ * formatBytes(1111) // => '1.08 KB'
+ * formatBytes(1111, 1) // => '1.1 KB'
+ * formatBytes(1111, 2) // => '1.08 KB'
+ * formatBytes(1111, 3) // => '1.085 KB'
  */
 export const formatBytes = (bytes: number, decimals = 2): string => {
   if (bytes === 0) return '0 B';

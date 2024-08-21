@@ -10,6 +10,9 @@ describe('formatBytes', () => {
     expect(formatBytes(2048)).toEqual('2 KB');
     expect(formatBytes(2560)).toEqual('2.5 KB');
     expect(formatBytes(1111)).toEqual('1.08 KB');
+    expect(formatBytes(1111, 1)).toEqual('1.1 KB');
+    expect(formatBytes(1111, 2)).toEqual('1.08 KB');
+    expect(formatBytes(1111, 3)).toEqual('1.085 KB');
 
     expect(formatBytes(2560000)).toEqual('2.44 MB');
     expect(formatBytes(Math.pow(1024, 3))).toEqual('1 GB');
