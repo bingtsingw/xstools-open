@@ -35,6 +35,14 @@ export const districtStartWith = ({ title, district }: { title: string; district
   return true;
 };
 
+/**
+ * 获取地址中的区域
+ * - 如果 title 中从第 0 到第 3 个字符开始的子串与 district 或去掉“区”后的 district 相匹配，则认为无效。
+ *
+ * @example
+ * getDistance({ address: "广东省深圳市罗湖区科技园路0号" }) // => 罗湖区
+ * getDistance({ address: "广东省深圳市罗湖区科技园路0号", title: "罗湖星巴克" }) // => ""
+ */
 export const getDistrict = ({ title = '', address }: { title?: string; address?: string }): string => {
   if (!address) {
     return '';

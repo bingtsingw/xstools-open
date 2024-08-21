@@ -14,12 +14,8 @@ const validatePoint = ({ longitude, latitude }: { longitude: number; latitude: n
  * 计算两个坐标点之间距离（单位M）
  * https://mixbit.xyz/post/javascript-calculates-the-distance-between-two-points-of-coordinates.html
  *
- * @param {object} point1 坐标点1
- * @param {string} point1.longitude 经度
- * @param {string} point1.latitude 纬度
- * @param {object} point2 坐标点2
- * @param {string} point2.longitude 经度
- * @param {string} point2.latitude 纬度
+ * @example
+ * getDistance({ latitude: 39.916668, longitude: 116.383331 }, { latitude: 31.150681, longitude: 121.124176 }) // => 1065706.56
  */
 export const getDistance = (
   point1: { latitude: number; longitude: number },

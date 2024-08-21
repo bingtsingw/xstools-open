@@ -7,6 +7,7 @@ describe('pathToSegments', () => {
     expect(pathToSegments('a[b][c]')).toEqual(['a', 'b', 'c']);
     expect(pathToSegments('a[b].c')).toEqual(['a', 'b', 'c']);
     expect(pathToSegments('a["b.c"].d')).toEqual(['a', 'b.c', 'd']);
+    expect(pathToSegments('a[b.c].d')).toEqual(['a', 'b.c', 'd']);
     expect(pathToSegments('.a.b.c')).toEqual(['', 'a', 'b', 'c']);
   });
 

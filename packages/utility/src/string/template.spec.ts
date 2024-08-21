@@ -9,4 +9,17 @@ describe('template', () => {
     expect(template('hello, {{name}}', { age: 1 })).toBe('hello, ');
     expect(template('hello, {{name}}{{!}}', { '!': '！' })).toBe('hello, ！');
   });
+
+  test('empty', () => {
+    expect(template('', { name: 'world' })).toBe('');
+    expect(template('', {})).toBe('');
+    expect(template('hello', {})).toBe('hello');
+
+    expect(template('hello {{ }}', {})).toBe('hello ');
+    expect(template('hello {{ name }}', {})).toBe('hello ');
+  });
+
+  test('do not support {}', () => {
+    expect(template('hello { name }', {})).toBe('hello { name }');
+  });
 });
