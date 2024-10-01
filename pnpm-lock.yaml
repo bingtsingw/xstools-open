@@ -24,11 +24,11 @@ importers:
   packages/utility:
     dependencies:
       date-fns:
-        specifier: 2.30.0
-        version: 2.30.0
+        specifier: 4.1.0
+        version: 4.1.0
       date-fns-tz:
         specifier: 2.0.0
-        version: 2.0.0(date-fns@2.30.0)
+        version: 2.0.0(date-fns@4.1.0)
 
 packages:
 
@@ -961,10 +961,6 @@ packages:
 
   '@babel/runtime@7.21.0':
     resolution: {integrity: sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/runtime@7.24.4':
-    resolution: {integrity: sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.24.8':
@@ -3434,9 +3430,8 @@ packages:
     peerDependencies:
       date-fns: '>=2.0.0'
 
-  date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debounce-fn@4.0.0:
     resolution: {integrity: sha512-8pYCQiL9Xdcg0UPSD3d+0KMlOjp+KGU5EPwYddgzQ7DATsg4fuUDjQtsYLmWjnk2obnNHgV3vE2Y4jejSOJVBQ==}
@@ -6691,6 +6686,7 @@ packages:
 
   run-time-assertions@1.5.1:
     resolution: {integrity: sha512-yyAFU3+ZGw+zjMu0s7uOSGqKIRDLaCnl80VIKdtwuu4ejxcWHCRj2mxL6elVNtI7fytHwk4e40e3IrdNkXihlw==}
+    deprecated: Use @augment-vir/assert instead.
 
   rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
@@ -9422,10 +9418,6 @@ snapshots:
   '@babel/runtime@7.21.0':
     dependencies:
       regenerator-runtime: 0.13.11
-
-  '@babel/runtime@7.24.4':
-    dependencies:
-      regenerator-runtime: 0.14.1
 
   '@babel/runtime@7.24.8':
     dependencies:
@@ -12794,13 +12786,11 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  date-fns-tz@2.0.0(date-fns@2.30.0):
+  date-fns-tz@2.0.0(date-fns@4.1.0):
     dependencies:
-      date-fns: 2.30.0
+      date-fns: 4.1.0
 
-  date-fns@2.30.0:
-    dependencies:
-      '@babel/runtime': 7.24.4
+  date-fns@4.1.0: {}
 
   debounce-fn@4.0.0:
     dependencies:
