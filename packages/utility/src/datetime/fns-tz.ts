@@ -1,16 +1,16 @@
 import { addDays, parseISO, startOfDay, startOfMonth } from 'date-fns';
-import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
+import { toZonedTime, fromZonedTime } from 'date-fns-tz';
 
 export const startOfDayTz = ({ date, tz }: { date?: Date; tz: string }): Date => {
-  const zoned = utcToZonedTime(date || new Date(), tz);
+  const zoned = toZonedTime(date || new Date(), tz);
 
-  return zonedTimeToUtc(startOfDay(zoned), tz);
+  return fromZonedTime(startOfDay(zoned), tz);
 };
 
 export const startOfMonthTz = ({ date, tz }: { date?: Date; tz: string }): Date => {
-  const zoned = utcToZonedTime(date || new Date(), tz);
+  const zoned = toZonedTime(date || new Date(), tz);
 
-  return zonedTimeToUtc(startOfMonth(zoned), tz);
+  return fromZonedTime(startOfMonth(zoned), tz);
 };
 
 /**
