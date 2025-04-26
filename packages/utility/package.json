@@ -33,7 +33,7 @@
     "extends": "@xstools-dev/eslint-config/base"
   },
   "dependencies": {
-    "date-fns": "2.30.0",
+    "date-fns": "4.1.0",
     "date-fns-tz": "2.0.0"
   },
   "publishConfig": {
