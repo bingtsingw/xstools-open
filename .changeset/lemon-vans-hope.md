@@ -2,4 +2,4 @@
 '@xstools/utility': minor
 ---
 
-remove radash
+add getTimezoneOffset
