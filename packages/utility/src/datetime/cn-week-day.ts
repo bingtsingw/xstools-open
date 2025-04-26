@@ -3,7 +3,9 @@ import { getDay, parseISO } from 'date-fns';
 type CnWeekDay = '周日' | '周一' | '周二' | '周三' | '周四' | '周五' | '周六';
 
 export const cnWeekDay = (date: string): CnWeekDay => {
-  switch (getDay(parseISO(date))) {
+  const day = getDay(parseISO(date)) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
+  switch (day) {
     case 0:
       return '周日';
     case 1:

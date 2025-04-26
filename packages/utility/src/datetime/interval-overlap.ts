@@ -1,3 +1,4 @@
+import type { Interval } from 'date-fns';
 import { Exception } from '../exception';
 
 export const areIntervalsOverlap = (intervalLeft: Interval, intervalRight: Interval): boolean | never => {
