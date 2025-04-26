@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/bun": "^1.2.10",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.2",
     "@xstools-dev/mix": "^0.13.2",
     "typescript": "^5.8.3"
   },

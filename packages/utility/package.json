@@ -33,8 +33,12 @@
     "extends": "@xstools-dev/eslint-config/base"
   },
   "dependencies": {
-    "date-fns": "2.30.0",
-    "date-fns-tz": "2.0.0"
+    "@date-fns/tz": "^1.2.0",
+    "date-fns": "4.1.0"
+  },
+  "devDependencies": {
+    "@sinonjs/fake-timers": "^14.0.0",
+    "@types/sinonjs__fake-timers": "^8.1.5"
   },
   "publishConfig": {
     "access": "public",
