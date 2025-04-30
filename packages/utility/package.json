@@ -14,8 +14,48 @@
   "type": "module",
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./date-fns": {
+      "types": "./dist/date-fns/index.d.ts",
+      "default": "./dist/date-fns/index.js"
+    },
+    "./array": {
+      "types": "./dist/array/index.d.ts",
+      "default": "./dist/array/index.js"
+    },
+    "./business": {
+      "types": "./dist/business/index.d.ts",
+      "default": "./dist/business/index.js"
+    },
+    "./datetime": {
+      "types": "./dist/datetime/index.d.ts",
+      "default": "./dist/datetime/index.js"
+    },
+    "./exception": {
+      "types": "./dist/exception/index.d.ts",
+      "default": "./dist/exception/index.js"
+    },
+    "./format": {
+      "types": "./dist/format/index.d.ts",
+      "default": "./dist/format/index.js"
+    },
+    "./object": {
+      "types": "./dist/object/index.d.ts",
+      "default": "./dist/object/index.js"
+    },
+    "./predicate": {
+      "types": "./dist/predicate/index.d.ts",
+      "default": "./dist/predicate/index.js"
+    },
+    "./promise": {
+      "types": "./dist/promise/index.d.ts",
+      "default": "./dist/promise/index.js"
+    },
+    "./string": {
+      "types": "./dist/string/index.d.ts",
+      "default": "./dist/string/index.js"
     }
   },
   "files": [
@@ -46,7 +86,17 @@
   },
   "tsup": {
     "entry": [
-      "src/index.ts"
+      "src/index.ts",
+      "src/_exports/date-fns/index.ts",
+      "src/array/index.ts",
+      "src/business/index.ts",
+      "src/datetime/index.ts",
+      "src/exception/index.ts",
+      "src/format/index.ts",
+      "src/object/index.ts",
+      "src/predicate/index.ts",
+      "src/promise/index.ts",
+      "src/string/index.ts"
     ],
     "format": [
       "esm"

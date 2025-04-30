@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
-import { getDistance } from './get-distance';
+import { getDistance } from './getDistance';
 
-describe('misc', () => {
+describe('getDistance', () => {
   test('getDistance', () => {
     expect(getDistance({ latitude: 1.1111, longitude: 1 }, { latitude: 1.1111, longitude: 1 })).toEqual(0);
 

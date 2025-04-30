@@ -8,21 +8,17 @@ describe('fns-tz', () => {
     );
 
     // 01-01
-    console.log('a');
     expect(startOfDayInTimeZone({ date: '2000-01-01 15:59:00', offset: '+08:00' }).toISOString()).toBe(
       '1999-12-31T16:00:00.000Z',
     );
-    console.log('b');
     expect(startOfDayInTimeZone({ date: '2000-01-01T15:59:00.000Z', offset: '+08:00' }).toISOString()).toBe(
       '1999-12-31T16:00:00.000Z',
     );
 
     // 01-02
-    console.log('c');
     expect(startOfDayInTimeZone({ date: '2000-01-01 16:01:00', offset: '+08:00' }).toISOString()).toBe(
       '2000-01-01T16:00:00.000Z',
     );
-    console.log('d');
     expect(startOfDayInTimeZone({ date: '2000-01-01T16:01:00.000Z', offset: '+08:00' }).toISOString()).toBe(
       '2000-01-01T16:00:00.000Z',
     );

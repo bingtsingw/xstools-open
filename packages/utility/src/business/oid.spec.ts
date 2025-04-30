@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { oid } from './oid';
 
 describe('oid', () => {
-  test('normal usage', () => {
+  test('oid', () => {
     const _oid = oid();
 
     expect(_oid).toStartWith(format(new Date(), 'yyMMdd'));

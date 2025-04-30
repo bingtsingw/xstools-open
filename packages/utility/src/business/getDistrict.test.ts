@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
-import { addressTrimEnd, addressTrimParenthesis, districtStartWith, getDistrict } from './get-district';
+import { addressTrimEnd, addressTrimParenthesis, districtStartWith, getDistrict } from './getDistrict';
 
-describe('misc', () => {
+describe('getDistrict', () => {
   test('getDistrict', () => {
     // 标准地址
     [
