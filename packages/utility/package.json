@@ -56,6 +56,10 @@
     "./string": {
       "types": "./dist/string/index.d.ts",
       "default": "./dist/string/index.js"
+    },
+    "./util": {
+      "types": "./dist/util/index.d.ts",
+      "default": "./dist/util/index.js"
     }
   },
   "files": [
@@ -96,7 +100,8 @@
       "src/object/index.ts",
       "src/predicate/index.ts",
       "src/promise/index.ts",
-      "src/string/index.ts"
+      "src/string/index.ts",
+      "src/util/index.ts"
     ],
     "format": [
       "esm"
