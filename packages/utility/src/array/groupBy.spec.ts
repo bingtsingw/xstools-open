@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { groupBy } from './group';
+import { groupBy } from './groupBy';
 
 describe('groupBy', () => {
   test('normal usage', () => {
@@ -15,7 +15,7 @@ describe('groupBy', () => {
           { score: 50, 'test-key': '2022-10-03 00:00:00' },
           { score: 60, 'test-key': '2022-10-03 00:00:00' },
         ],
-        (data) => new Date(data['test-key']).toISOString().substring(0, 10),
+        (data) => data['test-key'].substring(0, 10),
       ),
     ).toEqual({
       '2022-10-01': [

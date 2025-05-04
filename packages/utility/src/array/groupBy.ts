@@ -1,7 +1,7 @@
 /**
  * Groups the elements of an array based on a provided key-generating function.
  *
- * Reference: https://github.com/toss/es-toolkit/blob/main/src/array/groupBy.ts
+ * Reference: https://es-toolkit.slash.page/reference/array/groupBy.html
  *
  * @example
  * groupBy([6.1, 4.2, 6.3], Math.floor) // => { 4: [4.2], 6: [6.1, 6.3] }
@@ -38,7 +38,7 @@ export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromI
     for (const item of arr) {
       const key = getKeyFromItem(item);
 
-      if (!result[key]) {
+      if (!Object.hasOwn(result, key)) {
         result[key] = [];
       }
 

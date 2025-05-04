@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { rankByPath } from './rank';
+import { rankByPath } from './rankByPath';
 
 describe('rankByPath', () => {
   test('normal usage', () => {
