@@ -1,7 +1,7 @@
 /**
  * template is used to replace data by name in template strings.
  *
- * Reference: https://github.com/sodiray/radash/blob/master/src/string.ts
+ * Reference: https://radash-docs.vercel.app/docs/string/template
  *
  * @example
  * template('Hello, {{ name }}', { name: 'ray' }) // => Hello, ray

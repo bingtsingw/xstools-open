@@ -1,7 +1,7 @@
 /**
  * Removes leading and trailing whitespace or specified characters from `string`.
  *
- * Reference: https://github.com/sodiray/radash/blob/master/src/string.ts
+ * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
  * @example
  * trim('  a b c  ') // => 'a b c'
@@ -27,6 +27,8 @@ export const trim = (str: string | null | undefined, chars?: string): string => 
 /**
  * Removes leading whitespace or specified characters from `string`.
  *
+ * Reference: https://radash-docs.vercel.app/docs/string/trim
+ *
  * @example
  * trim('  a b c  ') // => 'a b c  '
  * trim('-_-a-b-c-_-', '_-') // => 'a-b-c-_-'
@@ -50,6 +52,8 @@ export const trimStart = (str: string | null | undefined, chars?: string): strin
 
 /**
  * Removes trailing whitespace or specified characters from `string`.
+ *
+ * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
  * @example
  * trim('  a b c  ') // => '  a b c'
