@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.19.0
+
+### Minor Changes
+
+- [`41a4bee`](https://github.com/bingtsingw/xstools-open/commit/41a4bee89826996fc7bc854c1075cf6487af16bb) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add hashParams function
+
 ## 0.18.0
 
 ### Minor Changes
