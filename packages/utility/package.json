@@ -77,7 +77,7 @@
     "extends": "@xstools-dev/eslint-config/base"
   },
   "dependencies": {
-    "@date-fns/tz": "^1.2.0",
+    "@date-fns/tz": "^1.4.1",
     "date-fns": "4.1.0"
   },
   "devDependencies": {
