@@ -23,6 +23,6 @@ describe('getTimezoneOffset', () => {
 
   test('America/New_York', () => {
     process.env.TZ = 'America/New_York';
-    expect(getTimezoneOffset()).toBe('-04:00');
+    expect(getTimezoneOffset()).toBeOneOf(['-04:00', '-05:00']);
   });
 });

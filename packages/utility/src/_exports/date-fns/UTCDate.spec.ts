@@ -1,5 +1,4 @@
-import FakeTimers from '@sinonjs/fake-timers';
-import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
+import { afterEach, beforeEach, describe, expect, it, setSystemTime } from 'bun:test';
 import { UTCDate } from './index.js';
 
 describe('UTCDate', () => {
@@ -52,7 +51,7 @@ describe('UTCDate', () => {
   });
 
   describe('getMilliseconds()', () => {
-    it.todo('returns UTC milliseconds');
+    // it.todo('returns UTC milliseconds');
   });
 
   describe('getMinutes()', () => {
@@ -68,7 +67,7 @@ describe('UTCDate', () => {
   });
 
   describe('getSeconds', () => {
-    it.todo('returns UTC seconds');
+    // it.todo('returns UTC seconds');
   });
 
   describe('getTimezoneOffset', () => {
@@ -102,7 +101,7 @@ describe('UTCDate', () => {
   });
 
   describe('setMilliseconds', () => {
-    it.todo('sets UTC milliseconds');
+    // it.todo('sets UTC milliseconds');
   });
 
   describe('setMinutes', () => {
@@ -122,7 +121,7 @@ describe('UTCDate', () => {
   });
 
   describe('setSeconds', () => {
-    it.todo('sets UTC seconds');
+    // it.todo('sets UTC seconds');
   });
 
   describe('toDateString', () => {
@@ -131,16 +130,13 @@ describe('UTCDate', () => {
     });
   });
 
-  describe('Sinon fake timers', () => {
-    let timers: FakeTimers.InstalledClock;
+  describe('fake times', () => {
     beforeEach(() => {
-      timers = FakeTimers.install({
-        now: new Date(1987, 1, 11, 12, 13, 14, 15),
-      });
+      setSystemTime(new Date(1987, 1, 11, 12, 13, 14, 15));
     });
 
     afterEach(() => {
-      timers.uninstall();
+      setSystemTime();
     });
 
     it('mocks the date', () => {
