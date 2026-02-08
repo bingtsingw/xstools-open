@@ -1,5 +1,13 @@
 # @xstools/utility
 
+## 0.20.0
+
+### Minor Changes
+
+- [`142c0d4`](https://github.com/bingtsingw/xstools-open/commit/142c0d4f7a599f1475ca2f5118b656b638af17f0) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add cuid2
+
+- [`f2b003a`](https://github.com/bingtsingw/xstools-open/commit/f2b003abe4b96dd9f54c5b76d017f5ad7a277a47) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add uuid25 function
+
 ## 0.19.0
 
 ### Minor Changes
