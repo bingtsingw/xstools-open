@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.20.1
+
+### Patch Changes
+
+- [`6675fe9`](https://github.com/bingtsingw/xstools-open/commit/6675fe91bf0e224eb15d5db476226b762c2751b9) Thanks [@bingtsingw](https://github.com/bingtsingw)! - fix exports
+
 ## 0.20.0
 
 ### Minor Changes
