@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { chars2digits, convertBase, digits2chars, uuid } from './_utils';
 
-describe.only('uuid25/_utils', () => {
+describe('uuid25/_utils', () => {
   test('uuid.assert', () => {
     expect(() => uuid.assert('00503ecb-1584-4ca2-b698-bee4c18eb00b')).not.toThrow();
     expect(() => uuid.assert('00503ecb-1584-4ca2-b698-bee4c18eb00b-')).toThrow('invalid uuid');
