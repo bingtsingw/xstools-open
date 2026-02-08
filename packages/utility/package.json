@@ -19,12 +19,12 @@
       "default": "./dist/index.js"
     },
     "./cuid2": {
-      "types": "./dist/cuid2/index.d.ts",
-      "default": "./dist/cuid2/index.js"
+      "types": "./dist/cuid2/_exports/cuid2/index.d.ts",
+      "default": "./dist/cuid2/_exports/cuid2/index.js"
     },
     "./date-fns": {
-      "types": "./dist/date-fns/index.d.ts",
-      "default": "./dist/date-fns/index.js"
+      "types": "./dist/date-fns/_exports/date-fns/index.d.ts",
+      "default": "./dist/date-fns/_exports/date-fns/index.js"
     },
     "./array": {
       "types": "./dist/array/index.d.ts",
