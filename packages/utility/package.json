@@ -18,6 +18,10 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./cuid2": {
+      "types": "./dist/cuid2/index.d.ts",
+      "default": "./dist/cuid2/index.js"
+    },
     "./date-fns": {
       "types": "./dist/date-fns/index.d.ts",
       "default": "./dist/date-fns/index.js"
@@ -79,6 +83,7 @@
   },
   "dependencies": {
     "@date-fns/tz": "1.4.1",
+    "@paralleldrive/cuid2": "3.3.0",
     "date-fns": "4.1.0"
   },
   "publishConfig": {
@@ -88,6 +93,7 @@
   "tsup": {
     "entry": [
       "src/index.ts",
+      "src/_exports/cuid2/index.ts",
       "src/_exports/date-fns/index.ts",
       "src/array/index.ts",
       "src/business/index.ts",
