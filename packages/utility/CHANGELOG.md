@@ -1,5 +1,13 @@
 # @xstools/utility
 
+## 0.21.0
+
+### Minor Changes
+
+- [`469e8ae`](https://github.com/bingtsingw/xstools-open/commit/469e8ae1b9585e2d067103b8bc88262c2b9039c6) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add error
+
+- [`beae8c4`](https://github.com/bingtsingw/xstools-open/commit/beae8c42ab822584ab710b668f12ddb630ca25b1) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add predicate/isError
+
 ## 0.20.2
 
 ### Patch Changes
