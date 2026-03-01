@@ -38,6 +38,10 @@
       "types": "./dist/datetime/index.d.ts",
       "default": "./dist/datetime/index.js"
     },
+    "./error": {
+      "types": "./dist/error/index.d.ts",
+      "default": "./dist/error/index.js"
+    },
     "./exception": {
       "types": "./dist/exception/index.d.ts",
       "default": "./dist/exception/index.js"
@@ -98,6 +102,7 @@
       "src/array/index.ts",
       "src/business/index.ts",
       "src/datetime/index.ts",
+      "src/error/index.ts",
       "src/exception/index.ts",
       "src/format/index.ts",
       "src/object/index.ts",

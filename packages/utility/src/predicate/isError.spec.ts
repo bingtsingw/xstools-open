@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { isError } from './isError';
 
-describe.only('isError', () => {
+describe('isError', () => {
   test('return `true` for error objects', () => {
     expect(isError(new Error())).toBe(true);
   });
