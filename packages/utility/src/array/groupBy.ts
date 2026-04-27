@@ -38,7 +38,7 @@ export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromI
     for (const item of arr) {
       const key = getKeyFromItem(item);
 
-      if (!Object.hasOwn(result, key)) {
+      if (!Object.prototype.hasOwnProperty.call(result, key)) {
         result[key] = [];
       }
 
