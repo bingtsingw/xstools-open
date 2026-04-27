@@ -1,5 +1,17 @@
 # @xstools/utility
 
+## 0.22.0
+
+### Minor Changes
+
+- [`599885e`](https://github.com/bingtsingw/xstools-open/commit/599885e693698beee1dfeb4819daadd791c9908b) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add LogicError
+
+- [`83e152e`](https://github.com/bingtsingw/xstools-open/commit/83e152e15a342fcb618138872cabd6f425b2d05e) Thanks [@bingtsingw](https://github.com/bingtsingw)! - remove hashParams
+
+### Patch Changes
+
+- [#24](https://github.com/bingtsingw/xstools-open/pull/24) [`3c4c674`](https://github.com/bingtsingw/xstools-open/commit/3c4c6742d2d1325b7effa6d45e01c6c582c0b7af) Thanks [@HanShoujun](https://github.com/HanShoujun)! - fix hasOwn in webview
+
 ## 0.21.0
 
 ### Minor Changes
