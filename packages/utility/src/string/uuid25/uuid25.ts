@@ -1,5 +1,6 @@
 /**
  * inspired by: https://github.com/uuid25/javascript
+ * comparison: https://github.com/paralleldrive/cuid2/issues/7
  */
 
 import { assert, Base36MAX, chars2digits, convertBase, digits2chars, uuid } from './_utils';

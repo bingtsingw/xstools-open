@@ -26,6 +26,10 @@
       "types": "./dist/_exports/date-fns/index.d.ts",
       "default": "./dist/_exports/date-fns/index.js"
     },
+    "./nanoid": {
+      "types": "./dist/_exports/nanoid/index.d.ts",
+      "default": "./dist/_exports/nanoid/index.js"
+    },
     "./array": {
       "types": "./dist/array/index.d.ts",
       "default": "./dist/array/index.js"
@@ -88,7 +92,8 @@
   "dependencies": {
     "@date-fns/tz": "1.4.1",
     "@paralleldrive/cuid2": "3.3.0",
-    "date-fns": "4.1.0"
+    "date-fns": "4.1.0",
+    "nanoid": "5.1.11"
   },
   "publishConfig": {
     "access": "public",
@@ -99,6 +104,7 @@
       "src/index.ts",
       "src/_exports/cuid2/index.ts",
       "src/_exports/date-fns/index.ts",
+      "src/_exports/nanoid/index.ts",
       "src/array/index.ts",
       "src/business/index.ts",
       "src/datetime/index.ts",
