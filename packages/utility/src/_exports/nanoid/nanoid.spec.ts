@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { nanoid as nanoidOrigin } from 'nanoid';
 import { nanoid } from './nanoid';
 
-describe.only('nanoid', () => {
+describe('nanoid', () => {
   test('nanoid/origin', () => {
     expect(nanoidOrigin().length).toBe(21);
   });

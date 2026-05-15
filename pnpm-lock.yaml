@@ -35,6 +35,9 @@ importers:
       nanoid:
         specifier: 5.1.11
         version: 5.1.11
+      ohash:
+        specifier: 2.0.11
+        version: 2.0.11
 
 packages:
 
