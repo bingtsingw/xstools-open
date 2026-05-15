@@ -1,5 +1,13 @@
 # @xstools/utility
 
+## 0.23.0
+
+### Minor Changes
+
+- [`3cc521f`](https://github.com/bingtsingw/xstools-open/commit/3cc521fc373bb81bd4268faa8af4c9de826d7313) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add nanoid
+
+- [`21adc51`](https://github.com/bingtsingw/xstools-open/commit/21adc512f02cd9216c2fb6267303b7da9c96304a) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add ohash
+
 ## 0.22.0
 
 ### Minor Changes
