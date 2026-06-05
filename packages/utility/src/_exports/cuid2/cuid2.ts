@@ -5,7 +5,7 @@ export const createCuid2 = init;
 
 export const cuid2 = (length?: number) => {
   if (length) {
-    return createCuid2({ length: 6 })();
+    return createCuid2({ length })();
   }
 
   return createId();
