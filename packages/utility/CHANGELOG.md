@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.23.1
+
+### Patch Changes
+
+- [`55a4474`](https://github.com/bingtsingw/xstools-open/commit/55a4474acca5fea36ae045a50d6a7aeead6c067b) Thanks [@bingtsingw](https://github.com/bingtsingw)! - fix cuid2 length
+
 ## 0.23.0
 
 ### Minor Changes
