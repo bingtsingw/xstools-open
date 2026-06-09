@@ -26,6 +26,10 @@
       "types": "./dist/_exports/date-fns/index.d.ts",
       "default": "./dist/_exports/date-fns/index.js"
     },
+    "./date-fns/reexport": {
+      "types": "./dist/_exports/date-fns/reexport.d.ts",
+      "default": "./dist/_exports/date-fns/reexport.js"
+    },
     "./nanoid": {
       "types": "./dist/_exports/nanoid/index.d.ts",
       "default": "./dist/_exports/nanoid/index.js"
@@ -109,6 +113,7 @@
       "src/index.ts",
       "src/_exports/cuid2/index.ts",
       "src/_exports/date-fns/index.ts",
+      "src/_exports/date-fns/reexport.ts",
       "src/_exports/nanoid/index.ts",
       "src/_exports/ohash/index.ts",
       "src/array/index.ts",
