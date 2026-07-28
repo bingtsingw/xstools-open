@@ -93,7 +93,7 @@
   "eslintConfig": {
     "extends": "@xstools-dev/eslint-config/base"
   },
-  "dependencies": {
+  "devDependencies": {
     "@date-fns/tz": "1.4.1",
     "@paralleldrive/cuid2": "3.3.0",
     "date-fns": "4.1.0",
@@ -127,6 +127,7 @@
       "esm"
     ],
     "dts": true,
+    "splitting": true,
     "sourcemap": true,
     "clean": true,
     "treeshake": true,
