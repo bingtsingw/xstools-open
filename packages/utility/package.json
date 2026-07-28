@@ -83,9 +83,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "check-type": "tsc --noEmit",
-    "dev": "tsup --watch",
+    "dev": "tsdown --watch",
     "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
     "test": "bun test"
@@ -104,7 +104,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "tsup": {
+  "tsdown": {
     "entry": [
       "src/index.ts",
       "src/_exports/cuid2/index.ts",
