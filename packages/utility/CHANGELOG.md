@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.24.0
+
+### Minor Changes
+
+- [`6cf9f1f`](https://github.com/bingtsingw/xstools-open/commit/6cf9f1f79bea7db9107fd94cd636a8c040e78f8c) Thanks [@bingtsingw](https://github.com/bingtsingw)! - bundle all deps
+
 ## 0.23.1
 
 ### Patch Changes
