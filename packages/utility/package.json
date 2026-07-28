@@ -126,6 +126,9 @@
     "format": [
       "esm"
     ],
+    "deps": {
+      "onlyBundle": false
+    },
     "dts": true,
     "splitting": true,
     "sourcemap": true,
