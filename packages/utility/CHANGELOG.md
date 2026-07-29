@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 0.24.1
+
+### Patch Changes
+
+- [`d0650ee`](https://github.com/bingtsingw/xstools-open/commit/d0650ee4e60f8555bf627250fed0a7266ed8af3f) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 修复tsdown编译问题
+
 ## 0.24.0
 
 ### Minor Changes
