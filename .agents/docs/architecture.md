@@ -172,6 +172,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | `get`    | 深路径取值（重载；path 不为数组）    |
 | `getTag` | `Object.prototype.toString` 风格 tag |
 | `omitBy` | 按谓词剔除自有可枚举属性             |
+| `pick`   | 按 key 列表取自有属性                |
 
 ### `./predicate`
 
