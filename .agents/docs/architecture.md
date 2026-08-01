@@ -99,7 +99,7 @@ flowchart TB
 
 | 子路径       | 形态        | 说明                                                      |
 | ------------ | ----------- | --------------------------------------------------------- |
-| `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`                       |
+| `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
 | `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
 | `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
 | `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附 `tz` / `utc` / `UTCDate` |
