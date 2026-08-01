@@ -6,7 +6,7 @@
  * sample([]) // => undefined
  * sample() // => undefined
  */
-export const sample = <T>(arr: T[]): T | undefined => {
+export const sample = <T>(arr: readonly T[]): T | undefined => {
   if (Array.isArray(arr) && arr.length > 0) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
