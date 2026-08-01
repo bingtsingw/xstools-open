@@ -3,6 +3,9 @@
  *
  * References: https://github.com/toss/es-toolkit/blob/main/src/compat/_internal/toPath.ts
  *
+ * @param deepKey - Dot / bracket path string.
+ * @returns Path segments.
+ *
  * @example
  * pathToSegments('') // => []
  * pathToSegments('a.b.c') // => ['a', 'b', 'c']

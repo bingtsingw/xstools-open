@@ -3,7 +3,7 @@
 ## JSDoc
 
 - 注释中英文皆可
-- 公开 API：至少一句说明 + @example
+- 公开API至少一句说明 + @example, 私有API和变量常量不必非要写注释.
 - 抛出错误需要在`jsdoc`中使用`@throws`
 
 ## code style
