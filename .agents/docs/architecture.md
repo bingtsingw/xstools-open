@@ -116,7 +116,8 @@ flowchart TB
 | `difference` / `differenceBy` / `differenceWith` | 差集                                         |
 | `groupBy`                                        | 按 key 分组                                  |
 | `head`                                           | 首元素（重载）                               |
-| `rankByPath`                                     | 按路径排序并写入 `_rank`（纯函数）           |
+| `rankByPath`                                     | 按路径排序并写入名次字段（默认 `_rank`，可自定义） |
+
 | `sample` / `weightedSample`                      | 均匀 / 加权随机取样；非法权重抛 `ParamError` |
 | `xor`                                            | 对称差（两数组）                             |
 

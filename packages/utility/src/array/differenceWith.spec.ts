@@ -38,6 +38,6 @@ describe('differenceWith', () => {
     expect(differenceWith([1], [], (a, b) => a === b)).toEqual([1]);
     expect(differenceWith([1], null as any, (a, b) => a === b)).toEqual([1]);
     expect(differenceWith([1], undefined as any, (a, b) => a === b)).toEqual([1]);
-    expect(differenceWith(11111 as any, undefined as any, (a, b) => a === b)).toEqual(11111 as any);
+    expect(differenceWith(11111 as any, undefined as any, (a, b) => a === b)).toEqual([]);
   });
 });

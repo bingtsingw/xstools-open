@@ -3,8 +3,13 @@ import { ParamError } from '../error';
 /**
  * Returns a random element from an array according to its weight.
  *
- * A weight of zero excludes an element. Negative, non-finite, and NaN weights
- * are invalid and throw `ParamError`.
+ * A weight of zero excludes an element. Empty arrays or a total weight of zero
+ * yield `undefined`.
+ *
+ * @param arr - The array to sample from.
+ * @param getWeight - Returns a non-negative finite weight for each item.
+ * @returns A randomly selected element, or `undefined` when nothing can be picked.
+ * @throws {ParamError} When a weight is negative, `NaN`, or non-finite, or the total overflows.
  *
  * @example
  * weightedSample(

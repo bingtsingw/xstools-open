@@ -53,6 +53,13 @@ describe('rankByPath', () => {
     expect(rankByPath([{ score: 59 }], 'score')).toEqual([{ _rank: 1, score: 59 }]);
   });
 
+  test('custom rankKey', () => {
+    expect(rankByPath([{ a: 3 }, { a: 1 }], 'a', 'rank')).toEqual([
+      { a: 3, rank: 1 },
+      { a: 1, rank: 2 },
+    ]);
+  });
+
   test('array with complex element', () => {
     expect(
       rankByPath(

@@ -1,7 +1,13 @@
 /**
  * Groups the elements of an array based on a provided key-generating function.
  *
+ * Non-array input yields `{}`.
+ *
  * Reference: https://es-toolkit.dev/reference/array/groupBy.html
+ *
+ * @param arr - The array to iterate over.
+ * @param getKeyFromItem - Returns the group key for each element.
+ * @returns An object of arrays keyed by the generated keys.
  *
  * @example
  * groupBy([6.1, 4.2, 6.3], Math.floor) // => { 4: [4.2], 6: [6.1, 6.3] }
