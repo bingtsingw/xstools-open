@@ -5,7 +5,26 @@ export interface ITaggedError {
   readonly cause?: unknown;
 }
 
-export function createTaggedError<TTag extends string>(defaultTag: TTag) {
+/**
+ * Create an Error subclass with a stable `_tag` and static `is()` for cross-bundle identity.
+ *
+ * Recommended usage — extend the factory result directly:
+ *
+ * ```ts
+ * class ParamError extends createTaggedError('PARAM_ERROR') {}
+ * ParamError.is(err); // true for this class and subclasses that keep the tag chain
+ * ```
+ *
+ * Inheritance caveats:
+ * - Prefer a single `extends createTaggedError(tag)` leaf class for each tag.
+ * - If you introduce an intermediate base and then subclass again, re-declare `_tag`
+ *   on the subclass prototype when the subclass needs a distinct tag; otherwise
+ *   `Child.is` / parent `is` may not match the way you expect. See factory tests
+ *   marked `warning:` for concrete failure modes.
+ *
+ * @param defaultTag - Stable tag string written on the prototype and instances.
+ */
+export const createTaggedError = <TTag extends string>(defaultTag: TTag) => {
   type ErrorConstructor = new (...args: any[]) => ITaggedError & Error;
 
   const Base = class extends Error implements ITaggedError {
@@ -73,4 +92,4 @@ export function createTaggedError<TTag extends string>(defaultTag: TTag) {
   Base.prototype._tag = defaultTag;
 
   return Base;
-}
+};
