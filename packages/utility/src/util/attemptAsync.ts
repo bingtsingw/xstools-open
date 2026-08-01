@@ -32,11 +32,11 @@
  * });
  * // users is typed as User[]
  */
-export async function attemptAsync<T, E>(func: () => Promise<T>): Promise<[null, T] | [E, null]> {
+export const attemptAsync = async <T, E = unknown>(func: () => Promise<T>): Promise<[null, T] | [E, null]> => {
   try {
     const result = await func();
     return [null, result];
   } catch (error) {
     return [error as E, null];
   }
-}
+};

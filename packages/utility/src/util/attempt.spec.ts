@@ -15,6 +15,14 @@ describe('attempt', () => {
     ).toEqual([new Error('test'), null]);
   });
 
+  it('should work with non-Error thrown values', () => {
+    expect(
+      attempt(() => {
+        throw 'string error';
+      }),
+    ).toEqual(['string error', null]);
+  });
+
   it('should return the result of the promise', async () => {
     const [error, result] = attempt(async () => 1);
     expect(error).toBeNull();

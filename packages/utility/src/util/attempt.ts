@@ -39,10 +39,10 @@
  * });
  * ```
  */
-export function attempt<T, E>(func: () => T): [null, T] | [E, null] {
+export const attempt = <T, E = unknown>(func: () => T): [null, T] | [E, null] => {
   try {
     return [null, func()];
   } catch (error) {
     return [error as E, null];
   }
-}
+};
