@@ -29,7 +29,7 @@ describe('isError', () => {
     expect(isError(new Set())).toBe(false);
   });
 
-  test('模拟跨`Realm`的内置`Error`(手动修改`toString`)', () => {
+  test('cross-realm Error-like via stack or toStringTag', () => {
     const crossRealmErr = {
       name: 'Error',
       message: 'I come from another world',
@@ -37,5 +37,12 @@ describe('isError', () => {
       [Symbol.toStringTag]: 'Error',
     };
     expect(isError(crossRealmErr)).toBe(true);
+
+    const taggedOnly = {
+      name: 'Error',
+      message: 'tagged',
+      [Symbol.toStringTag]: 'Error',
+    };
+    expect(isError(taggedOnly)).toBe(true);
   });
 });

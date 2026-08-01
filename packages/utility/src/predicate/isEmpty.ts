@@ -1,8 +1,17 @@
 /**
  * Checks if a value is empty.
  *
- * Supports `null` / `undefined`, strings, arrays, `Map`, `Set`, and plain objects
- * (via `Object.keys`). Other primitives and functions are not empty.
+ * Guaranteed cases: `null` / `undefined`, strings, arrays, `Map`, `Set`, and
+ * plain objects (via `Object.keys`). Other values follow the implementation:
+ * - primitives and functions → not empty
+ * - `Date` / class instances → empty if they have no own enumerable keys
+ *   (`Date` is typically empty)
+ * - `arguments` → empty if `Object.keys` length is `0`
+ *
+ * Reference: https://es-toolkit.dev/compat/reference/predicate/isEmpty.html
+ *
+ * @param value - The value to check.
+ * @returns `true` if `value` is empty.
  *
  * @example
  * isEmpty(null) // => true

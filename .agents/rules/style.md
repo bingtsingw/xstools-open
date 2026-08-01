@@ -9,5 +9,6 @@
 
 ## JSDoc
 
+- 注释中英文皆可
 - 公开 API：至少一句说明 + @example
 - 抛出错误需要在`jsdoc`中使用`@throws`
