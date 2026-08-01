@@ -1,17 +1,20 @@
 /**
- * Format currency
+ * Format an amount in fen (分) as a yuan (元) currency string.
+ *
+ * @param currency - Amount in fen (分).
+ * @param options.decimals - Fraction digits. Default: `2`.
+ * @param options.symbol - Currency symbol prefix. Default: `'¥'`. Empty string omits the symbol.
+ * @param options.sign - Prefix `+` for positive amounts. Default: `false`.
  *
  * @example
  * formatCurrency(2) // => '¥ 0.02'
- * formatCurrency(2, { decimals: 0 })) // => '¥ 0.02'
- * formatCurrency(2, { sign: true })) // => '¥ +0.02'
- * formatCurrency(2, { symbol: '$' })) // => '$ 0.02'
+ * formatCurrency(2, { decimals: 0 }) // => '¥ 0'
+ * formatCurrency(2, { sign: true }) // => '¥ +0.02'
+ * formatCurrency(2, { symbol: '$' }) // => '$ 0.02'
  */
-
-// TODO: F2Y 并没有使用
 export const formatCurrency = (
   currency: number,
-  options?: { decimals?: number; symbol?: string; sign?: boolean; F2Y?: boolean },
+  options?: { decimals?: number; symbol?: string; sign?: boolean },
 ): string => {
   const { decimals = 2, symbol = '¥', sign = false } = options || {};
 

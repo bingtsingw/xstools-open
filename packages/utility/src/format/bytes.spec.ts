@@ -24,4 +24,11 @@ describe('formatBytes', () => {
     expect(formatBytes(Math.pow(1024, 9))).toEqual('1024 YB');
     expect(formatBytes(Math.pow(1024, 10))).toEqual('1048576 YB');
   });
+
+  test('negative or non-finite', () => {
+    expect(formatBytes(-1)).toEqual('0 B');
+    expect(formatBytes(Number.NaN)).toEqual('0 B');
+    expect(formatBytes(Number.POSITIVE_INFINITY)).toEqual('0 B');
+    expect(formatBytes(Number.NEGATIVE_INFINITY)).toEqual('0 B');
+  });
 });
