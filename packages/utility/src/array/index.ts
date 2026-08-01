@@ -5,3 +5,4 @@ export * from './groupBy';
 export * from './head';
 export * from './rankByPath';
 export * from './sample';
+export * from './weightedSample';
