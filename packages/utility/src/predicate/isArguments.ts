@@ -12,6 +12,6 @@ import { getTag } from '../object';
  * isArguments(strictArgs); // => true
  * isArguments(value); // => false
  */
-export function isArguments(value?: unknown): value is IArguments {
+export const isArguments = (value?: unknown): value is IArguments => {
   return value !== null && typeof value === 'object' && getTag(value) === '[object Arguments]';
-}
+};

@@ -10,7 +10,6 @@
  * isObjectLike(() => {}); // => false
  * isObjectLike(null); // => false
  */
-
-export function isObjectLike(value: unknown): value is object {
+export const isObjectLike = (value: unknown): value is object => {
   return typeof value === 'object' && value !== null;
-}
+};

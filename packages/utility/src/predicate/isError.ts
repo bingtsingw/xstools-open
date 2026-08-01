@@ -1,3 +1,11 @@
+/**
+ * Checks if the given value is an `Error` (including cross-realm duck typing).
+ *
+ * @example
+ * isError(new Error()); // => true
+ * isError({ name: 'Error', message: '' }); // => false
+ * isError(null); // => false
+ */
 export const isError = (err: unknown): err is Error => {
   // 1. 引用校验（最快，覆盖 95% 情况）
   if (err instanceof Error) return true;

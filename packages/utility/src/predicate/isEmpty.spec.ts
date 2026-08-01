@@ -15,4 +15,11 @@ describe('isEmpty', () => {
     expect(isEmpty([0])).toBe(false);
     expect(isEmpty({ length: 0 })).toBe(false);
   });
+
+  it('Map and Set', () => {
+    expect(isEmpty(new Map())).toBe(true);
+    expect(isEmpty(new Set())).toBe(true);
+    expect(isEmpty(new Map([['a', 1]]))).toBe(false);
+    expect(isEmpty(new Set([1]))).toBe(false);
+  });
 });
