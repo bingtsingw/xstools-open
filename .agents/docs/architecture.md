@@ -66,6 +66,7 @@ flowchart TB
     business --> error
     datetime --> error
     datetime --> date_fns_src["date-fns / _exports/date-fns"]
+    string --> error
     exception --> object
     exception --> string
     error --> predicate
@@ -188,15 +189,15 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### `./string`
 
-| 符号                                | 用途                          |
-| ----------------------------------- | ----------------------------- |
-| `case*` / `capitalize` / `getWords` | 命名风格与分词                |
-| `trim` / `trimStart` / `trimEnd`    | 可指定字符集                  |
-| `subString`                         | Unicode code point 截取       |
-| `template`                          | `{{ key }}` 模板              |
-| `MaybeString`                       | `string \| null \| undefined` |
-| `DIC_*`                             | 字符表常量                    |
-| `uuid25encode` / `uuid25decode`     | UUID ↔ 25 位 base36           |
+| 符号                                | 用途                                         |
+| ----------------------------------- | -------------------------------------------- |
+| `case*` / `capitalize` / `getWords` | 命名风格与分词                               |
+| `trim` / `trimStart` / `trimEnd`    | 可指定字符集                                 |
+| `subString`                         | Unicode code point 截取                      |
+| `template`                          | `{{ key }}` 模板                             |
+| `MaybeString`                       | `string \| null \| undefined`                |
+| `DIC_*`                             | 字符表常量                                   |
+| `uuid25encode` / `uuid25decode`     | UUID ↔ 25 位 base36；非法输入抛 `LogicError` |
 
 ### `./util`
 
@@ -220,7 +221,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 导出 | 具名类 + factory                         | 单一 `Exception` 对象         |
 | 前景 | 继续演进                                 | 下个 major 废弃               |
 
-二者不共享业务基类。包内：`getDistance` / `areIntervalsOverlap` → `ParamError`；新代码勿再依赖 `exception`。
+二者不共享业务基类。包内：`getDistance` / `areIntervalsOverlap` → `ParamError`；`uuid25` → `LogicError`；新代码勿再依赖 `exception`。
 
 ---
 
