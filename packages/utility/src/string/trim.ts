@@ -3,7 +3,8 @@ import type { MaybeString } from './types';
 /**
  * Removes leading and trailing whitespace or specified characters from `string`.
  *
- * Nullish `str` yields `''`.
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
  *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
@@ -35,7 +36,8 @@ export const trim = (str: MaybeString, chars?: string | null): string => {
 /**
  * Removes leading whitespace or specified characters from `string`.
  *
- * Nullish `str` yields `''`.
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
  *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
@@ -67,7 +69,8 @@ export const trimStart = (str: MaybeString, chars?: string | null): string => {
 /**
  * Removes trailing whitespace or specified characters from `string`.
  *
- * Nullish `str` yields `''`.
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
  *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *

@@ -24,6 +24,7 @@ dist
 .umi
 .umi-test
 .umi-production
+.agents
 
 # project
 src/components/iconfont

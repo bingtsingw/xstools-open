@@ -24,11 +24,11 @@ export const starlizeName = (name: string): string => {
 };
 
 /**
- * The middle of the card number will be replaced with *.
+ * Mask the middle of a card number with `*`.
  *
- * @param {string} card The card number.
- * @param {number} front The number of characters to keep at the beginning.
- * @param {number} after The number of characters to keep at the end.
+ * @param card - The card number.
+ * @param front - Characters to keep at the beginning.
+ * @param after - Characters to keep at the end.
  *
  * @example
  * starlizeCard('000', 1, 1) // => '0*0'

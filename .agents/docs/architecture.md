@@ -228,6 +228,11 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ## 6. 代码约定
 
+### 参数
+
+- 主数据用位置参数；可选配置：**≤2 个可选尾参用位置参数**，**≥3 个相关字段用对象参数**（例：`formatBytes(n, { decimals: 2 })`、`formatCurrency(n, { decimals, symbol, sign })`）
+- 例外：`Error` 标准 `ErrorOptions`、`_exports` 再导出的上游签名、legacy `exception`
+
 ### 组织
 
 - 一文件一主 API；同主题可同文件（如 `case.ts`、`trim.ts`、`basic.ts`）
