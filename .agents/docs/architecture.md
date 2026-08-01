@@ -197,7 +197,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | `trim` / `trimStart` / `trimEnd`    | 可指定字符集                                       |
 | `subString`                         | Unicode code point 截取；非 string 抛 `ParamError` |
 | `template`                          | `{{ key }}` 模板                                   |
-| `MaybeString`                       | `string \| null \| undefined`                      |
+| `MaybeString`                       | `string \| null \| undefined`；只吞 nullish        |
 | `DIC_*`                             | 字符表常量                                         |
 | `uuid25encode` / `uuid25decode`     | UUID ↔ 25 位 base36；非法输入抛 `LogicError`       |
 

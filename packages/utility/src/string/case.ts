@@ -44,11 +44,14 @@ export const caseLowerFirst = (str: MaybeString): string => {
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
  *
+ * Parameter shape matches `MaybeString` (`string | null | undefined`), but is written
+ * as `T | null | undefined` so literal `Capitalize<T>` inference is preserved.
+ *
  * References: https://es-toolkit.dev/reference/string/capitalize.html
  *
  * @template T - Literal type of the string.
- * @param {T | null | undefined} str - The string to be converted to uppercase.
- * @returns {Capitalize<T>} - The capitalized string. Nullish input yields `''`.
+ * @param str - The string to capitalize. Nullish input yields `''`.
+ * @returns The capitalized string.
  *
  * @example
  * capitalize('fred') // => 'Fred'
