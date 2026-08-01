@@ -5,11 +5,18 @@ const isUnsafeKey = (key: PropertyKey): boolean => key === '__proto__';
 /**
  * Dynamically get a nested value from an object.
  *
- * Own keys are preferred over deep paths, so `'a.b'` prefers an own `'a.b'` key
- * over nested `a` → `b`. Only `undefined` falls back to `defaultValue`; `null`
- * is returned as is.
+ * - Path is a `PropertyKey` (string / number / symbol), **not** a path array.
+ * - Own keys are preferred over deep paths, so `'a.b'` prefers an own `'a.b'` key
+ *   over nested `a` → `b`.
+ * - Only `undefined` falls back to `defaultValue`; own / resolved `null` is returned as is.
+ * - `__proto__` path segments are rejected and yield `defaultValue`.
  *
  * Reference: https://github.com/toss/es-toolkit/blob/main/src/compat/object/get.ts
+ *
+ * @param data - The object to query.
+ * @param path - The key or deep path (e.g. `'a.b[0]'`). Not an array of keys.
+ * @param defaultValue - Value returned when the resolved result is `undefined`.
+ * @returns The resolved value, or `defaultValue` when missing / unsafe.
  *
  * @example
  * get({ a: { b: 3 } }, 'a.b'); // => 3
@@ -48,7 +55,7 @@ export function get(data: any, path: PropertyKey, defaultValue?: any): any {
 
   const key = typeof path === 'number' && Object.is(path, -0) ? '-0' : path.toString();
 
-  if (Object.hasOwn(data, key)) {
+  if (Object.prototype.hasOwnProperty.call(data, key)) {
     const value = data[key];
     return value === undefined ? defaultValue : value;
   }

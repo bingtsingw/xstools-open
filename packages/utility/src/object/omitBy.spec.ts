@@ -25,4 +25,10 @@ describe('omitBy', () => {
     expect(result).toEqual({ a: 1 });
     expect(obj).toEqual({ a: 1, b: null });
   });
+
+  test('ignores own symbol keys', () => {
+    const sym = Symbol('s');
+    const obj = { a: 1, [sym]: 2 };
+    expect(omitBy(obj, () => false)).toEqual({ a: 1 });
+  });
 });

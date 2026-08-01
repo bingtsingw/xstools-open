@@ -16,9 +16,10 @@ describe('pick', () => {
     });
   });
 
-  test('nullish input', () => {
+  test('nullish or non-object input', () => {
     expect(pick(null, ['a'] as any)).toEqual({});
     expect(pick(undefined, ['a'] as any)).toEqual({});
+    expect(pick(1 as any, ['a'] as any)).toEqual({});
   });
 
   test('invalid keys', () => {

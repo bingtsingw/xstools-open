@@ -1,9 +1,13 @@
 /**
  * Creates a new object composed of the own properties listed in `keys`.
  *
- * Missing keys are skipped. Nullish `obj` yields `{}`.
+ * Missing keys are skipped. Nullish or non-object `obj` yields `{}`.
  *
  * Reference: https://es-toolkit.dev/reference/object/pick.html
+ *
+ * @param obj - The source object.
+ * @param keys - Own property keys to pick.
+ * @returns A new object with the picked own properties.
  *
  * @example
  * pick({ a: 1, b: 2, c: 3 }, ['a', 'c']) // => { a: 1, c: 3 }
@@ -14,7 +18,7 @@ export const pick = <T extends object, K extends keyof T>(
   obj: T | null | undefined,
   keys: readonly K[],
 ): Pick<T, K> => {
-  if (obj === null || obj === undefined) {
+  if (obj === null || obj === undefined || typeof obj !== 'object') {
     return {} as Pick<T, K>;
   }
 

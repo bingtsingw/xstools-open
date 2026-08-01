@@ -1,8 +1,15 @@
 /**
- * Creates a new object composed of the own enumerable properties that do not
- * satisfy the predicate.
+ * Creates a new object composed of the own enumerable string-keyed properties
+ * that do not satisfy the predicate.
+ *
+ * Only `Object.keys` are considered — own symbol keys are ignored. Nullish or
+ * non-object `obj` yields `{}`.
  *
  * Reference: https://es-toolkit.dev/reference/object/omitBy.html
+ *
+ * @param obj - The source object.
+ * @param shouldOmit - Predicate invoked with `(value, key)`; return `true` to omit.
+ * @returns A new object without the omitted properties.
  *
  * @example
  * omitBy({ a: 1, b: 'omit', c: 3 }, (value) => typeof value === 'string') // => { a: 1, c: 3 }
