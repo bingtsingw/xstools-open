@@ -1,4 +1,4 @@
-import { Exception } from '../exception';
+import { ParamError } from '../error';
 
 const deg2rad = (deg: number): number => {
   return deg * (Math.PI / 180);
@@ -6,7 +6,7 @@ const deg2rad = (deg: number): number => {
 
 const validatePoint = ({ longitude, latitude }: { longitude: number; latitude: number }) => {
   if (typeof longitude !== 'number' || typeof latitude !== 'number') {
-    throw new Exception.BadRequestException('坐标参数类型错误');
+    throw new ParamError('坐标参数类型错误');
   }
 };
 

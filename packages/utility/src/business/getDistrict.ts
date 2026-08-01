@@ -20,11 +20,12 @@ export const addressTrimEnd = (address: string) => {
 };
 
 /**
- * 判断是否为有效的区域
- * - 如果 title 中从第 0 到第 3 个字符开始的子串与 district 或去掉“区”后的 district 相匹配，则认为无效。
- * - 后续可以添加更多的规则
+ * 判断区划名是否可与标题一起使用。
+ *
+ * 若 `title` 从第 0～3 个字符起的后缀以 `district`（或去掉「区」后的名）开头，
+ * 视为标题已带区名，不能再加地区前缀了，返回 `false`；否则返回 `true`。
  */
-export const districtStartWith = ({ title, district }: { title: string; district: string }): boolean => {
+export const isDistrictAcceptable = ({ title, district }: { title: string; district: string }): boolean => {
   const trimmedDistrict = district.replace('区', '');
   for (let i = 0; i <= 3; i++) {
     if (title.slice(i).startsWith(district) || title.slice(i).startsWith(trimmedDistrict)) {
@@ -36,12 +37,13 @@ export const districtStartWith = ({ title, district }: { title: string; district
 };
 
 /**
- * 获取地址中的区域
- * - 如果 title 中从第 0 到第 3 个字符开始的子串与 district 或去掉“区”后的 district 相匹配，则认为无效。
+ * 获取地址中的区域。
+ *
+ * 若解析出的区划与 `title` 前缀冲突（见 `isDistrictAcceptable`），返回空字符串。
  *
  * @example
- * getDistance({ address: "广东省深圳市罗湖区科技园路0号" }) // => 罗湖区
- * getDistance({ address: "广东省深圳市罗湖区科技园路0号", title: "罗湖星巴克" }) // => ""
+ * getDistrict({ address: "广东省深圳市罗湖区科技园路0号" }) // => 罗湖区
+ * getDistrict({ address: "广东省深圳市罗湖区科技园路0号", title: "罗湖星巴克" }) // => ""
  */
 export const getDistrict = ({ title = '', address }: { title?: string; address?: string }): string => {
   if (!address) {
@@ -55,10 +57,8 @@ export const getDistrict = ({ title = '', address }: { title?: string; address?:
   const match = cleanedAddress.match(regex);
 
   const district = match?.groups?.['district'];
-  if (district) {
-    if (districtStartWith({ title, district })) {
-      return district;
-    }
+  if (district && isDistrictAcceptable({ title, district })) {
+    return district;
   }
 
   return '';
