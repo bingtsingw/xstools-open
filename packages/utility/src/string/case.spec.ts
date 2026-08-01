@@ -15,8 +15,8 @@ import {
 
 describe('case', () => {
   test('caseUpperFirst', () => {
-    expect(caseUpperFirst(undefined!)).toBe('');
-    expect(caseUpperFirst(null!)).toBe('');
+    expect(caseUpperFirst(undefined)).toBe('');
+    expect(caseUpperFirst(null)).toBe('');
     expect(caseUpperFirst('')).toBe('');
     expect(caseUpperFirst('f')).toBe('F');
     expect(caseUpperFirst('F')).toBe('F');
@@ -33,8 +33,8 @@ describe('case', () => {
   });
 
   test('caseLowerFirst', () => {
-    expect(caseLowerFirst(undefined!)).toBe('');
-    expect(caseLowerFirst(null!)).toBe('');
+    expect(caseLowerFirst(undefined)).toBe('');
+    expect(caseLowerFirst(null)).toBe('');
     expect(caseLowerFirst('')).toBe('');
     expect(caseLowerFirst('f')).toBe('f');
     expect(caseLowerFirst('F')).toBe('f');
@@ -51,8 +51,8 @@ describe('case', () => {
   });
 
   test('capitalize', () => {
-    expect(capitalize(undefined! as string)).toBe('');
-    expect(capitalize(null! as string)).toBe('');
+    expect(capitalize(undefined)).toBe('');
+    expect(capitalize(null)).toBe('');
     expect(capitalize('')).toBe('');
     expect(capitalize('f')).toBe('F');
     expect(capitalize('F')).toBe('F');
@@ -71,8 +71,8 @@ describe('case', () => {
   });
 
   test('caseLower', () => {
-    expect(caseLower(undefined! as string)).toBe('');
-    expect(caseLower(null! as string)).toBe('');
+    expect(caseLower(undefined)).toBe('');
+    expect(caseLower(null)).toBe('');
     expect(caseLower('')).toBe('');
     expect(caseLower('--foo-bar--')).toBe('foo bar');
     expect(caseLower('fooBar')).toBe('foo bar');
@@ -89,8 +89,8 @@ describe('case', () => {
   });
 
   test('caseUpper', () => {
-    expect(caseUpper(undefined! as string)).toBe('');
-    expect(caseUpper(null! as string)).toBe('');
+    expect(caseUpper(undefined)).toBe('');
+    expect(caseUpper(null)).toBe('');
     expect(caseUpper('')).toBe('');
     expect(caseUpper('--foo-bar--')).toBe('FOO BAR');
     expect(caseUpper('fooBar')).toBe('FOO BAR');
@@ -106,8 +106,8 @@ describe('case', () => {
   });
 
   test('caseStart', () => {
-    expect(caseStart(undefined! as string)).toBe('');
-    expect(caseStart(null! as string)).toBe('');
+    expect(caseStart(undefined)).toBe('');
+    expect(caseStart(null)).toBe('');
     expect(caseStart('')).toBe('');
     expect(caseStart('--foo-bar--')).toBe('Foo Bar');
     expect(caseStart('fooBar')).toBe('Foo Bar');
@@ -135,8 +135,8 @@ describe('case', () => {
   });
 
   test('caseSnake', () => {
-    expect(caseSnake(undefined! as string)).toBe('');
-    expect(caseSnake(null! as string)).toBe('');
+    expect(caseSnake(undefined)).toBe('');
+    expect(caseSnake(null)).toBe('');
     expect(caseSnake('')).toBe('');
     expect(caseSnake('--foo-bar--')).toBe('foo_bar');
     expect(caseSnake('fooBar')).toBe('foo_bar');
@@ -152,8 +152,8 @@ describe('case', () => {
   });
 
   test('caseKebab', () => {
-    expect(caseKebab(undefined! as string)).toBe('');
-    expect(caseKebab(null! as string)).toBe('');
+    expect(caseKebab(undefined)).toBe('');
+    expect(caseKebab(null)).toBe('');
     expect(caseKebab('')).toBe('');
     expect(caseKebab('--foo-bar--')).toBe('foo-bar');
     expect(caseKebab('fooBar')).toBe('foo-bar');
@@ -169,8 +169,8 @@ describe('case', () => {
   });
 
   test('casePascal', () => {
-    expect(casePascal(undefined! as string)).toBe('');
-    expect(casePascal(null! as string)).toBe('');
+    expect(casePascal(undefined)).toBe('');
+    expect(casePascal(null)).toBe('');
     expect(casePascal('')).toBe('');
     expect(casePascal('--foo-bar--')).toBe('FooBar');
     expect(casePascal('fooBar')).toBe('FooBar');
@@ -186,8 +186,8 @@ describe('case', () => {
   });
 
   test('caseCamel', () => {
-    expect(caseCamel(undefined! as string)).toBe('');
-    expect(caseCamel(null! as string)).toBe('');
+    expect(caseCamel(undefined)).toBe('');
+    expect(caseCamel(null)).toBe('');
     expect(caseCamel('')).toBe('');
     expect(caseCamel('--foo-bar--')).toBe('fooBar');
     expect(caseCamel('fooBar')).toBe('fooBar');
@@ -203,8 +203,8 @@ describe('case', () => {
   });
 
   test('caseConstant', () => {
-    expect(caseConstant(undefined! as string)).toBe('');
-    expect(caseConstant(null! as string)).toBe('');
+    expect(caseConstant(undefined)).toBe('');
+    expect(caseConstant(null)).toBe('');
     expect(caseConstant('')).toBe('');
     expect(caseConstant('--foo-bar--')).toBe('FOO_BAR');
     expect(caseConstant('fooBar')).toBe('FOO_BAR');

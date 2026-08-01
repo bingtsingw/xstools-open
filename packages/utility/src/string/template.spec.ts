@@ -15,6 +15,8 @@ describe('template', () => {
   test('empty', () => {
     expect(template('', { name: 'world' })).toBe('');
     expect(template('', {})).toBe('');
+    expect(template(null, {})).toBe('');
+    expect(template(undefined, {})).toBe('');
     expect(template('hello', {})).toBe('hello');
 
     expect(template('hello {{ }}', {})).toBe('hello ');

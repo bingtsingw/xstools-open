@@ -1,8 +1,10 @@
+import type { MaybeString } from './types';
+
 /**
  * template is used to replace data by name in template strings.
  *
- * Missing keys and `null` / `undefined` values become an empty string. Falsy
- * values like `0` or `false` are preserved.
+ * Nullish `str` yields `''`. Missing keys and `null` / `undefined` values become
+ * an empty string. Falsy values like `0` or `false` are preserved.
  *
  * Reference: https://radash-docs.vercel.app/docs/string/template
  *
@@ -11,7 +13,11 @@
  * template('Hello, {{ name }}', {age: 1}) // => Hello,
  * template('count={{ count }}', { count: 0 }) // => count=0
  */
-export const template = (str: string, data: Record<string, unknown>): string => {
+export const template = (str: MaybeString, data: Record<string, unknown>): string => {
+  if (str === null || str === undefined) {
+    return '';
+  }
+
   const regex = /\{\{\s*(.+?)\s*\}\}/g;
 
   return Array.from(str.matchAll(regex)).reduce((acc, match) => {

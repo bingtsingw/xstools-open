@@ -29,12 +29,16 @@ describe('subString', () => {
     expect(subString('xxx', 0)).toBe('');
     expect(subString('', 0)).toBe('');
     expect(subString('', 10)).toBe('');
+    expect(subString(null, 10)).toBe('');
+    expect(subString(undefined, 10)).toBe('');
+  });
 
+  test('invalid input', () => {
     // @ts-expect-error
-    expect(subString({}, 10)).toBe('');
+    expect(() => subString({}, 10)).toThrow(TypeError);
     // @ts-expect-error
-    expect(subString(1, 10)).toBe('');
+    expect(() => subString(1, 10)).toThrow(TypeError);
     // @ts-expect-error
-    expect(subString([1], 10)).toBe('');
+    expect(() => subString([1], 10)).toThrow(TypeError);
   });
 });

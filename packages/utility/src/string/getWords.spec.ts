@@ -2,6 +2,11 @@ import { describe, expect, test } from 'bun:test';
 import { getWords } from './getWords';
 
 describe('getWords', () => {
+  test('nullish input', () => {
+    expect(getWords(null)).toEqual([]);
+    expect(getWords(undefined)).toEqual([]);
+  });
+
   test('work with compound words', async () => {
     expect(getWords('')).toEqual([]);
 
