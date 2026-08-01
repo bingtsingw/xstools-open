@@ -11,14 +11,14 @@
  * getTag(new Set()); // => '[object Set]'
  * ...
  */
-export function getTag<T>(value: T) {
+export const getTag = <T>(value: T) => {
   if (value === null) {
     return '[object Null]';
   }
 
-  if (value === null) {
+  if (value === undefined) {
     return '[object Undefined]';
   }
 
   return Object.prototype.toString.call(value);
-}
+};

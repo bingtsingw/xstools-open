@@ -11,4 +11,6 @@
 
 ## changeset
 
-- 修改代码后, 在`.changeset`目录下自动添加`conventional`风格的改动文件
+- 修改代码后, 在 `.changeset`目录下自动添加 `conventional` 风格的改动文件
+  - 文件名使用 `随机word`组合，防止多人合作的时候碰撞
+  - 内容里不需要 `scope`, 比如 `fix: xxx`, 直接写 `xxx`, `changeset` 会根据类型自动加 `scope`
