@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
 import { formatCurrency } from './currency';
 
-describe('format', () => {
-  test('formatCurrency', () => {
+describe('formatCurrency', () => {
+  test('normal usage', () => {
     expect(formatCurrency(2)).toEqual('¥ 0.02');
     expect(formatCurrency(100)).toEqual('¥ 1.00');
     expect(formatCurrency(999)).toEqual('¥ 9.99');
@@ -32,5 +32,12 @@ describe('format', () => {
     expect(formatCurrency(-2, { sign: true })).toEqual('¥ -0.02');
     expect(formatCurrency(-100, { sign: true })).toEqual('¥ -1.00');
     expect(formatCurrency(-999, { sign: true })).toEqual('¥ -9.99');
+  });
+
+  test('non-finite treated as zero', () => {
+    expect(formatCurrency(Number.NaN)).toEqual('¥ 0.00');
+    expect(formatCurrency(Number.POSITIVE_INFINITY)).toEqual('¥ 0.00');
+    expect(formatCurrency(Number.NEGATIVE_INFINITY)).toEqual('¥ 0.00');
+    expect(formatCurrency(Number.NaN, { decimals: 0, symbol: '$' })).toEqual('$ 0');
   });
 });

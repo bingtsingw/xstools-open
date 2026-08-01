@@ -1,6 +1,8 @@
 /**
  * Format an amount in fen (分) as a yuan (元) currency string.
  *
+ * Non-finite `currency` (`NaN` / `±Infinity`) is treated as `0`.
+ *
  * @param currency - Amount in fen (分).
  * @param options.decimals - Fraction digits. Default: `2`.
  * @param options.symbol - Currency symbol prefix. Default: `'¥'`. Empty string omits the symbol.
@@ -17,13 +19,14 @@ export const formatCurrency = (
   options?: { decimals?: number; symbol?: string; sign?: boolean },
 ): string => {
   const { decimals = 2, symbol = '¥', sign = false } = options || {};
+  const amount = Number.isFinite(currency) ? currency : 0;
 
   const dm = decimals < 0 ? 0 : decimals;
 
-  let num = (currency / 100).toFixed(dm);
+  let num = (amount / 100).toFixed(dm);
 
   if (sign) {
-    const _sign = currency > 0 ? '+' : '';
+    const _sign = amount > 0 ? '+' : '';
     num = _sign + num;
   }
 

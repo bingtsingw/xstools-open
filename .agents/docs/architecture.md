@@ -68,6 +68,7 @@ flowchart TB
     datetime --> error
     datetime --> date_fns_src["date-fns / _exports/date-fns"]
     string --> error
+    format --> string
     exception --> object
     exception --> string
     error --> predicate
@@ -164,9 +165,9 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 | 符号                            | 用途                |
 | ------------------------------- | ------------------- |
-| `formatBytes`                   | 字节可读化          |
-| `formatCurrency`                | 分 → 元（默认 `¥`） |
-| `starlizeName` / `starlizeCard` | 姓名 / 卡号脱敏     |
+| `formatBytes`                   | 字节可读化；非法 → `'0 B'`；`{ decimals? }` |
+| `formatCurrency`                | 分 → 元（默认 `¥`）；非有限按 `0` 处理       |
+| `starlizeName` / `starlizeCard` | 姓名 / 卡号脱敏；`MaybeString`              |
 
 ### `./object`
 
