@@ -1,8 +1,10 @@
+import { ParamError } from '../error';
+
 /**
  * Returns a random element from an array according to its weight.
  *
  * A weight of zero excludes an element. Negative, non-finite, and NaN weights
- * are invalid.
+ * are invalid and throw `ParamError`.
  *
  * @example
  * weightedSample(
@@ -23,13 +25,13 @@ export const weightedSample = <T>(
 
   for (const weight of weights) {
     if (!Number.isFinite(weight) || weight < 0) {
-      throw new RangeError('Weights must be finite, non-negative numbers');
+      throw new ParamError('Weights must be finite, non-negative numbers');
     }
 
     totalWeight += weight;
 
     if (!Number.isFinite(totalWeight)) {
-      throw new RangeError('Total weight must be finite');
+      throw new ParamError('Total weight must be finite');
     }
   }
 

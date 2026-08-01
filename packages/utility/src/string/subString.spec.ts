@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test';
+import { ParamError } from '../error';
 import { subString } from './subString';
 
 describe('subString', () => {
@@ -35,10 +36,10 @@ describe('subString', () => {
 
   test('invalid input', () => {
     // @ts-expect-error
-    expect(() => subString({}, 10)).toThrow(TypeError);
+    expect(() => subString({}, 10)).toThrow(ParamError);
     // @ts-expect-error
-    expect(() => subString(1, 10)).toThrow(TypeError);
+    expect(() => subString(1, 10)).toThrow(ParamError);
     // @ts-expect-error
-    expect(() => subString([1], 10)).toThrow(TypeError);
+    expect(() => subString([1], 10)).toThrow(ParamError);
   });
 });

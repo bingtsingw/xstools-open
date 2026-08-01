@@ -1,7 +1,12 @@
 # style
 
-编码风格相关
+## 编码风格相关
 
 - 禁止使用 `==` 进行判断
 - 导出方法的时候，有重载用 `function`，其余用 `const`。
+- 抛出错误优先使用`Tagged Error`
+
+## JSDoc
+
+- 公开 API：至少一句说明 + @example
 - 抛出错误需要在`jsdoc`中使用`@throws`

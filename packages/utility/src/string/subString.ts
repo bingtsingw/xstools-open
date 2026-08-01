@@ -1,9 +1,10 @@
+import { ParamError } from '../error';
 import type { MaybeString } from './types';
 
 /**
  * Returns a prefix of the string by Unicode code point length.
  *
- * Nullish input yields `''`. Non-string values throw `TypeError`.
+ * Nullish input yields `''`. Non-string values throw `ParamError`.
  *
  * This is safer than native `String#substring` for common emoji (which may be
  * surrogate pairs), but it does not guarantee grapheme clusters (e.g. ZWJ
@@ -24,7 +25,7 @@ export const subString = (s: MaybeString, length: number): string => {
   }
 
   if (typeof s !== 'string') {
-    throw new TypeError('Expected string');
+    throw new ParamError('Expected string');
   }
 
   return [...s].slice(0, length).join('');

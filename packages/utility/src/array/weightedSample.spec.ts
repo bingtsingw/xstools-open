@@ -1,4 +1,5 @@
 import { describe, expect, spyOn, test } from 'bun:test';
+import { ParamError } from '../error';
 import { weightedSample } from './weightedSample';
 
 describe('weightedSample', () => {
@@ -27,6 +28,6 @@ describe('weightedSample', () => {
   });
 
   test.each([-1, Number.NaN, Number.POSITIVE_INFINITY])('rejects the invalid weight %p', (weight) => {
-    expect(() => weightedSample([1], () => weight)).toThrow(RangeError);
+    expect(() => weightedSample([1], () => weight)).toThrow(ParamError);
   });
 });
