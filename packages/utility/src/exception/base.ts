@@ -1,6 +1,9 @@
 import { get } from '../object';
 import { caseSnake, caseStart } from '../string';
 
+/**
+ * @deprecated 整个Exception模块将在下个大版本废弃，目前是为了兼容性还留在包里.
+ */
 export class BaseException extends Error {
   public status: number;
   public code: string;
