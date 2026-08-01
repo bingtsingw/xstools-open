@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { stubArgs, stubFalse } from '../_internal';
-import { FALSY } from '../constants';
+import { FALSY, stubArgs, stubFalse } from '../_internal';
 import { isObjectLike } from './isObjectLike';
 
 describe('isObjectLike', () => {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { WHITESPACE } from '../constants';
+import { WHITESPACE } from '../_internal';
 import { trim, trimEnd, trimStart } from './trim';
 
 describe('trim', () => {
