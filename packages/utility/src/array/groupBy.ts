@@ -1,7 +1,7 @@
 /**
  * Groups the elements of an array based on a provided key-generating function.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/groupBy.html
+ * Reference: https://es-toolkit.dev/reference/array/groupBy.html
  *
  * @example
  * groupBy([6.1, 4.2, 6.3], Math.floor) // => { 4: [4.2], 6: [6.1, 6.3] }

@@ -1,7 +1,7 @@
 /**
  * Computes the difference between two arrays after mapping their elements through a provided function.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/differenceBy.html
+ * Reference: https://es-toolkit.dev/reference/array/differenceBy.html
  *
  * @example
  * differenceBy([{ id: 1 }, { id: 2 }, { id: 3 }], [{ id: 2 }, { id: 4 }], item => item.id); // => [{ id: 1 }, { id: 3 }]

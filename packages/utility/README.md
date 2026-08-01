@@ -1,3 +1,3 @@
 # @xstools/utility
 
-类似`lodash`的基础工具函数.
+Utility tools like [lodash](https://github.com/lodash/lodash) or [es-toolkit](https://github.com/toss/es-toolkit)

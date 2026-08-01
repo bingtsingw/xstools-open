@@ -8,7 +8,7 @@ const CASE_SPLIT_PATTERN =
  *
  * Nullish input yields `[]`.
  *
- * Reference: https://es-toolkit.slash.page/reference/string/words.html
+ * Reference: https://es-toolkit.dev/reference/string/words.html
  *
  * @param {MaybeString} str The string to inspect.
  * @returns {string[]} Returns the words of `string`.

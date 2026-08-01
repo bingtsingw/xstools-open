@@ -1,7 +1,7 @@
 /**
  * Computes the difference between two arrays.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/difference.html
+ * Reference: https://es-toolkit.dev/reference/array/difference.html
  *
  * @example
  * difference([1, 2, 3, 4, 5], [2, 4]); // => [1, 3, 5]

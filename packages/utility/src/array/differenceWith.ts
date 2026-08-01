@@ -1,7 +1,7 @@
 /**
  * Computes the difference between two arrays based on a custom equality function.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/differenceWith.html
+ * Reference: https://es-toolkit.dev/reference/array/differenceWith.html
  *
  * @example
  * differenceWith([{ id: 1 }, { id: 2 }, { id: 3 }], [{ id: 2 }, { id: 4 }], (a, b) => a.id === b.id); // => [{ id: 1 }, { id: 3 }]

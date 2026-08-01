@@ -4,7 +4,7 @@ import type { MaybeString } from './types';
 /**
  * Converts the first character of string to upper case.
  *
- * References: https://es-toolkit.slash.page/reference/string/upperFirst.html
+ * References: https://es-toolkit.dev/reference/string/upperFirst.html
  *
  * @param {MaybeString} str - The string that is to be changed
  * @returns {string} - The converted string. Nullish input yields `''`.
@@ -24,7 +24,7 @@ export const caseUpperFirst = (str: MaybeString): string => {
 /**
  * Converts the first character of string to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/lowerFirst.html
+ * References: https://es-toolkit.dev/reference/string/lowerFirst.html
  *
  * @param {MaybeString} str - The string that is to be changed
  * @returns {string} - The converted string. Nullish input yields `''`.
@@ -44,7 +44,7 @@ export const caseLowerFirst = (str: MaybeString): string => {
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/capitalize.html
+ * References: https://es-toolkit.dev/reference/string/capitalize.html
  *
  * @template T - Literal type of the string.
  * @param {T | null | undefined} str - The string to be converted to uppercase.
@@ -66,7 +66,7 @@ type Capitalize<T extends string> = T extends `${infer F}${infer R}` ? `${Upperc
 /**
  * Converts string, as space separated words, to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/lowerCase.html
+ * References: https://es-toolkit.dev/reference/string/lowerCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to lower case.
  * @returns {string} - The converted string to lower case. Nullish input yields `''`.
@@ -90,7 +90,7 @@ export const caseLower = (str: MaybeString): string => {
 /**
  * Converts string, as space separated words, to upper case.
  *
- * References: https://es-toolkit.slash.page/reference/string/upperCase.html
+ * References: https://es-toolkit.dev/reference/string/upperCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to upper case.
  * @returns {string} - The converted string to upper case. Nullish input yields `''`.
@@ -114,7 +114,7 @@ export const caseUpper = (str: MaybeString): string => {
 /**
  * Converts the first character of each word in a string to uppercase and the remaining characters to lowercase.
  *
- * References: https://es-toolkit.slash.page/reference/string/startCase.html
+ * References: https://es-toolkit.dev/reference/string/startCase.html
  *
  * @param {MaybeString} str - The string to convert.
  * @returns {string} The converted string. Nullish input yields `''`.
@@ -137,7 +137,7 @@ export const caseStart = (str: MaybeString): string => {
 /**
  * Converts string to snake case.
  *
- * References: https://es-toolkit.slash.page/reference/string/snakeCase.html
+ * References: https://es-toolkit.dev/reference/string/snakeCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to snake case.
  * @returns {string} - The converted string to snake case. Nullish input yields `''`.
@@ -160,7 +160,7 @@ export const caseSnake = (str: MaybeString): string => {
 /**
  * Converts string to kebab case.
  *
- * References: https://es-toolkit.slash.page/reference/string/kebabCase.html
+ * References: https://es-toolkit.dev/reference/string/kebabCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to kebab case.
  * @returns {string} - The converted string to kebab case. Nullish input yields `''`.
@@ -183,7 +183,7 @@ export const caseKebab = (str: MaybeString): string => {
 /**
  * Converts string to pascal case.
  *
- * References: https://es-toolkit.slash.page/reference/string/pascalCase.html
+ * References: https://es-toolkit.dev/reference/string/pascalCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to pascal case.
  * @returns {string} - The converted string to Pascal case. Nullish input yields `''`.
@@ -206,7 +206,7 @@ export const casePascal = (str: MaybeString): string => {
 /**
  * Converts string to camel case.
  *
- * References: https://es-toolkit.slash.page/reference/string/camelCase.html
+ * References: https://es-toolkit.dev/reference/string/camelCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to camel case.
  * @returns {string} - The converted string to camel case. Nullish input yields `''`.
@@ -229,7 +229,7 @@ export const caseCamel = (str: MaybeString): string => {
 /**
  * Converts a string to constant case.
  *
- * References: https://es-toolkit.slash.page/reference/string/constantCase.html
+ * References: https://es-toolkit.dev/reference/string/constantCase.html
  *
  * @param {MaybeString} str - The string that is to be changed to constant case.
  * @returns {string} - The converted string to constant case. Nullish input yields `''`.

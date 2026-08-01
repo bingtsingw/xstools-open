@@ -25,7 +25,7 @@ export function head<T>(arr: readonly T[]): T | undefined;
 /**
  * Returns the first element of an array or `undefined` if the array is empty.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/head.html
+ * Reference: https://es-toolkit.dev/reference/array/head.html
  *
  * @template T - The type of elements in the array.
  * @param {T[]} arr - The array from which to get the first element.
