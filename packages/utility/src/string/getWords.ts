@@ -15,7 +15,6 @@ const CASE_SPLIT_PATTERN =
  * getWords('enable 24H format') // => ['enable', '24', 'H', 'format']
  * getWords('tooLegit2Quit') // => ['too', 'Legit', '2', 'Quit']
  */
-
-export function getWords(str: string): string[] {
+export const getWords = (str: string): string[] => {
   return Array.from(str.match(CASE_SPLIT_PATTERN) ?? []);
-}
+};

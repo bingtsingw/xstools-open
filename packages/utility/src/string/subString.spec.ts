@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { subString } from './sub-string';
+import { subString } from './subString';
 
 describe('subString', () => {
   test('normal usage', () => {

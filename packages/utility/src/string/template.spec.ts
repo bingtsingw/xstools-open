@@ -8,6 +8,8 @@ describe('template', () => {
     expect(template('hello, {{name}}', {})).toBe('hello, ');
     expect(template('hello, {{name}}', { age: 1 })).toBe('hello, ');
     expect(template('hello, {{name}}{{!}}', { '!': '！' })).toBe('hello, ！');
+    expect(template('count={{ count }}', { count: 0 })).toBe('count=0');
+    expect(template('ok={{ ok }}', { ok: false })).toBe('ok=false');
   });
 
   test('empty', () => {
