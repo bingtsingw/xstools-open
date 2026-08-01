@@ -3,6 +3,9 @@
  *
  * Non-number, non-finite, or negative `ms` is treated as `0`.
  *
+ * @param ms - Delay in milliseconds.
+ * @returns A promise that resolves after the delay.
+ *
  * @example
  * await sleep(1000);
  */

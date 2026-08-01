@@ -1,13 +1,13 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import { sleep } from '../promise';
 import { attempt } from './attempt';
 
 describe('attempt', () => {
-  it('should return the result of the function', () => {
+  test('should return the result of the function', () => {
     expect(attempt(() => 1)).toEqual([null, 1]);
   });
 
-  it('should return the error of the function', () => {
+  test('should return the error of the function', () => {
     expect(
       attempt(() => {
         throw new Error('test');
@@ -15,7 +15,7 @@ describe('attempt', () => {
     ).toEqual([new Error('test'), null]);
   });
 
-  it('should work with non-Error thrown values', () => {
+  test('should work with non-Error thrown values', () => {
     expect(
       attempt(() => {
         throw 'string error';
@@ -23,13 +23,13 @@ describe('attempt', () => {
     ).toEqual(['string error', null]);
   });
 
-  it('should return the result of the promise', async () => {
+  test('should return the result of the promise', async () => {
     const [error, result] = attempt(async () => 1);
     expect(error).toBeNull();
     expect(await result).toBe(1);
   });
 
-  it('should return the result of the promise that throws an error', async () => {
+  test('should return the result of the promise that throws an error', async () => {
     const [error, result] = attempt(async () => {
       await sleep(100);
       throw new Error('test');
