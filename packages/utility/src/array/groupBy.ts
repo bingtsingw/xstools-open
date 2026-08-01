@@ -31,7 +31,10 @@
  * //   ],
  * // }
  */
-export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromItem: (item: T) => K): Record<K, T[]> {
+export const groupBy = <T, K extends PropertyKey>(
+  arr: readonly T[],
+  getKeyFromItem: (item: T) => K,
+): Record<K, T[]> => {
   const result = {} as Record<K, T[]>;
 
   if (Array.isArray(arr)) {
@@ -47,4 +50,4 @@ export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromI
   }
 
   return result;
-}
+};
