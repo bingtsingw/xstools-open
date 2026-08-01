@@ -10,6 +10,14 @@ describe('getDistance', () => {
       getDistance({ latitude: '11' as any, longitude: 1 }, { latitude: 1, longitude: 1 });
     }).toThrow(ParamError);
 
+    expect(() => {
+      getDistance({ latitude: Number.NaN, longitude: 1 }, { latitude: 1, longitude: 1 });
+    }).toThrow(ParamError);
+
+    expect(() => {
+      getDistance({ latitude: 1, longitude: Number.POSITIVE_INFINITY }, { latitude: 1, longitude: 1 });
+    }).toThrow(ParamError);
+
     const distance = getDistance(
       { latitude: 39.916668, longitude: 116.383331 },
       { latitude: 31.150681, longitude: 121.124176 },

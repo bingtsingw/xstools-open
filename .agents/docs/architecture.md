@@ -129,7 +129,7 @@ flowchart TB
 | `oid` | 20 位业务 ID |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
-| `getDistance` | Haversine 距离（米）；非法参数抛 `ParamError` |
+| `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
 
 ### `./datetime`
 
