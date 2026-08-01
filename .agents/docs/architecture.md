@@ -64,7 +64,7 @@ flowchart TB
   subgraph public [Public]
     array --> object
     business --> error
-    datetime --> exception
+    datetime --> error
     datetime --> date_fns_src["date-fns / _exports/date-fns"]
     exception --> object
     exception --> string
@@ -129,13 +129,13 @@ flowchart TB
 
 ### `./datetime`
 
-| 符号                                              | 用途                                                           |
-| ------------------------------------------------- | -------------------------------------------------------------- |
-| `cnWeekDay`                                       | ISO 日期 → 中文「周x」                                         |
-| `startOfDayInTimeZone` / `startOfMonthInTimeZone` | 按时区取日初 / 月初                                            |
-| `addVipDays`                                      | VIP 到期按业务时区延长                                         |
-| `getTimezoneOffset`                               | 当前偏移，如 `+08:00`                                          |
-| `areIntervalsOverlap` / `areIntervalsOverlaps`    | 区间重叠；无效区间抛 `Exception.Server.InternalErrorException` |
+| 符号                                              | 用途                              |
+| ------------------------------------------------- | --------------------------------- |
+| `cnWeekDay`                                       | ISO 日期 → 中文「周x」            |
+| `startOfDayInTimeZone` / `startOfMonthInTimeZone` | 按时区取日初 / 月初               |
+| `addVipDays`                                      | VIP 到期按业务时区延长            |
+| `getTimezoneOffset`                               | 当前偏移，如 `+08:00`             |
+| `areIntervalsOverlap` / `areIntervalsOverlaps`    | 区间重叠；无效区间抛 `ParamError` |
 
 ### `./error`
 
@@ -220,7 +220,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 导出 | 具名类 + factory                         | 单一 `Exception` 对象         |
 | 前景 | 继续演进                                 | 下个 major 废弃               |
 
-二者不共享业务基类。包内：`getDistance` → `ParamError`；`areIntervalsOverlap` 仍可能抛 `Exception.*`。
+二者不共享业务基类。包内：`getDistance` / `areIntervalsOverlap` → `ParamError`；新代码勿再依赖 `exception`。
 
 ---
 
