@@ -26,9 +26,6 @@ importers:
 
   packages/utility:
     devDependencies:
-      '@date-fns/tz':
-        specifier: 1.5.0
-        version: 1.5.0
       '@paralleldrive/cuid2':
         specifier: 3.3.0
         version: 3.3.0
@@ -1042,9 +1039,6 @@ packages:
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
-
-  '@date-fns/tz@1.5.0':
-    resolution: {integrity: sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==}
 
   '@date-vir/duration@8.1.0':
     resolution: {integrity: sha512-PwvII5Lo3dzZKpTIYHvPnrKQg6UlOY6V/z/ahPiSGt1HeAMlC96PPfuPZ9ZmzcrKQuAZgO9NzX67sXWRI3T62Q==}
@@ -9320,8 +9314,6 @@ snapshots:
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
-
-  '@date-fns/tz@1.5.0': {}
 
   '@date-vir/duration@8.1.0':
     dependencies:

@@ -18,7 +18,7 @@
 ```ts
 import { difference, weightedSample } from '@xstools/utility/array';
 import { ParamError, isTaggedError } from '@xstools/utility/error';
-import { format, utc, UTCDateMini, tz } from '@xstools/utility/date-fns';
+import { format, ot, OTDateMini, utc, UTCDateMini } from '@xstools/utility/date-fns';
 import { cuid2 } from '@xstools/utility/cuid2';
 ```
 
@@ -75,7 +75,7 @@ flowchart TB
   end
 
   cuid2_exp["./cuid2"] --> cuid2lib["@paralleldrive/cuid2"]
-  date_fns_exp["./date-fns"] --> datefns["date-fns / @date-fns/tz"]
+  date_fns_exp["./date-fns"] --> datefns["date-fns + UTCDateMini/OTDateMini"]
   nanoid_exp --> nanoidlib[nanoid]
   ohash_exp["./ohash"] --> ohashlib[ohash]
 ```
@@ -99,7 +99,7 @@ flowchart TB
 | `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
 | `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
 | `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
-| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附 `tz` / `utc` / `UTCDateMini`（OT 待 Phase 2） |
+| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附自研 `utc`/`UTCDateMini`、`ot`/`OTDateMini`（固定 offset） |
 
 `datetime` 也会直接 `import 'date-fns'`，构建后与 `./date-fns` 共享 chunk；`./date-fns` 体量大，按需命名导入。
 
@@ -133,6 +133,7 @@ flowchart TB
 | 符号                                              | 用途                              |
 | ------------------------------------------------- | --------------------------------- |
 | `cnWeekDay`                                       | ISO 日期 → 中文「周x」            |
+| `parseOffset`                                     | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
 | `startOfDayInTimeZone` / `startOfMonthInTimeZone` | 按时区取日初 / 月初               |
 | `addVipDays`                                      | VIP 到期按业务时区延长            |
 | `getTimezoneOffset`                               | 当前偏移，如 `+08:00`             |

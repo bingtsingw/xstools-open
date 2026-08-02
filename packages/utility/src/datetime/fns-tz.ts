@@ -1,6 +1,5 @@
 import { addDays, parseISO, startOfDay, startOfMonth } from 'date-fns';
-import { utc } from '../_exports/date-fns';
-import { tz } from '../_exports/date-fns/tz';
+import { ot, utc } from '../_exports/date-fns';
 
 /**
  * Treat the `date` string as in `offset` timezone, and return the start of day in UTC.
@@ -12,7 +11,7 @@ import { tz } from '../_exports/date-fns/tz';
 export const startOfDayInTimeZone = ({ date, offset }: { date: string; offset: string }): Date => {
   const utcDate = parseISO(date, { in: utc });
 
-  return startOfDay(utcDate, { in: tz(offset) });
+  return startOfDay(utcDate, { in: ot(offset) });
 };
 
 /**
@@ -24,7 +23,7 @@ export const startOfDayInTimeZone = ({ date, offset }: { date: string; offset: s
 export const startOfMonthInTimeZone = ({ date, offset }: { date: string; offset: string }): Date => {
   const utcDate = parseISO(date, { in: utc });
 
-  return startOfMonth(utcDate, { in: tz(offset) });
+  return startOfMonth(utcDate, { in: ot(offset) });
 };
 
 /**
