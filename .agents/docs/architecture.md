@@ -13,7 +13,7 @@
 | 自实现优先   | 对标 es-toolkit / lodash API，不依赖它们                                          |
 | 业务一等公民 | `business` / VIP 日期 / 中文星期等与通用工具同级                                  |
 | 三方统一出口 | `_exports` + `devDependencies`，构建打进 `dist`                                   |
-| 错误双轨     | `error`（Tagged Error，主推）；`exception`（HTTP 风格，legacy，下个 major 移除）  |
+| 错误模型     | `error`（Tagged Error：`_tag` + 静态 `is()`）                                    |
 
 ```ts
 import { difference, weightedSample } from '@xstools/utility/array';
@@ -39,7 +39,6 @@ packages/utility/
 │   ├── business/
 │   ├── datetime/
 │   ├── error/
-│   ├── exception/        # legacy
 │   ├── format/
 │   ├── object/
 │   ├── predicate/
@@ -69,8 +68,6 @@ flowchart TB
     datetime --> date_fns_src["date-fns / _exports/date-fns"]
     string --> error
     format --> string
-    exception --> object
-    exception --> string
     error --> predicate
     predicate --> object
     object --> internal["_internal"]
@@ -89,7 +86,7 @@ flowchart TB
 
 ### 3.1 自实现域（`src/<domain>/`）
 
-- 一文件一主 API（或同主题多导出）+ 域级 `index.ts` barrel（`exception` 例外，只导出 `Exception` 对象）
+- 一文件一主 API（或同主题多导出）+ 域级 `index.ts` barrel
 - 无 runtime `dependencies` / `peerDependencies`
 - JSDoc 常带 `Reference(s)` 指向 es-toolkit / lodash 等
 
@@ -152,15 +149,6 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 `AbortError` / `TimeoutError` 仅名称与 DOM / es-toolkit 相近，应用 `.is` / `isTaggedError` 识别，不要靠 `err.name`。
 
-### `./exception`（legacy）
-
-下个 major 移除；新代码用 `./error`。仅导出聚合对象 `Exception`：
-
-- `BaseException`、`BadRequestException`(400)、`UnauthorizedException`(401)、`ForbiddenException` / `NeedVipException`(403)、`NotFoundException`(404)
-- `Client.ClientErrorException` / `Client.ServerErrorException`（历史挂位）、`Server.InternalErrorException`
-
-`BaseException` 将 `code` 规范为 `E_SNAKE_CASE`。
-
 ### `./format`
 
 | 符号                            | 用途                |
@@ -214,17 +202,18 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ---
 
-## 5. Error vs Exception
+## 5. 错误模型
 
-|      | **error**                                | **exception**（legacy）       |
-| ---- | ---------------------------------------- | ----------------------------- |
-| 形态 | `createTaggedError(tag)` 的 `Error` 子类 | `BaseException extends Error` |
-| 身份 | `_tag` + 静态 `is()`                     | `status` + 规范化 `code`      |
-| 语义 | 逻辑 / 参数 / 中止 / 超时                | HTTP 400–404 / 500            |
-| 导出 | 具名类 + factory                         | 单一 `Exception` 对象         |
-| 前景 | 继续演进                                 | 下个 major 废弃               |
+统一使用 `./error`（Tagged Error）：
 
-二者不共享业务基类。包内：`getDistance` / `areIntervalsOverlap` / `weightedSample` / `subString` → `ParamError`；`uuid25` → `LogicError`；新代码勿再依赖 `exception`。
+| 维度 | 约定 |
+| ---- | ---- |
+| 形态 | `createTaggedError(tag)` 的 `Error` 子类 |
+| 身份 | `_tag` + 静态 `is()` / `isTaggedError` |
+| 语义 | 逻辑 / 参数 / 中止 / 超时 |
+| 导出 | 具名类 + factory |
+
+包内：`getDistance` / `areIntervalsOverlap` / `weightedSample` / `subString` → `ParamError`；`uuid25` → `LogicError`。
 
 ---
 
@@ -233,12 +222,12 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 ### 参数
 
 - 主数据用位置参数；可选配置：**≤2 个可选尾参用位置参数**，**≥3 个相关字段用对象参数**（例：`formatBytes(n, { decimals: 2 })`、`formatCurrency(n, { decimals, symbol, sign })`）
-- 例外：`Error` 标准 `ErrorOptions`、`_exports` 再导出的上游签名、legacy `exception`
+- 例外：`Error` 标准 `ErrorOptions`、`_exports` 再导出的上游签名
 
 ### 组织
 
 - 一文件一主 API；同主题可同文件（如 `case.ts`、`trim.ts`、`basic.ts`）
-- 每域 `index.ts`：`export *`（`exception` 除外）
+- 每域 `index.ts`：`export *`
 - 私有实现与测试夹具放 `_internal`，不进公开 barrel
 
 ### 命名
@@ -247,7 +236,6 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | -------------- | ----------------------- | --------------------------------------------- |
 | 多数实现文件   | camelCase，与主导出同名 | `groupBy.ts`                                  |
 | 多词描述性文件 | kebab-case              | `cn-week-day.ts`、`interval-overlap.ts`       |
-| HTTP 异常      | 状态码文件名            | `400.ts`、`4xx.ts`                            |
 | 私有           | `_` 前缀                | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
 
 ### 测试与文档

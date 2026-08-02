@@ -46,10 +46,6 @@
       "types": "./dist/error/index.d.ts",
       "default": "./dist/error/index.js"
     },
-    "./exception": {
-      "types": "./dist/exception/index.d.ts",
-      "default": "./dist/exception/index.js"
-    },
     "./format": {
       "types": "./dist/format/index.d.ts",
       "default": "./dist/format/index.js"

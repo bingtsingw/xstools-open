@@ -11,7 +11,6 @@ export default defineConfig({
     'src/business/index.ts',
     'src/datetime/index.ts',
     'src/error/index.ts',
-    'src/exception/index.ts',
     'src/format/index.ts',
     'src/object/index.ts',
     'src/predicate/index.ts',
