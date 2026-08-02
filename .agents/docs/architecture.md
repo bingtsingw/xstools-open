@@ -18,7 +18,7 @@
 ```ts
 import { difference, weightedSample } from '@xstools/utility/array';
 import { ParamError, isTaggedError } from '@xstools/utility/error';
-import { format, utc, tz } from '@xstools/utility/date-fns';
+import { format, utc, UTCDateMini, tz } from '@xstools/utility/date-fns';
 import { cuid2 } from '@xstools/utility/cuid2';
 ```
 
@@ -99,7 +99,7 @@ flowchart TB
 | `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
 | `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
 | `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
-| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附 `tz` / `utc` / `UTCDate` |
+| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附 `tz` / `utc` / `UTCDateMini`（OT 待 Phase 2） |
 
 `datetime` 也会直接 `import 'date-fns'`，构建后与 `./date-fns` 共享 chunk；`./date-fns` 体量大，按需命名导入。
 
