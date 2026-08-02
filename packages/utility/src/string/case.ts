@@ -1,19 +1,20 @@
 import { getWords } from './getWords';
+import type { MaybeString } from './types';
 
 /**
  * Converts the first character of string to upper case.
  *
- * References: https://es-toolkit.slash.page/reference/string/upperFirst.html
+ * References: https://es-toolkit.dev/reference/string/upperFirst.html
  *
- * @param {string} str - The string that is to be changed
- * @returns {string} - The converted string.
+ * @param {MaybeString} str - The string that is to be changed
+ * @returns {string} - The converted string. Nullish input yields `''`.
  *
  * @example
  * caseUpperFirst('fred') // => 'Fred'
  * caseUpperFirst('FRED') // => 'FRED'
  */
-export const caseUpperFirst = (str: string): string => {
-  if (!str) {
+export const caseUpperFirst = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -23,17 +24,17 @@ export const caseUpperFirst = (str: string): string => {
 /**
  * Converts the first character of string to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/lowerFirst.html
+ * References: https://es-toolkit.dev/reference/string/lowerFirst.html
  *
- * @param {string} str - The string that is to be changed
- * @returns {string} - The converted string.
+ * @param {MaybeString} str - The string that is to be changed
+ * @returns {string} - The converted string. Nullish input yields `''`.
  *
  * @example
  * caseLowerFirst('fred') // => 'fred'
  * caseLowerFirst('FRED') // => 'fRED'
  */
-export const caseLowerFirst = (str: string): string => {
-  if (!str) {
+export const caseLowerFirst = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -43,18 +44,21 @@ export const caseLowerFirst = (str: string): string => {
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/capitalize.html
+ * Parameter shape matches `MaybeString` (`string | null | undefined`), but is written
+ * as `T | null | undefined` so literal `Capitalize<T>` inference is preserved.
+ *
+ * References: https://es-toolkit.dev/reference/string/capitalize.html
  *
  * @template T - Literal type of the string.
- * @param {T} str - The string to be converted to uppercase.
- * @returns {Capitalize<T>} - The capitalized string.
+ * @param str - The string to capitalize. Nullish input yields `''`.
+ * @returns The capitalized string.
  *
  * @example
  * capitalize('fred') // => 'Fred'
  * capitalize('FRED') // => 'Fred'
  */
-export const capitalize = <T extends string>(str: T): Capitalize<T> => {
-  if (!str) {
+export const capitalize = <T extends string>(str: T | null | undefined): Capitalize<T> => {
+  if (str === null || str === undefined) {
     return '' as Capitalize<T>;
   }
 
@@ -65,10 +69,10 @@ type Capitalize<T extends string> = T extends `${infer F}${infer R}` ? `${Upperc
 /**
  * Converts string, as space separated words, to lower case.
  *
- * References: https://es-toolkit.slash.page/reference/string/lowerCase.html
+ * References: https://es-toolkit.dev/reference/string/lowerCase.html
  *
- * @param {string} str - The string that is to be changed to lower case.
- * @returns {string} - The converted string to lower case.
+ * @param {MaybeString} str - The string that is to be changed to lower case.
+ * @returns {string} - The converted string to lower case. Nullish input yields `''`.
  *
  * @example
  * caseLower('--foo-bar--') // => 'foo bar'
@@ -76,8 +80,8 @@ type Capitalize<T extends string> = T extends `${infer F}${infer R}` ? `${Upperc
  * caseLower('__FOO_BAR__') // => 'foo bar'
  * caseLower('XMLHttpRequest') // => 'xml http request'
  */
-export const caseLower = (str: string): string => {
-  if (!str) {
+export const caseLower = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -89,10 +93,10 @@ export const caseLower = (str: string): string => {
 /**
  * Converts string, as space separated words, to upper case.
  *
- * References: https://es-toolkit.slash.page/reference/string/upperCase.html
+ * References: https://es-toolkit.dev/reference/string/upperCase.html
  *
- * @param {string} str - The string that is to be changed to upper case.
- * @returns {string} - The converted string to upper case.
+ * @param {MaybeString} str - The string that is to be changed to upper case.
+ * @returns {string} - The converted string to upper case. Nullish input yields `''`.
  *
  * @example
  * caseUpper('--foo-bar--') // => 'FOO BAR'
@@ -100,8 +104,8 @@ export const caseLower = (str: string): string => {
  * caseUpper('__FOO_BAR__') // => 'FOO BAR'
  * caseUpper('XMLHttpRequest') // => 'XML HTTP REQUEST'
  */
-export const caseUpper = (str: string): string => {
-  if (!str) {
+export const caseUpper = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -113,18 +117,18 @@ export const caseUpper = (str: string): string => {
 /**
  * Converts the first character of each word in a string to uppercase and the remaining characters to lowercase.
  *
- * References: https://es-toolkit.slash.page/reference/string/startCase.html
+ * References: https://es-toolkit.dev/reference/string/startCase.html
  *
- * @param {string} str - The string to convert.
- * @returns {string} The converted string.
+ * @param {MaybeString} str - The string to convert.
+ * @returns {string} The converted string. Nullish input yields `''`.
  *
  * @example
  * caseStart('--foo-bar--') // => 'Foo Bar'
  * caseStart('fooBar') // => 'Foo Bar'
  * caseStart('__FOO_BAR__') // => 'Foo Bar'
  */
-export const caseStart = (str: string): string => {
-  if (!str) {
+export const caseStart = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -136,18 +140,18 @@ export const caseStart = (str: string): string => {
 /**
  * Converts string to snake case.
  *
- * References: https://es-toolkit.slash.page/reference/string/snakeCase.html
+ * References: https://es-toolkit.dev/reference/string/snakeCase.html
  *
- * @param {string} str - The string that is to be changed to snake case.
- * @returns {string} - The converted string to snake case.
+ * @param {MaybeString} str - The string that is to be changed to snake case.
+ * @returns {string} - The converted string to snake case. Nullish input yields `''`.
  *
  * @example
  * caseSnake('--foo-bar--') // => 'foo_bar'
  * caseSnake('fooBar') // => 'foo_bar'
  * caseSnake('__FOO_BAR__') // => 'foo_bar'
  */
-export const caseSnake = (str: string): string => {
-  if (!str) {
+export const caseSnake = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -159,18 +163,18 @@ export const caseSnake = (str: string): string => {
 /**
  * Converts string to kebab case.
  *
- * References: https://es-toolkit.slash.page/reference/string/kebabCase.html
+ * References: https://es-toolkit.dev/reference/string/kebabCase.html
  *
- * @param {string} str - The string that is to be changed to kebab case.
- * @returns {string} - The converted string to kebab case.
+ * @param {MaybeString} str - The string that is to be changed to kebab case.
+ * @returns {string} - The converted string to kebab case. Nullish input yields `''`.
  *
  * @example
  * caseKebab('--foo-bar--') // => 'foo-bar'
  * caseKebab('fooBar') // => 'foo-bar'
  * caseKebab('__FOO_BAR__') // => 'foo-bar'
  */
-export const caseKebab = (str: string): string => {
-  if (!str) {
+export const caseKebab = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -182,18 +186,18 @@ export const caseKebab = (str: string): string => {
 /**
  * Converts string to pascal case.
  *
- * References: https://es-toolkit.slash.page/reference/string/pascalCase.html
+ * References: https://es-toolkit.dev/reference/string/pascalCase.html
  *
- * @param {string} str - The string that is to be changed to pascal case.
- * @returns {string} - The converted string to Pascal case.
+ * @param {MaybeString} str - The string that is to be changed to pascal case.
+ * @returns {string} - The converted string to Pascal case. Nullish input yields `''`.
  *
  * @example
  * casePascal('--foo-bar--') // => 'FooBar'
  * casePascal('fooBar') // => 'FooBar'
  * casePascal('__FOO_BAR__') // => 'FooBar'
  */
-export const casePascal = (str: string): string => {
-  if (!str) {
+export const casePascal = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -205,18 +209,18 @@ export const casePascal = (str: string): string => {
 /**
  * Converts string to camel case.
  *
- * References: https://es-toolkit.slash.page/reference/string/camelCase.html
+ * References: https://es-toolkit.dev/reference/string/camelCase.html
  *
- * @param {string} str - The string that is to be changed to camel case.
- * @returns {string} - The converted string to camel case.
+ * @param {MaybeString} str - The string that is to be changed to camel case.
+ * @returns {string} - The converted string to camel case. Nullish input yields `''`.
  *
  * @example
  * caseCamel('--foo-bar--') // => 'fooBar'
  * caseCamel('fooBar') // => 'fooBar'
  * caseCamel('__FOO_BAR__') // => 'fooBar'
  */
-export const caseCamel = (str: string): string => {
-  if (!str) {
+export const caseCamel = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 
@@ -228,18 +232,18 @@ export const caseCamel = (str: string): string => {
 /**
  * Converts a string to constant case.
  *
- * References: https://es-toolkit.slash.page/reference/string/constantCase.html
+ * References: https://es-toolkit.dev/reference/string/constantCase.html
  *
- * @param {string} str - The string that is to be changed to constant case.
- * @returns {string} - The converted string to constant case.
+ * @param {MaybeString} str - The string that is to be changed to constant case.
+ * @returns {string} - The converted string to constant case. Nullish input yields `''`.
  *
  * @example
  * caseConstant('--foo-bar--') // => 'FOO_BAR'
  * caseConstant('fooBar') // => 'FOO_BAR'
  * caseConstant('__FOO_BAR__') // => 'FOO_BAR'
  */
-export const caseConstant = (str: string): string => {
-  if (!str) {
+export const caseConstant = (str: MaybeString): string => {
+  if (str === null || str === undefined) {
     return '';
   }
 

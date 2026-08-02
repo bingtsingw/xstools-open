@@ -1,5 +1,10 @@
+import type { MaybeString } from './types';
+
 /**
  * Removes leading and trailing whitespace or specified characters from `string`.
+ *
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
  *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
@@ -9,13 +14,17 @@
  * trim('/repos/:owner/:repo/', '/') // => 'repos/:owner/:repo'
  * trim('222222__hello__1111111', '12_') // => 'hello'
  */
-export const trim = (str: string | null | undefined, chars?: string): string => {
-  if (str && chars === undefined) {
+export const trim = (str: MaybeString, chars?: string | null): string => {
+  if (str === null || str === undefined) {
+    return '';
+  }
+
+  if (chars === undefined) {
     return str.trim();
   }
 
-  if (!str || !chars) {
-    return str || '';
+  if (!chars) {
+    return str;
   }
 
   const charsToTrim = chars.replace(/[\W]{1}/g, '\\$&');
@@ -27,21 +36,28 @@ export const trim = (str: string | null | undefined, chars?: string): string => 
 /**
  * Removes leading whitespace or specified characters from `string`.
  *
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
+ *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
  * @example
- * trim('  a b c  ') // => 'a b c  '
- * trim('-_-a-b-c-_-', '_-') // => 'a-b-c-_-'
- * trim('/repos/:owner/:repo/', '/') // => 'repos/:owner/:repo/'
- * trim('222222__hello__1111111', '12_') // => 'hello__1111111'
+ * trimStart('  a b c  ') // => 'a b c  '
+ * trimStart('-_-a-b-c-_-', '_-') // => 'a-b-c-_-'
+ * trimStart('/repos/:owner/:repo/', '/') // => 'repos/:owner/:repo/'
+ * trimStart('222222__hello__1111111', '12_') // => 'hello__1111111'
  */
-export const trimStart = (str: string | null | undefined, chars?: string): string => {
-  if (str && chars === undefined) {
+export const trimStart = (str: MaybeString, chars?: string | null): string => {
+  if (str === null || str === undefined) {
+    return '';
+  }
+
+  if (chars === undefined) {
     return str.trimStart();
   }
 
-  if (!str || !chars) {
-    return str || '';
+  if (!chars) {
+    return str;
   }
 
   const charsToTrim = chars.replace(/[\W]{1}/g, '\\$&');
@@ -53,21 +69,28 @@ export const trimStart = (str: string | null | undefined, chars?: string): strin
 /**
  * Removes trailing whitespace or specified characters from `string`.
  *
+ * Nullish `str` yields `''`. Omit `chars` (or pass `undefined`) to trim
+ * whitespace; `null` / `''` leave the string unchanged.
+ *
  * Reference: https://radash-docs.vercel.app/docs/string/trim
  *
  * @example
- * trim('  a b c  ') // => '  a b c'
- * trim('-_-a-b-c-_-', '_-') // => '-_-a-b-c'
- * trim('/repos/:owner/:repo/', '/') // => '/repos/:owner/:repo'
- * trim('222222__hello__1111111', '12_') // => '222222__hello'
+ * trimEnd('  a b c  ') // => '  a b c'
+ * trimEnd('-_-a-b-c-_-', '_-') // => '-_-a-b-c'
+ * trimEnd('/repos/:owner/:repo/', '/') // => '/repos/:owner/:repo'
+ * trimEnd('222222__hello__1111111', '12_') // => '222222__hello'
  */
-export const trimEnd = (str: string | null | undefined, chars?: string): string => {
-  if (str && chars === undefined) {
+export const trimEnd = (str: MaybeString, chars?: string | null): string => {
+  if (str === null || str === undefined) {
+    return '';
+  }
+
+  if (chars === undefined) {
     return str.trimEnd();
   }
 
-  if (!str || !chars) {
-    return str || '';
+  if (!chars) {
+    return str;
   }
 
   const charsToTrim = chars.replace(/[\W]{1}/g, '\\$&');

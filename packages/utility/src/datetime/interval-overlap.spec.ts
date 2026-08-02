@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test';
+import { ParamError } from '../error';
 import { areIntervalsOverlap, areIntervalsOverlaps } from './interval-overlap';
 
 describe('interval-overlap', () => {
@@ -16,10 +17,10 @@ describe('interval-overlap', () => {
     expect(areIntervalsOverlap({ start: oneStart, end: oneStart }, { start: oneStart, end: oneStart })).toBe(true);
 
     expect(() => areIntervalsOverlap({ start: oneEnd, end: oneStart }, { start: twoStart, end: twoEnd })).toThrow(
-      '时间段无效',
+      ParamError,
     );
     expect(() => areIntervalsOverlap({ start: oneStart, end: oneEnd }, { start: twoEnd, end: twoStart })).toThrow(
-      '时间段无效',
+      ParamError,
     );
   });
 

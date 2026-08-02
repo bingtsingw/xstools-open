@@ -1,7 +1,13 @@
 /**
  * Groups the elements of an array based on a provided key-generating function.
  *
- * Reference: https://es-toolkit.slash.page/reference/array/groupBy.html
+ * Non-array input yields `{}`.
+ *
+ * Reference: https://es-toolkit.dev/reference/array/groupBy.html
+ *
+ * @param arr - The array to iterate over.
+ * @param getKeyFromItem - Returns the group key for each element.
+ * @returns An object of arrays keyed by the generated keys.
  *
  * @example
  * groupBy([6.1, 4.2, 6.3], Math.floor) // => { 4: [4.2], 6: [6.1, 6.3] }
@@ -31,7 +37,10 @@
  * //   ],
  * // }
  */
-export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromItem: (item: T) => K): Record<K, T[]> {
+export const groupBy = <T, K extends PropertyKey>(
+  arr: readonly T[],
+  getKeyFromItem: (item: T) => K,
+): Record<K, T[]> => {
   const result = {} as Record<K, T[]>;
 
   if (Array.isArray(arr)) {
@@ -47,4 +56,4 @@ export function groupBy<T, K extends PropertyKey>(arr: readonly T[], getKeyFromI
   }
 
   return result;
-}
+};

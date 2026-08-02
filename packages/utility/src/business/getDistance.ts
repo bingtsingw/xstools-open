@@ -1,4 +1,4 @@
-import { Exception } from '../exception';
+import { ParamError } from '../error';
 
 const deg2rad = (deg: number): number => {
   return deg * (Math.PI / 180);
@@ -6,13 +6,19 @@ const deg2rad = (deg: number): number => {
 
 const validatePoint = ({ longitude, latitude }: { longitude: number; latitude: number }) => {
   if (typeof longitude !== 'number' || typeof latitude !== 'number') {
-    throw new Exception.BadRequestException('坐标参数类型错误');
+    throw new ParamError('坐标参数类型错误');
+  }
+
+  if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+    throw new ParamError('坐标参数必须为合法数字');
   }
 };
 
 /**
  * 计算两个坐标点之间距离（单位M）
  * https://mixbit.xyz/post/javascript-calculates-the-distance-between-two-points-of-coordinates.html
+ *
+ * @throws {ParamError} 坐标非 number，或为 `NaN` / `±Infinity`
  *
  * @example
  * getDistance({ latitude: 39.916668, longitude: 116.383331 }, { latitude: 31.150681, longitude: 121.124176 }) // => 1065706.56

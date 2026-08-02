@@ -1,7 +1,10 @@
 /**
- * reference: https://github.com/CyberAP/nanoid-dictionary
+ * Character-set constants for ID / alphabet generation.
+ *
+ * Used by vendored helpers such as `@xstools/utility/nanoid`.
+ *
+ * Reference: https://github.com/CyberAP/nanoid-dictionary
  */
-
 export const DIC_UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 export const DIC_LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
 export const DIC_NUMBERS = '0123456789';

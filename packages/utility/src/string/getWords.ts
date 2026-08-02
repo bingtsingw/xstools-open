@@ -1,12 +1,16 @@
+import type { MaybeString } from './types';
+
 const CASE_SPLIT_PATTERN =
   /\p{Lu}?\p{Ll}+|[0-9]+|\p{Lu}+(?!\p{Ll})|\p{Emoji_Presentation}|\p{Extended_Pictographic}|\p{L}+/gu;
 
 /**
  * Splits `string` into an array of its words, treating spaces and punctuation marks as separators.
  *
- * Reference: https://es-toolkit.slash.page/reference/string/words.html
+ * Nullish input yields `[]`.
  *
- * @param {string} str The string to inspect.
+ * Reference: https://es-toolkit.dev/reference/string/words.html
+ *
+ * @param {MaybeString} str The string to inspect.
  * @returns {string[]} Returns the words of `string`.
  *
  * @example
@@ -15,7 +19,10 @@ const CASE_SPLIT_PATTERN =
  * getWords('enable 24H format') // => ['enable', '24', 'H', 'format']
  * getWords('tooLegit2Quit') // => ['too', 'Legit', '2', 'Quit']
  */
+export const getWords = (str: MaybeString): string[] => {
+  if (str === null || str === undefined) {
+    return [];
+  }
 
-export function getWords(str: string): string[] {
   return Array.from(str.match(CASE_SPLIT_PATTERN) ?? []);
-}
+};

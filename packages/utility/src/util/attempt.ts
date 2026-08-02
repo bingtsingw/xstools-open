@@ -4,7 +4,7 @@
  * - On success: [null, Result] - First element is null, second is the result
  * - On error: [Error, null] - First element is the caught error, second is null
  *
- * References: https://es-toolkit.slash.page/reference/util/attempt.html
+ * References: https://es-toolkit.dev/reference/util/attempt.html
  *
  * @template {unknown} T - The type of the result of the function.
  * @template {unknown} E - The type of the error that can be thrown by the function.
@@ -39,10 +39,10 @@
  * });
  * ```
  */
-export function attempt<T, E>(func: () => T): [null, T] | [E, null] {
+export const attempt = <T, E = unknown>(func: () => T): [null, T] | [E, null] => {
   try {
     return [null, func()];
   } catch (error) {
     return [error as E, null];
   }
-}
+};

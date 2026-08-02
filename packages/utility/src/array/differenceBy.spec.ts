@@ -34,6 +34,6 @@ describe('differenceBy', () => {
     expect(differenceBy([1], [], (i) => i)).toEqual([1]);
     expect(differenceBy([1], null as any, (i) => i)).toEqual([1]);
     expect(differenceBy([1], undefined as any, (i) => i)).toEqual([1]);
-    expect(differenceBy(11111 as any, undefined as any, (i) => i)).toEqual(11111 as any);
+    expect(differenceBy(11111 as any, undefined as any, (i) => i)).toEqual([]);
   });
 });

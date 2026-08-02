@@ -1,9 +1,9 @@
 import type { Interval } from 'date-fns';
-import { Exception } from '../exception';
+import { ParamError } from '../error';
 
-export const areIntervalsOverlap = (intervalLeft: Interval, intervalRight: Interval): boolean | never => {
+export const areIntervalsOverlap = (intervalLeft: Interval, intervalRight: Interval): boolean => {
   if (intervalLeft.start > intervalLeft.end || intervalRight.start > intervalRight.end) {
-    throw new Exception.Server.InternalErrorException('时间段无效');
+    throw new ParamError('时间段无效');
   }
 
   if (intervalLeft.end < intervalRight.start || intervalRight.end < intervalLeft.start) {

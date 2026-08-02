@@ -8,11 +8,15 @@ describe('template', () => {
     expect(template('hello, {{name}}', {})).toBe('hello, ');
     expect(template('hello, {{name}}', { age: 1 })).toBe('hello, ');
     expect(template('hello, {{name}}{{!}}', { '!': '！' })).toBe('hello, ！');
+    expect(template('count={{ count }}', { count: 0 })).toBe('count=0');
+    expect(template('ok={{ ok }}', { ok: false })).toBe('ok=false');
   });
 
   test('empty', () => {
     expect(template('', { name: 'world' })).toBe('');
     expect(template('', {})).toBe('');
+    expect(template(null, {})).toBe('');
+    expect(template(undefined, {})).toBe('');
     expect(template('hello', {})).toBe('hello');
 
     expect(template('hello {{ }}', {})).toBe('hello ');

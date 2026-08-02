@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { addressTrimEnd, addressTrimParenthesis, districtStartWith, getDistrict } from './getDistrict';
+import { addressTrimEnd, addressTrimParenthesis, getDistrict, isDistrictAcceptable } from './getDistrict';
 
 describe('getDistrict', () => {
   test('getDistrict', () => {
@@ -65,12 +65,12 @@ describe('getDistrict', () => {
     expect(addressTrimEnd('北京市海淀区知春路10号xxxx')).toEqual('北京市海淀区知春路10号');
   });
 
-  test('districtStartWith', () => {
-    expect(districtStartWith({ title: '朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
-    expect(districtStartWith({ title: 'xx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
-    expect(districtStartWith({ title: 'xxx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+  test('isDistrictAcceptable', () => {
+    expect(isDistrictAcceptable({ title: '朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(isDistrictAcceptable({ title: 'xx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
+    expect(isDistrictAcceptable({ title: 'xxx朝阳区xx酒吧', district: '朝阳区' })).toBeFalse();
 
-    expect(districtStartWith({ title: 'xxxx朝阳区xx酒吧', district: '朝阳区' })).toBeTrue();
-    expect(districtStartWith({ title: 'xx酒吧', district: '朝阳区' })).toBeTrue();
+    expect(isDistrictAcceptable({ title: 'xxxx朝阳区xx酒吧', district: '朝阳区' })).toBeTrue();
+    expect(isDistrictAcceptable({ title: 'xx酒吧', district: '朝阳区' })).toBeTrue();
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { WHITESPACE } from '../constants';
+import { WHITESPACE } from '../_internal';
 import { trim, trimEnd, trimStart } from './trim';
 
 describe('trim', () => {
@@ -21,10 +21,10 @@ describe('trim', () => {
     const exp = 'a b c';
 
     expect(trim(str)).toBe(exp);
-    expect(trim(str, undefined!)).toBe(exp);
+    expect(trim(str, undefined)).toBe(exp);
 
     expect(trim(str, '')).toBe(str);
-    expect(trim(str, null!)).toBe(str);
+    expect(trim(str, null)).toBe(str);
   });
 
   test('should remove whitespace', () => {
@@ -54,10 +54,10 @@ describe('trimStart', () => {
     const exp = `a b c${WHITESPACE}`;
 
     expect(trimStart(str)).toBe(exp);
-    expect(trimStart(str, undefined!)).toBe(exp);
+    expect(trimStart(str, undefined)).toBe(exp);
 
     expect(trimStart(str, '')).toBe(str);
-    expect(trimStart(str, null!)).toBe(str);
+    expect(trimStart(str, null)).toBe(str);
   });
 
   test('should remove whitespace', () => {
@@ -87,10 +87,10 @@ describe('trimEnd', () => {
     const exp = `${WHITESPACE}a b c`;
 
     expect(trimEnd(str)).toBe(exp);
-    expect(trimEnd(str, undefined!)).toBe(exp);
+    expect(trimEnd(str, undefined)).toBe(exp);
 
     expect(trimEnd(str, '')).toBe(str);
-    expect(trimEnd(str, null!)).toBe(str);
+    expect(trimEnd(str, null)).toBe(str);
   });
 
   test('should remove whitespace', () => {

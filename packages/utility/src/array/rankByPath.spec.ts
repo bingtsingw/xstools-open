@@ -22,12 +22,42 @@ describe('rankByPath', () => {
     ]);
   });
 
+  test('does not mutate input', () => {
+    const first = { a: 1 };
+    const second = { a: 3 };
+    const data = [first, second];
+
+    const result = rankByPath(data, 'a');
+
+    expect(data).toEqual([{ a: 1 }, { a: 3 }]);
+    expect(first).toEqual({ a: 1 });
+    expect(second).toEqual({ a: 3 });
+    expect(result).toEqual([
+      { a: 3, _rank: 1 },
+      { a: 1, _rank: 2 },
+    ]);
+    expect(result[0]).not.toBe(second);
+    expect(result[1]).not.toBe(first);
+  });
+
   test('empty array', () => {
     expect(rankByPath([] as { category: string; name: string }[], 'category')).toEqual([]);
   });
 
+  test('non-array input', () => {
+    expect(rankByPath(null as any, 'a')).toEqual([]);
+    expect(rankByPath(undefined as any, 'a')).toEqual([]);
+  });
+
   test('array with one element', () => {
     expect(rankByPath([{ score: 59 }], 'score')).toEqual([{ _rank: 1, score: 59 }]);
+  });
+
+  test('custom rankKey', () => {
+    expect(rankByPath([{ a: 3 }, { a: 1 }], 'a', 'rank')).toEqual([
+      { a: 3, rank: 1 },
+      { a: 1, rank: 2 },
+    ]);
   });
 
   test('array with complex element', () => {

@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test';
+import { ParamError } from '../error';
 import { getDistance } from './getDistance';
 
 describe('getDistance', () => {
@@ -7,7 +8,15 @@ describe('getDistance', () => {
 
     expect(() => {
       getDistance({ latitude: '11' as any, longitude: 1 }, { latitude: 1, longitude: 1 });
-    }).toThrow('坐标参数类型错误');
+    }).toThrow(ParamError);
+
+    expect(() => {
+      getDistance({ latitude: Number.NaN, longitude: 1 }, { latitude: 1, longitude: 1 });
+    }).toThrow(ParamError);
+
+    expect(() => {
+      getDistance({ latitude: 1, longitude: Number.POSITIVE_INFINITY }, { latitude: 1, longitude: 1 });
+    }).toThrow(ParamError);
 
     const distance = getDistance(
       { latitude: 39.916668, longitude: 116.383331 },

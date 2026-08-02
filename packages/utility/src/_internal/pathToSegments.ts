@@ -3,15 +3,18 @@
  *
  * References: https://github.com/toss/es-toolkit/blob/main/src/compat/_internal/toPath.ts
  *
+ * @param deepKey - Dot / bracket path string.
+ * @returns Path segments.
+ *
  * @example
- * toSegments('') // => []
- * toSegments('a.b.c') // => ['a', 'b', 'c']
- * toSegments('a[b][c]') // => ['a', 'b', 'c']
- * toSegments('.a.b.c') // => ['', 'a', 'b', 'c']
- * toSegments('a["b.c"].d') // => ['a', 'b.c', 'd']
- * toSegments('.a[b].c.d[e]["f.g"].h') // => ['', 'a', 'b', 'c', 'd', 'e', 'f.g', 'h']
+ * pathToSegments('') // => []
+ * pathToSegments('a.b.c') // => ['a', 'b', 'c']
+ * pathToSegments('a[b][c]') // => ['a', 'b', 'c']
+ * pathToSegments('.a.b.c') // => ['', 'a', 'b', 'c']
+ * pathToSegments('a["b.c"].d') // => ['a', 'b.c', 'd']
+ * pathToSegments('.a[b].c.d[e]["f.g"].h') // => ['', 'a', 'b', 'c', 'd', 'e', 'f.g', 'h']
  */
-export function pathToSegments(deepKey: string): string[] {
+export const pathToSegments = (deepKey: string): string[] => {
   const ESCAPE_REGEXP = /\\(\\)?/g;
   const PROPERTY_REGEXP = RegExp(
     // Match anything that isn't a dot or bracket.
@@ -62,4 +65,4 @@ export function pathToSegments(deepKey: string): string[] {
   }
 
   return result;
-}
+};

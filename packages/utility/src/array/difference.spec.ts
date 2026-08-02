@@ -19,6 +19,6 @@ describe('difference', () => {
     expect(difference([1, 2, 3], [])).toEqual([1, 2, 3]);
     expect(difference([1, 2, 3], null as any)).toEqual([1, 2, 3]);
     expect(difference([1, 2, 3], undefined as any)).toEqual([1, 2, 3]);
-    expect(difference(11111 as any, undefined as any)).toEqual(11111 as any);
+    expect(difference(11111 as any, undefined as any)).toEqual([]);
   });
 });

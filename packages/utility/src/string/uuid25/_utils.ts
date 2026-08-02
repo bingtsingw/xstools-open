@@ -1,3 +1,5 @@
+import { LogicError } from '../../error';
+
 /**
  * UUID25 格式的最大值（对应 UUID 的最大值 ffffffff-ffff-ffff-ffff-ffffffffffff）
  * 这是一个 36 进制的 25 位字符串表示
@@ -12,7 +14,7 @@ const uuidRegex = /^([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{4})-([0-
 
 export const assert: (cond: boolean, msg: string) => asserts cond = (cond, msg) => {
   if (!cond) {
-    throw new Error('Assertion failed: ' + msg);
+    throw new LogicError('[uuid25] Assertion Failed: ' + msg);
   }
 };
 

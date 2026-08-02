@@ -1,6 +1,6 @@
 {
   "name": "@xstools/utility",
-  "version": "0.23.0",
+  "version": "0.24.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bingtsingw/xstools-open.git",
@@ -14,10 +14,6 @@
   },
   "type": "module",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
     "./cuid2": {
       "types": "./dist/_exports/cuid2/index.d.ts",
       "default": "./dist/_exports/cuid2/index.js"
@@ -50,10 +46,6 @@
       "types": "./dist/error/index.d.ts",
       "default": "./dist/error/index.js"
     },
-    "./exception": {
-      "types": "./dist/exception/index.d.ts",
-      "default": "./dist/exception/index.js"
-    },
     "./format": {
       "types": "./dist/format/index.d.ts",
       "default": "./dist/format/index.js"
@@ -83,9 +75,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "check-type": "tsc --noEmit",
-    "dev": "tsup --watch",
+    "dev": "tsdown --watch",
     "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
     "test": "bun test"
@@ -93,43 +85,15 @@
   "eslintConfig": {
     "extends": "@xstools-dev/eslint-config/base"
   },
-  "dependencies": {
-    "@date-fns/tz": "1.4.1",
+  "devDependencies": {
+    "@date-fns/tz": "1.5.0",
     "@paralleldrive/cuid2": "3.3.0",
-    "date-fns": "4.1.0",
-    "nanoid": "5.1.11",
+    "date-fns": "4.4.0",
+    "nanoid": "6.0.0",
     "ohash": "2.0.11"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  },
-  "tsup": {
-    "entry": [
-      "src/index.ts",
-      "src/_exports/cuid2/index.ts",
-      "src/_exports/date-fns/index.ts",
-      "src/_exports/nanoid/index.ts",
-      "src/_exports/ohash/index.ts",
-      "src/array/index.ts",
-      "src/business/index.ts",
-      "src/datetime/index.ts",
-      "src/error/index.ts",
-      "src/exception/index.ts",
-      "src/format/index.ts",
-      "src/object/index.ts",
-      "src/predicate/index.ts",
-      "src/promise/index.ts",
-      "src/string/index.ts",
-      "src/util/index.ts"
-    ],
-    "format": [
-      "esm"
-    ],
-    "dts": true,
-    "sourcemap": true,
-    "clean": true,
-    "treeshake": true,
-    "minify": true
   }
 }

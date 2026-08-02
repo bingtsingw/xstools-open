@@ -1,5 +1,23 @@
 # @xstools/utility
 
+## 0.24.1
+
+### Patch Changes
+
+- [`d0650ee`](https://github.com/bingtsingw/xstools-open/commit/d0650ee4e60f8555bf627250fed0a7266ed8af3f) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 修复tsdown编译问题
+
+## 0.24.0
+
+### Minor Changes
+
+- [`6cf9f1f`](https://github.com/bingtsingw/xstools-open/commit/6cf9f1f79bea7db9107fd94cd636a8c040e78f8c) Thanks [@bingtsingw](https://github.com/bingtsingw)! - bundle all deps
+
+## 0.23.1
+
+### Patch Changes
+
+- [`55a4474`](https://github.com/bingtsingw/xstools-open/commit/55a4474acca5fea36ae045a50d6a7aeead6c067b) Thanks [@bingtsingw](https://github.com/bingtsingw)! - fix cuid2 length
+
 ## 0.23.0
 
 ### Minor Changes

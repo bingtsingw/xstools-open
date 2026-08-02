@@ -10,6 +10,13 @@ describe('cuid2', () => {
     const shortId = cuid2(6);
     expect(isCuid2(shortId)).toBe(true);
     expect(shortId.length).toBe(6);
+
+    const lengthId = cuid2(31);
+    expect(isCuid2(lengthId)).toBe(true);
+    expect(lengthId.length).toBe(31);
+
+    expect(cuid2(0).length).toBe(24);
+    expect(cuid2(-1).length).toBe(24);
   });
 
   test('createCuid2', () => {

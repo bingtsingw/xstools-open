@@ -14,7 +14,7 @@ describe('basic', () => {
 
     expect(isTaggedError(error)).toBe(true);
     expect(isTaggedError(error, LogicError)).toBe(true);
-    expect(isTaggedError(error, Error as any)).toBe(true); // 意义不大
+    expect(isTaggedError(error, Error as any)).toBe(false);
     expect(error instanceof LogicError).toBe(true);
     expect(error instanceof Error).toBe(true);
     expect(LogicError.is(error)).toBe(true);
@@ -32,7 +32,7 @@ describe('basic', () => {
 
     expect(isTaggedError(error)).toBe(true);
     expect(isTaggedError(error, AbortError)).toBe(true);
-    expect(isTaggedError(error, Error as any)).toBe(true); // 意义不大
+    expect(isTaggedError(error, Error as any)).toBe(false);
     expect(error instanceof AbortError).toBe(true);
     expect(error instanceof Error).toBe(true);
     expect(AbortError.is(error)).toBe(true);
@@ -50,7 +50,7 @@ describe('basic', () => {
 
     expect(isTaggedError(error)).toBe(true);
     expect(isTaggedError(error, ParamError)).toBe(true);
-    expect(isTaggedError(error, Error as any)).toBe(true); // 意义不大
+    expect(isTaggedError(error, Error as any)).toBe(false);
     expect(error instanceof ParamError).toBe(true);
     expect(error instanceof Error).toBe(true);
     expect(ParamError.is(error)).toBe(true);
@@ -68,7 +68,7 @@ describe('basic', () => {
 
     expect(isTaggedError(error)).toBe(true);
     expect(isTaggedError(error, TimeoutError)).toBe(true);
-    expect(isTaggedError(error, Error as any)).toBe(true); // 意义不大
+    expect(isTaggedError(error, Error as any)).toBe(false);
     expect(error instanceof TimeoutError).toBe(true);
     expect(error instanceof Error).toBe(true);
     expect(TimeoutError.is(error)).toBe(true);

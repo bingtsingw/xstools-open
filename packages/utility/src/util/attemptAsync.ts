@@ -4,7 +4,7 @@
  * - On success: [null, Result] - First element is null, second is the result
  * - On error: [Error, null] - First element is the caught error, second is null
  *
- * References: https://es-toolkit.slash.page/reference/util/attempt.html
+ * References: https://es-toolkit.dev/reference/util/attemptAsync.html
  *
  * @template {unknown} T - The type of the result of the async function.
  * @template {unknown} E - The type of the error that can be thrown by the async function.
@@ -32,11 +32,11 @@
  * });
  * // users is typed as User[]
  */
-export async function attemptAsync<T, E>(func: () => Promise<T>): Promise<[null, T] | [E, null]> {
+export const attemptAsync = async <T, E = unknown>(func: () => Promise<T>): Promise<[null, T] | [E, null]> => {
   try {
     const result = await func();
     return [null, result];
   } catch (error) {
     return [error as E, null];
   }
-}
+};

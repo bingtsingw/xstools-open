@@ -2,9 +2,12 @@ import { describe, expect, test } from 'bun:test';
 import { getTag } from './getTag';
 
 describe('getTag', () => {
-  test('should return the tag of the value', () => {
+  test('null and undefined use explicit branches', () => {
     expect(getTag(null)).toBe('[object Null]');
     expect(getTag(undefined)).toBe('[object Undefined]');
+  });
+
+  test('should return the tag of the value', () => {
     expect(getTag(1)).toBe('[object Number]');
     expect(getTag('')).toBe('[object String]');
     expect(getTag(true)).toBe('[object Boolean]');

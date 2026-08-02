@@ -8,6 +8,8 @@ describe('starlize', () => {
     expect(starlizeName('张三')).toEqual('*三');
     expect(starlizeName('张三李')).toEqual('张*李');
     expect(starlizeName('张三李四')).toEqual('张**四');
+    expect(starlizeName(null)).toEqual('');
+    expect(starlizeName(undefined)).toEqual('');
   });
 
   test('starlizeCard', () => {
@@ -22,5 +24,7 @@ describe('starlize', () => {
     expect(starlizeCard('0000000', 4, 3)).toEqual('****000');
     expect(starlizeCard('00000000', 4, 3)).toEqual('0000*000');
     expect(starlizeCard('0000000000000000', 4, 4)).toEqual('0000********0000');
+    expect(starlizeCard(null, 1, 1)).toEqual('');
+    expect(starlizeCard(undefined, 1, 1)).toEqual('');
   });
 });
