@@ -23,7 +23,7 @@ import { parseOffset, getTimezoneOffset } from '@xstools/utility/date';
 import { cuid2 } from '@xstools/utility/cuid2';
 ```
 
-硬性约定另见：`.agents/rules/package.md`（发布 / 子路径 / 三方依赖）、`.agents/rules/style.md`（`===`、`function` vs `const`）。
+硬性约定另见：`.agents/rules/package.md`（发布 / 子路径 / 三方依赖）、`.agents/rules/code.md`（`===`、`function` vs `const`）。
 
 ---
 
@@ -127,7 +127,7 @@ flowchart TB
 | --- | --- |
 | `oid` | 20 位业务 ID |
 | `addVipDays` | VIP 到期按业务 offset 延长 / 扣减；非法入参 → `ParamError` |
-| `cnWeekDay` | ISO 日期 → 中文「周x」；非法 → `ParamError` |
+| `cnWeekDay` | ISO 日期 → 中文「周x」（UTC 日历日）；非法 → `ParamError` |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
 | `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
@@ -137,7 +137,7 @@ flowchart TB
 | 符号                | 用途                                               |
 | ------------------- | -------------------------------------------------- |
 | `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
-| `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法抛 `ParamError` |
+| `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法格式抛 `ParamError`（不校验日历） |
 | `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
 
 > `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。

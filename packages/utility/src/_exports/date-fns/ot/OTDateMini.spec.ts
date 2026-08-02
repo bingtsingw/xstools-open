@@ -78,4 +78,18 @@ describe('ot', () => {
     expect(() => ot('Asia/Shanghai')).toThrow(ParamError);
     expect(() => ot('+08:00')('2000-01-01')).toThrow(ParamError);
   });
+
+  test('strict ISO instant is stable across host time zones', () => {
+    const previousTz = process.env.TZ;
+    try {
+      for (const tz of ['UTC', 'America/New_York', 'Asia/Shanghai']) {
+        process.env.TZ = tz;
+        const date = ot('+08:00')('2000-01-01T00:00:00.000Z');
+        expect(date.getTime()).toBe(Date.UTC(2000, 0, 1));
+        expect(date.getHours()).toBe(8);
+      }
+    } finally {
+      process.env.TZ = previousTz;
+    }
+  });
 });

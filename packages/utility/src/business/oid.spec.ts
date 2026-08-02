@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'bun:test';
-import { format } from 'date-fns';
 import { oid } from './oid';
 
 describe('oid', () => {
-  test('oid', () => {
-    const _oid = oid();
+  test('returns 20 chars prefixed with UTC yyMMdd', () => {
+    const value = oid();
+    const utcPrefix = new Date().toISOString().slice(2, 10).replace(/-/g, '');
 
-    expect(_oid).toStartWith(format(new Date(), 'yyMMdd'));
-    expect(_oid.length).toEqual(20);
+    expect(value).toStartWith(utcPrefix);
+    expect(value).toHaveLength(20);
+    expect(value).toMatch(/^\d{20}$/);
   });
 });

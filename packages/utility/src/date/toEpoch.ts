@@ -8,6 +8,7 @@ const ISO_INSTANT_RE = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d
  *
  * Requires `T` separator and an explicit timezone (`Z` or numeric offset).
  * Date-only / space-separated / timezone-less forms are rejected.
+ * Does not validate calendar ranges; invalid components follow `Date.parse` rollover.
  *
  * @param value - ISO instant string
  * @returns Epoch milliseconds

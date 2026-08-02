@@ -8,7 +8,7 @@ const constructFromSymbol = Symbol.for('constructDateFrom');
 /**
  * Fixed-offset date class (mini). Component getters/setters operate in the
  * given UTC offset without Intl or system time zone. Does not implement
- * custom formatters.
+ * custom formatters (`toString` / `toLocale*` still use the host time zone).
  *
  * Constructor requires a fixed offset as the last argument, and optionally a
  * single timestamp / `Date` / strict ISO instant. Date-component arguments

@@ -18,10 +18,13 @@ describe('parseOffset', () => {
 
   test('rejects invalid offsets', () => {
     expect(() => parseOffset('Asia/Shanghai')).toThrow(ParamError);
+    expect(() => parseOffset('Z')).toThrow(ParamError);
     expect(() => parseOffset('+8')).toThrow(ParamError);
     expect(() => parseOffset('0800')).toThrow(ParamError);
     expect(() => parseOffset('+24:00')).toThrow(ParamError);
     expect(() => parseOffset('+08:60')).toThrow(ParamError);
     expect(() => parseOffset('')).toThrow(ParamError);
+    expect(() => parseOffset(null as unknown as string)).toThrow(ParamError);
+    expect(() => parseOffset(8 as unknown as string)).toThrow(ParamError);
   });
 });

@@ -10,7 +10,8 @@ type UTCDateConstructorParams = [] | [value: string | number | Date];
  * Constructor accepts no args (now), or a single timestamp / `Date` / strict ISO
  * instant string. Date-component arguments (`year, month, ...`) are not supported.
  *
- * Does not override formatter methods (`toString`, etc.).
+ * Does not override formatter methods (`toString`, etc.); those still use the
+ * host time zone. Prefer `toISOString` / date-fns formatters for portable output.
  *
  * @example
  * new UTCDateMini(Date.UTC(1987, 1, 11)).getTime() // => Date.UTC(1987, 1, 11)
