@@ -1,4 +1,4 @@
-import { parseOffset } from '../../../date';
+import { parseOffset, toEpoch } from '../../../date';
 import { OTDateMini } from './OTDateMini';
 
 /**
@@ -14,9 +14,9 @@ import { OTDateMini } from './OTDateMini';
  * startOfDay('2000-01-01T15:59:00.000Z', { in: ot('+08:00') }).toISOString();
  * // => '1999-12-31T16:00:00.000Z'
  *
- * @throws {ParamError} When `offset` is not a fixed offset string
+ * @throws {ParamError} When `offset` is invalid, or later when `value` is not a finite instant / strict ISO string
  */
 export const ot = (offset: string) => {
   parseOffset(offset);
-  return (value: Date | number | string) => OTDateMini.ot(offset, Number(new Date(value)));
+  return (value: Date | number | string) => OTDateMini.ot(offset, toEpoch(value));
 };

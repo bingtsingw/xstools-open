@@ -1,20 +1,7 @@
-import { parseOffset } from '../../../date';
+import { parseOffset, toEpoch } from '../../../date';
 import { ParamError } from '../../../error';
 
-type DateComponents = [
-  year: number,
-  month: number,
-  date?: number,
-  hours?: number,
-  minutes?: number,
-  seconds?: number,
-  ms?: number,
-];
-
-type OTDateConstructorParams =
-  | [offset: string]
-  | [value: string | number | Date, offset: string]
-  | [...DateComponents, offset: string];
+type OTDateConstructorParams = [offset: string] | [value: string | number | Date, offset: string];
 
 const constructFromSymbol = Symbol.for('constructDateFrom');
 
@@ -23,21 +10,24 @@ const constructFromSymbol = Symbol.for('constructDateFrom');
  * given UTC offset without Intl or system time zone. Does not implement
  * custom formatters.
  *
- * @param args - Date parts / timestamp / string / Date, with fixed offset as the last argument
+ * Constructor requires a fixed offset as the last argument, and optionally a
+ * single timestamp / `Date` / strict ISO instant. Date-component arguments
+ * (`year, month, ..., offset`) are not supported.
  *
  * @example
- * new OTDateMini(2000, 0, 1, '+08:00').toISOString() // => '1999-12-31T16:00:00.000Z'
+ * new OTDateMini(Date.UTC(2000, 0, 1), '+08:00').getHours() // => 8
+ * new OTDateMini('2000-01-01T00:00:00.000Z', '+08:00').getHours() // => 8
  *
- * @throws {ParamError} When offset is missing or invalid
+ * @throws {ParamError} When offset / value is missing or invalid
  *
- * @see https://github.com/date-fns/tz (offset-only adaptation)
+ * @see https://github.com/date-fns/date-fns/tree/main/pkgs/tz (offset-only adaptation)
  */
 export class OTDateMini extends Date {
-  public static ot(offset: string, ...args: Array<number | string | Date>): OTDateMini {
-    return new OTDateMini(...([...args, offset] as OTDateConstructorParams));
+  public static ot(offset: string, value?: string | number | Date): OTDateMini {
+    return value === undefined ? new OTDateMini(offset) : new OTDateMini(value, offset);
   }
 
-  public timeZone: string;
+  public offset: string;
   public offsetMinutes: number;
   public internal: Date;
 
@@ -49,30 +39,21 @@ export class OTDateMini extends Date {
       throw new ParamError('OTDateMini requires a fixed UTC offset');
     }
 
+    if (list.length > 2) {
+      throw new ParamError('OTDateMini does not support date component arguments');
+    }
+
     const offset = list.pop() as string;
-    this.timeZone = offset;
+    this.offset = offset;
     this.offsetMinutes = parseOffset(offset);
-    this.internal = new Date(0);
+    this.internal = new Date();
 
     if (list.length === 0) {
       this.setTime(Date.now());
       return;
     }
 
-    if (list.length === 1) {
-      const value = list[0] as string | number | Date;
-      this.setTime(typeof value === 'string' ? Number(new Date(value)) : Number(value));
-      return;
-    }
-
-    const components = list as DateComponents;
-    const wall = Date.UTC(
-      components[0],
-      components.length > 1 ? (components[1] as number) : 0,
-      components.length > 2 ? (components[2] as number) : 1,
-      ...(components.slice(3) as number[]),
-    );
-    this.setTime(wall - this.offsetMinutes * 60_000);
+    this.setTime(toEpoch(list[0] as string | number | Date));
   }
 
   public withOffset(offset: string): OTDateMini {
@@ -90,7 +71,7 @@ export class OTDateMini extends Date {
   }
 
   public [constructFromSymbol](date: Date | number | string): OTDateMini {
-    return new OTDateMini(Number(new Date(date)), this.timeZone);
+    return new OTDateMini(toEpoch(date), this.offset);
   }
 }
 

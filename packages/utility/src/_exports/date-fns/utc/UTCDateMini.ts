@@ -1,21 +1,27 @@
-type DateConstructorParams =
-  | []
-  | [value: string | number | Date]
-  | [year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number];
+import { toEpoch } from '../../../date';
+import { ParamError } from '../../../error';
+
+type UTCDateConstructorParams = [] | [value: string | number | Date];
 
 /**
  * UTC date class (mini). Maps local getters/setters to UTC counterparts so
  * date-fns calculations run in UTC without relying on the system time zone.
  *
+ * Constructor accepts no args (now), or a single timestamp / `Date` / strict ISO
+ * instant string. Date-component arguments (`year, month, ...`) are not supported.
+ *
  * Does not override formatter methods (`toString`, etc.).
  *
  * @example
- * new UTCDateMini(1987, 1, 11).getTime() // => Date.UTC(1987, 1, 11)
+ * new UTCDateMini(Date.UTC(1987, 1, 11)).getTime() // => Date.UTC(1987, 1, 11)
+ * new UTCDateMini('2023-05-03T00:00:00.000Z').toISOString() // => '2023-05-03T00:00:00.000Z'
+ *
+ * @throws {ParamError} When args are invalid or the string is not a strict ISO instant
  *
  * @see https://github.com/date-fns/date-fns/tree/main/pkgs/utc
  */
 export class UTCDateMini extends Date {
-  public constructor(...args: DateConstructorParams) {
+  public constructor(...args: UTCDateConstructorParams) {
     super();
 
     if (args.length === 0) {
@@ -24,12 +30,11 @@ export class UTCDateMini extends Date {
     }
 
     if (args.length === 1) {
-      const value = args[0];
-      this.setTime(typeof value === 'string' ? Number(new Date(value)) : Number(value));
+      this.setTime(toEpoch(args[0]));
       return;
     }
 
-    this.setTime(Date.UTC(...(args as Parameters<DateConstructor['UTC']>)));
+    throw new ParamError('UTCDateMini does not support date component arguments');
   }
 
   public override getTimezoneOffset() {
@@ -37,6 +42,7 @@ export class UTCDateMini extends Date {
   }
 }
 
+// Replace getter and setter functions with UTC counterparts
 const re = /^(get|set)(?!UTC)/;
 Object.getOwnPropertyNames(Date.prototype).forEach((method) => {
   if (re.test(method)) {
