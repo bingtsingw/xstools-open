@@ -125,6 +125,7 @@ flowchart TB
 | 符号 | 用途 |
 | --- | --- |
 | `oid` | 20 位业务 ID |
+| `addVipDays` | VIP 到期按业务 offset 延长 / 扣减 |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
 | `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
@@ -137,7 +138,7 @@ flowchart TB
 | `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
 | `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
 
-> `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`；`addVipDays` 暂注释待 Phase 5。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
+> `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
 
 ### `./error`
 

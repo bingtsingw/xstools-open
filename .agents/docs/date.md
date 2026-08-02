@@ -42,4 +42,5 @@ startOfDay(date, { in: ot('+08:00') });
 | `cnWeekDay` / `parseOffset` / `getTimezoneOffset`（`./date`） | ✅ |
 | `./datetime` → `./date` | ✅ |
 | `extends` 区间重叠 | ✅ |
-| `addVipDays` 重做 | ⏳ Phase 5 |
+| `addVipDays`（`./business`） | ✅ |
+| 收尾（全量测试 / changeset） | ⏳ Phase 6 |
