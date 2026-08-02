@@ -233,11 +233,14 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### 命名
 
-| 类型           | 约定                    | 示例                                          |
-| -------------- | ----------------------- | --------------------------------------------- |
-| 多数实现文件   | camelCase，与主导出同名 | `groupBy.ts`                                  |
-| 多词描述性文件 | kebab-case              | `cn-week-day.ts`、`interval-overlap.ts`       |
-| 私有           | `_` 前缀                | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
+| 类型     | 约定                                      | 示例                                          |
+| -------- | ----------------------------------------- | --------------------------------------------- |
+| 函数文件 | camelCase，**与主导出同名**               | `groupBy.ts`、`cnWeekDay.ts`、`parseOffset.ts` |
+| 类文件   | PascalCase，与类名同名                    | `UTCDateMini.ts`、`OTDateMini.ts`             |
+| 主题聚合 | 短名 camelCase（同文件多导出时）          | `case.ts`、`trim.ts`、`intervalsOverlap.ts` |
+| 私有     | `_` 前缀                                  | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
+
+禁止 kebab-case 实现文件名（如 `cn-week-day.ts`）。
 
 ### 测试与文档
 

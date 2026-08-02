@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
-import { cnWeekDay } from './cn-week-day';
+import { cnWeekDay } from './cnWeekDay';
 
-describe('cn-week-day', () => {
+describe('cnWeekDay', () => {
   test('cnWeekDay', () => {
     expect(cnWeekDay('2023-10-01')).toBe('周日');
     expect(cnWeekDay('2023-10-02')).toBe('周一');

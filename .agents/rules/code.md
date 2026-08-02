@@ -11,6 +11,7 @@
 - 禁止使用 `==` 进行判断
 - 导出方法的时候，有重载用 `function`，其余用 `const`
 - 可选配置：≤2 个可选尾参用位置参数；≥3 个相关字段用对象参数
+- 文件命名：函数文件 camelCase 与主导出同名；类文件 PascalCase 与类名同名；禁止 kebab-case 实现文件
 
 ## code detail
 - 抛出错误优先使用`Tagged Error`

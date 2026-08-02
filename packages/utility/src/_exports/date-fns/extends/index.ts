@@ -1,1 +1,1 @@
-export * from './interval-overlap';
+export * from './intervalsOverlap';
