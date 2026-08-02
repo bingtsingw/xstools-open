@@ -99,7 +99,7 @@ flowchart TB
 | `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
 | `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
 | `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
-| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附自研 `utc`/`UTCDateMini`、`ot`/`OTDateMini`（固定 offset） |
+| `./date-fns` | 全量 + 扩展 | `date-fns` + `utc`/`UTCDateMini` + `ot`/`OTDateMini` + `extends`（区间重叠等） |
 
 `datetime` 也会直接 `import 'date-fns'`，构建后与 `./date-fns` 共享 chunk；`./date-fns` 体量大，按需命名导入。
 
@@ -134,10 +134,9 @@ flowchart TB
 | ------------------------------------------------- | --------------------------------- |
 | `cnWeekDay`                                       | ISO 日期 → 中文「周x」            |
 | `parseOffset`                                     | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
-| `startOfDayInTimeZone` / `startOfMonthInTimeZone` | 按时区取日初 / 月初               |
-| `addVipDays`                                      | VIP 到期按业务时区延长            |
 | `getTimezoneOffset`                               | 当前偏移，如 `+08:00`             |
-| `areIntervalsOverlap` / `areIntervalsOverlaps`    | 区间重叠；无效区间抛 `ParamError` |
+
+> `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`；`addVipDays` 待迁入 `business`（暂注释）。日初/月初直接用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
 
 ### `./error`
 
@@ -214,7 +213,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 语义 | 逻辑 / 参数 / 中止 / 超时 |
 | 导出 | 具名类 + factory |
 
-包内：`getDistance` / `areIntervalsOverlap` / `weightedSample` / `subString` → `ParamError`；`uuid25` → `LogicError`。
+包内：`getDistance` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
 
 ---
 

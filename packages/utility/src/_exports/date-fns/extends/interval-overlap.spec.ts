@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { ParamError } from '../error';
+import { ParamError } from '../../../error';
 import { areIntervalsOverlap, areIntervalsOverlaps } from './interval-overlap';
 
 describe('interval-overlap', () => {
