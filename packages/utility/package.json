@@ -38,9 +38,9 @@
       "types": "./dist/business/index.d.ts",
       "default": "./dist/business/index.js"
     },
-    "./datetime": {
-      "types": "./dist/datetime/index.d.ts",
-      "default": "./dist/datetime/index.js"
+    "./date": {
+      "types": "./dist/date/index.d.ts",
+      "default": "./dist/date/index.js"
     },
     "./error": {
       "types": "./dist/error/index.d.ts",

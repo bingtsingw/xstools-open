@@ -1,4 +1,4 @@
-import { parseOffset } from '../../../datetime/parseOffset';
+import { parseOffset } from '../../../date';
 import { OTDateMini } from './OTDateMini';
 
 /**

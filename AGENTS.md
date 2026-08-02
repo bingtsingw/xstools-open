@@ -25,6 +25,7 @@
 | 场景             | 文件                           |
 | ---------------- | ------------------------------ |
 | utility 架构总览 | `.agents/docs/architecture.md` |
+| 时间 / date 域   | `.agents/docs/date.md`         |
 
 ## 硬性要求
 

@@ -2,6 +2,12 @@ import { getDay, parseISO } from 'date-fns';
 
 type CnWeekDay = '周日' | '周一' | '周二' | '周三' | '周四' | '周五' | '周六';
 
+/**
+ * ISO 日期字符串 → 中文「周x」。
+ *
+ * @example
+ * cnWeekDay('2023-10-01') // => '周日'
+ */
 export const cnWeekDay = (date: string): CnWeekDay => {
   const day = getDay(parseISO(date)) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
 

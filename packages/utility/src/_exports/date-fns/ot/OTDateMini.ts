@@ -1,4 +1,4 @@
-import { parseOffset } from '../../../datetime';
+import { parseOffset } from '../../../date';
 import { ParamError } from '../../../error';
 
 type DateComponents = [
