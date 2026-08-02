@@ -136,6 +136,7 @@ flowchart TB
 | ------------------- | -------------------------------------------------- |
 | `cnWeekDay`         | ISO 日期 → 中文「周x」                         |
 | `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
+| `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法抛 `ParamError` |
 | `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
 
 > `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
