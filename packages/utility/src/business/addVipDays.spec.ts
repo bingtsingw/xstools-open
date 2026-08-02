@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { addDays, ot, startOfDay } from '../_exports/date-fns';
+import { ParamError } from '../error';
 import { addVipDays } from './addVipDays';
 
 describe('addVipDays', () => {
@@ -67,5 +68,12 @@ describe('addVipDays', () => {
         offset: '+08:00',
       }).toISOString(),
     ).toBe('2099-12-30T16:00:00.000Z');
+  });
+
+  test('rejects invalid duration / vipTo / offset', () => {
+    expect(() => addVipDays({ duration: Number.NaN, offset: '+08:00' })).toThrow(ParamError);
+    expect(() => addVipDays({ duration: Number.POSITIVE_INFINITY, offset: '+08:00' })).toThrow(ParamError);
+    expect(() => addVipDays({ vipTo: 'not-a-date', duration: 1, offset: '+08:00' })).toThrow(ParamError);
+    expect(() => addVipDays({ duration: 1, offset: 'Asia/Shanghai' })).toThrow(ParamError);
   });
 });

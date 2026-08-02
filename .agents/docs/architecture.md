@@ -65,6 +65,7 @@ flowchart TB
     array --> object
     array --> error
     business --> error
+    business --> date_fns_exp
     date --> error
     date_fns_exp --> date
     string --> error
@@ -125,7 +126,8 @@ flowchart TB
 | 符号 | 用途 |
 | --- | --- |
 | `oid` | 20 位业务 ID |
-| `addVipDays` | VIP 到期按业务 offset 延长 / 扣减 |
+| `addVipDays` | VIP 到期按业务 offset 延长 / 扣减；非法入参 → `ParamError` |
+| `cnWeekDay` | ISO 日期 → 中文「周x」；非法 → `ParamError` |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
 | `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
@@ -134,7 +136,6 @@ flowchart TB
 
 | 符号                | 用途                                               |
 | ------------------- | -------------------------------------------------- |
-| `cnWeekDay`         | ISO 日期 → 中文「周x」                         |
 | `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
 | `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法抛 `ParamError` |
 | `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
@@ -216,7 +217,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 语义 | 逻辑 / 参数 / 中止 / 超时 |
 | 导出 | 具名类 + factory |
 
-包内：`getDistance` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
+包内：`getDistance` / `cnWeekDay` / `addVipDays` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
 
 ---
 

@@ -1,4 +1,5 @@
-import { addDays, ot, parseISO, startOfDay, utc } from '../_exports/date-fns';
+import { addDays, isValid, ot, parseISO, startOfDay, utc } from '../_exports/date-fns';
+import { ParamError } from '../error';
 
 /**
  * 延长 / 减少 VIP 天数。
@@ -11,12 +12,21 @@ import { addDays, ot, parseISO, startOfDay, utc } from '../_exports/date-fns';
  * @example
  * addVipDays({ vipTo: '2099-01-01 15:59:00', duration: 0, offset: '+08:00' }).toISOString()
  * // => '2099-01-01T16:00:00.000Z'
+ *
+ * @throws {ParamError} 当 `duration` 非有限数字、`offset` 非法，或 `vipTo` 无法解析
  */
 export const addVipDays = ({ vipTo, duration, offset }: { vipTo?: string; duration: number; offset: string }): Date => {
+  if (!Number.isFinite(duration)) {
+    throw new ParamError('Invalid VIP duration');
+  }
+
   let from = new Date();
 
-  if (vipTo) {
+  if (vipTo !== undefined && vipTo !== '') {
     const vipToDateTime = parseISO(vipTo, { in: utc });
+    if (!isValid(vipToDateTime)) {
+      throw new ParamError('Invalid VIP expiry date');
+    }
     if (vipToDateTime > from) {
       from = vipToDateTime;
     }

@@ -14,6 +14,10 @@ const constructFromSymbol = Symbol.for('constructDateFrom');
  * single timestamp / `Date` / strict ISO instant. Date-component arguments
  * (`year, month, ..., offset`) are not supported.
  *
+ * Public surface: `offset`, `withOffset`, Date getters/setters /
+ * `getTimezoneOffset` / `setTime`, and date-fns `constructDateFrom`. Do not
+ * rely on `internal` or `offsetMinutes` (implementation details).
+ *
  * @example
  * new OTDateMini(Date.UTC(2000, 0, 1), '+08:00').getHours() // => 8
  * new OTDateMini('2000-01-01T00:00:00.000Z', '+08:00').getHours() // => 8
@@ -27,8 +31,21 @@ export class OTDateMini extends Date {
     return value === undefined ? new OTDateMini(offset) : new OTDateMini(value, offset);
   }
 
+  /** Fixed UTC offset string, e.g. `+08:00`. */
   public offset: string;
+
+  /**
+   * Offset in minutes (same sign as `offset`).
+   *
+   * @internal Implementation detail; prefer `offset` / `getTimezoneOffset()`.
+   */
   public offsetMinutes: number;
+
+  /**
+   * Wall-clock cache encoded in UTC fields. Used by local getters/setters.
+   *
+   * @internal Do not read or mutate; may change without notice.
+   */
   public internal: Date;
 
   public constructor(...args: OTDateConstructorParams) {
