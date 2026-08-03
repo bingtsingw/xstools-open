@@ -31,8 +31,8 @@ export class OTDateMini extends Date {
     return value === undefined ? new OTDateMini(offset) : new OTDateMini(value, offset);
   }
 
-  /** Fixed UTC offset string, e.g. `+08:00`. */
-  public offset: string;
+  /** Fixed UTC offset string, e.g. `+08:00`. Immutable; use `withOffset` to change. */
+  public readonly offset: string;
 
   /**
    * Offset in minutes (same sign as `offset`).
