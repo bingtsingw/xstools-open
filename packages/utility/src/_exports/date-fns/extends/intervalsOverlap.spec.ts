@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
-import { ParamError } from '../error';
-import { areIntervalsOverlap, areIntervalsOverlaps } from './interval-overlap';
+import { ParamError } from '../../../error';
+import { areIntervalsOverlap, areIntervalsOverlaps } from './intervalsOverlap';
 
-describe('interval-overlap', () => {
+describe('intervalsOverlap', () => {
   test('areIntervalsOverlap', () => {
     const oneStart = new Date('2023-01-01');
     const oneEnd = new Date('2023-12-30');

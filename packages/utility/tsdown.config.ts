@@ -9,7 +9,7 @@ export default defineConfig({
     'src/_exports/ohash/index.ts',
     'src/array/index.ts',
     'src/business/index.ts',
-    'src/datetime/index.ts',
+    'src/date/index.ts',
     'src/error/index.ts',
     'src/format/index.ts',
     'src/object/index.ts',

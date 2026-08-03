@@ -2,8 +2,10 @@ import { afterEach, describe, expect, test } from 'bun:test';
 import { getTimezoneOffset } from './getTimezoneOffset';
 
 describe('getTimezoneOffset', () => {
+  const previousTz = process.env.TZ;
+
   afterEach(() => {
-    process.env.TZ = 'UTC';
+    process.env.TZ = previousTz;
   });
 
   test('UTC', () => {

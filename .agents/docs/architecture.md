@@ -18,11 +18,12 @@
 ```ts
 import { difference, weightedSample } from '@xstools/utility/array';
 import { ParamError, isTaggedError } from '@xstools/utility/error';
-import { format, utc, tz } from '@xstools/utility/date-fns';
+import { format, ot, OTDateMini, utc, UTCDateMini } from '@xstools/utility/date-fns';
+import { parseOffset, getTimezoneOffset } from '@xstools/utility/date';
 import { cuid2 } from '@xstools/utility/cuid2';
 ```
 
-硬性约定另见：`.agents/rules/package.md`（发布 / 子路径 / 三方依赖）、`.agents/rules/style.md`（`===`、`function` vs `const`）。
+硬性约定另见：`.agents/rules/package.md`（发布 / 子路径 / 三方依赖）、`.agents/rules/code.md`（`===`、`function` vs `const`）。
 
 ---
 
@@ -37,7 +38,7 @@ packages/utility/
 │   ├── _internal/        # 包内私有：实现 + 测试夹具（不发布）
 │   ├── array/
 │   ├── business/
-│   ├── datetime/
+│   ├── date/
 │   ├── error/
 │   ├── format/
 │   ├── object/
@@ -64,8 +65,9 @@ flowchart TB
     array --> object
     array --> error
     business --> error
-    datetime --> error
-    datetime --> date_fns_src["date-fns / _exports/date-fns"]
+    business --> date_fns_exp
+    date --> error
+    date_fns_exp --> date
     string --> error
     format --> string
     error --> predicate
@@ -75,7 +77,7 @@ flowchart TB
   end
 
   cuid2_exp["./cuid2"] --> cuid2lib["@paralleldrive/cuid2"]
-  date_fns_exp["./date-fns"] --> datefns["date-fns / @date-fns/tz"]
+  date_fns_exp["./date-fns"] --> datefns["date-fns + UTCDateMini/OTDateMini"]
   nanoid_exp --> nanoidlib[nanoid]
   ohash_exp["./ohash"] --> ohashlib[ohash]
 ```
@@ -99,9 +101,9 @@ flowchart TB
 | `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
 | `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
 | `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
-| `./date-fns` | 全量 + 扩展 | `export * from 'date-fns'`，另附 `tz` / `utc` / `UTCDate` |
+| `./date-fns` | 全量 + 扩展 | `date-fns` + `utc`/`UTCDateMini` + `ot`/`OTDateMini` + `extends`（区间重叠等） |
 
-`datetime` 也会直接 `import 'date-fns'`，构建后与 `./date-fns` 共享 chunk；`./date-fns` 体量大，按需命名导入。
+`./date-fns` 体量大，按需命名导入。`ot` / `OTDateMini` 依赖 `./date` 的 `parseOffset`。
 
 ---
 
@@ -124,19 +126,21 @@ flowchart TB
 | 符号 | 用途 |
 | --- | --- |
 | `oid` | 20 位业务 ID |
+| `addVipDays` | VIP 到期按业务 offset 延长 / 扣减；非法入参 → `ParamError` |
+| `cnWeekDay` | ISO 日期 → 中文「周x」（UTC 日历日）；非法 → `ParamError` |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
 | `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
 
-### `./datetime`
+### `./date`
 
-| 符号                                              | 用途                              |
-| ------------------------------------------------- | --------------------------------- |
-| `cnWeekDay`                                       | ISO 日期 → 中文「周x」            |
-| `startOfDayInTimeZone` / `startOfMonthInTimeZone` | 按时区取日初 / 月初               |
-| `addVipDays`                                      | VIP 到期按业务时区延长            |
-| `getTimezoneOffset`                               | 当前偏移，如 `+08:00`             |
-| `areIntervalsOverlap` / `areIntervalsOverlaps`    | 区间重叠；无效区间抛 `ParamError` |
+| 符号                | 用途                                               |
+| ------------------- | -------------------------------------------------- |
+| `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
+| `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法格式抛 `ParamError`（不校验日历） |
+| `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
+
+> `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
 
 ### `./error`
 
@@ -213,7 +217,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 语义 | 逻辑 / 参数 / 中止 / 超时 |
 | 导出 | 具名类 + factory |
 
-包内：`getDistance` / `areIntervalsOverlap` / `weightedSample` / `subString` → `ParamError`；`uuid25` → `LogicError`。
+包内：`getDistance` / `cnWeekDay` / `addVipDays` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
 
 ---
 
@@ -232,11 +236,14 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### 命名
 
-| 类型           | 约定                    | 示例                                          |
-| -------------- | ----------------------- | --------------------------------------------- |
-| 多数实现文件   | camelCase，与主导出同名 | `groupBy.ts`                                  |
-| 多词描述性文件 | kebab-case              | `cn-week-day.ts`、`interval-overlap.ts`       |
-| 私有           | `_` 前缀                | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
+| 类型     | 约定                                      | 示例                                          |
+| -------- | ----------------------------------------- | --------------------------------------------- |
+| 函数文件 | camelCase，**与主导出同名**               | `groupBy.ts`、`cnWeekDay.ts`、`parseOffset.ts` |
+| 类文件   | PascalCase，与类名同名                    | `UTCDateMini.ts`、`OTDateMini.ts`             |
+| 主题聚合 | 短名 camelCase（同文件多导出时）          | `case.ts`、`trim.ts`、`intervalsOverlap.ts` |
+| 私有     | `_` 前缀                                  | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
+
+禁止 kebab-case 实现文件名（如 `cn-week-day.ts`）。
 
 ### 测试与文档
 

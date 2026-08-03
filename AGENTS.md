@@ -18,13 +18,14 @@
 | 场景                     | 文件                       |
 | ------------------------ | -------------------------- |
 | 包发布、子路径、三方依赖 | `.agents/rules/package.md` |
-| 编码风格                 | `.agents/rules/style.md`   |
+| 编码风格                 | `.agents/rules/code.md`    |
 
 ### 文档 `.agents/docs/`
 
 | 场景             | 文件                           |
 | ---------------- | ------------------------------ |
 | utility 架构总览 | `.agents/docs/architecture.md` |
+| 时间 / date 域   | `.agents/docs/date.md`         |
 
 ## 硬性要求
 
