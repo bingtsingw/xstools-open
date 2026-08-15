@@ -1,5 +1,13 @@
 # @xstools/utility
 
+## 1.0.0-beta.1
+
+### Minor Changes
+
+- [`be18209`](https://github.com/bingtsingw/xstools-open/commit/be1820951ebe3dcf505e81d5605caab722249cfe) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 新增 object/merge 与 object/mergeWith，深合并且默认策略对齐
+
+- [`e4f886e`](https://github.com/bingtsingw/xstools-open/commit/e4f886e3d78cef39fafa00b35fcd594e775d5e3d) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 新增 object/shake，默认剔除 undefined 属性
+
 ## 1.0.0-beta.0
 
 ### Major Changes
