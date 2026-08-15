@@ -163,13 +163,16 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### `./object`
 
-| 符号     | 用途                                 |
-| -------- | ------------------------------------ |
-| `get`    | 深路径取值（重载；path 不为数组）    |
-| `getTag` | `Object.prototype.toString` 风格 tag |
-| `omitBy` | 按谓词剔除自有可枚举属性             |
-| `pick`   | 按 key 列表取自有属性                |
-| `shake`  | 默认剔除 `undefined`；可自定义谓词   |
+| 符号                  | 用途                                                                           |
+| --------------------- | ------------------------------------------------------------------------------ |
+| `get`                 | 深路径取值（重载；path 不为数组）                                               |
+| `getTag`              | `Object.prototype.toString` 风格 tag                                           |
+| `merge` / `mergeWith` | 深合并，原地改 target；默认同型递归、异型 source 赢并 clone；`undefined` 不覆盖已有值 |
+| `omitBy`              | 按谓词剔除自有可枚举属性                                                        |
+| `pick`                | 按 key 列表取自有属性                                                          |
+| `shake`               | 默认剔除 `undefined`；可自定义谓词                                             |
+
+与 lodash / es-toolkit 的行为对照见 `.agents/docs/merge.md`（交互页 `.agents/docs/merge.html`）。
 
 ### `./predicate`
 

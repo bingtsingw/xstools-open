@@ -22,10 +22,11 @@
 
 ### 文档 `.agents/docs/`
 
-| 场景             | 文件                           |
-| ---------------- | ------------------------------ |
-| utility 架构总览 | `.agents/docs/architecture.md` |
-| 时间 / date 域   | `.agents/docs/date.md`         |
+| 场景              | 文件                                           |
+| ----------------- | ---------------------------------------------- |
+| utility 架构总览  | `.agents/docs/architecture.md`                 |
+| 时间 / date 域    | `.agents/docs/date.md`                         |
+| object merge 对照 | `.agents/docs/merge.md`（交互页 `merge.html`） |
 
 ## 硬性要求
 

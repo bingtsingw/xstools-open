@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>merge / mergeWith 对照</title>
+    <style>
+      :root {
+        --text: #1f2328;
+        --text-2: #59636e;
+        --text-3: #8b949e;
+        --bg: #ffffff;
+        --fill: #f6f8fa;
+        --fill-2: #eef1f4;
+        --stroke: #d0d7de;
+        --accent: #0969da;
+        --on-accent: #ffffff;
+        --success: #1a7f37;
+        --warning: #9a6700;
+        --danger: #cf222e;
+        --info: #0969da;
+        --callout-info: #ddf4ff;
+        --callout-warn: #fff8c5;
+        --radius: 8px;
+        --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text: #e6edf3;
+          --text-2: #9aa4b2;
+          --text-3: #7d8590;
+          --bg: #0d1117;
+          --fill: #161b22;
+          --fill-2: #21262d;
+          --stroke: #30363d;
+          --accent: #4493f8;
+          --on-accent: #0d1117;
+          --success: #3fb950;
+          --warning: #d29922;
+          --danger: #f85149;
+          --info: #4493f8;
+          --callout-info: #13233a;
+          --callout-warn: #2a2108;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 14px/20px var(--font);
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 590;
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 590;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 590;
+      }
+
+      p {
+        margin: 0;
+        color: var(--text-2);
+      }
+
+      code {
+        font-family: var(--mono);
+        font-size: 0.92em;
+      }
+
+      .lede {
+        max-width: 72ch;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        background: var(--fill);
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 590;
+      }
+
+      .stat span {
+        color: var(--text-2);
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      .stat.success strong {
+        color: var(--success);
+      }
+
+      .stat.info strong {
+        color: var(--info);
+      }
+
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pills button {
+        appearance: none;
+        border: 1px solid var(--stroke);
+        background: transparent;
+        color: var(--text);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .pills button[aria-selected="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .panel {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .panel.active {
+        display: flex;
+      }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .callout {
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        background: var(--callout-info);
+      }
+
+      .callout.warn {
+        background: var(--callout-warn);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        line-height: 18px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--stroke);
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        background: var(--fill);
+        font-weight: 590;
+        white-space: nowrap;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      tbody tr:nth-child(even) {
+        background: var(--fill);
+      }
+
+      .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 99px;
+        margin-right: 8px;
+        vertical-align: middle;
+        background: var(--text-3);
+      }
+
+      .dot.success {
+        background: var(--success);
+      }
+      .dot.warning {
+        background: var(--warning);
+      }
+      .dot.danger {
+        background: var(--danger);
+      }
+      .dot.info {
+        background: var(--info);
+      }
+
+      .caption {
+        font-size: 12px;
+        line-height: 16px;
+        color: var(--text-3);
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid var(--stroke);
+        margin: 0;
+      }
+
+      pre {
+        margin: 8px 0 0;
+        padding: 10px 12px;
+        background: var(--fill-2);
+        border-radius: 6px;
+        overflow: auto;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      @media (max-width: 800px) {
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>merge / mergeWith 对照</h1>
+        <p class="lede">
+          本库当前实现 vs lodash 4.17.21 vs es-toolkit 1.50.0 现代 API（<code>es-toolkit/object</code>）。es-toolkit
+          的 <code>merge</code> 与 <code>mergeWith</code> 默认路径不一致，表中分开写。
+        </p>
+      </header>
+
+      <section class="stats">
+        <div class="stat">
+          <strong>二元</strong>
+          <span>签名对齐 es-toolkit 现代</span>
+        </div>
+        <div class="stat success">
+          <strong>≡</strong>
+          <span>merge 即默认 mergeWith</span>
+        </div>
+        <div class="stat info">
+          <strong>WeakMap</strong>
+          <span>环引用（lodash 有，现代 es-toolkit 无）</span>
+        </div>
+        <div class="stat">
+          <strong>同型</strong>
+          <span>默认只对 POJO+POJO / Array+Array 递归</span>
+        </div>
+      </section>
+
+      <nav class="pills" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="overview">总览</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="cases">用例结果</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="gaps">刻意不做</button>
+      </nav>
+
+      <section id="overview" class="panel active" role="tabpanel">
+        <div class="callout">
+          <strong>定位</strong>
+          对标 lodash 形的「原地深合并 + mergeWith」，API 宽度跟 es-toolkit 现代版（二元、自有可枚举字符串
+          key）。默认策略跟 es-toolkit 的 <b>mergeWith</b> 对齐，并修掉它和 <code>merge</code> 不一致的问题。
+        </div>
+
+        <div class="section">
+          <h2>API</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>维度</th>
+                  <th>xstools</th>
+                  <th>lodash 4</th>
+                  <th>es-toolkit merge</th>
+                  <th>es-toolkit mergeWith</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>签名</td>
+                  <td><code>merge(t, s)</code> / <code>mergeWith(t, s, fn)</code></td>
+                  <td><code>merge(t, ...sources)</code> / <code>mergeWith(t, ...sources, fn)</code></td>
+                  <td><code>merge(t, s)</code></td>
+                  <td><code>mergeWith(t, s, fn)</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span>customizer 参数</td>
+                  <td>5：value ×2, key, target, source</td>
+                  <td>6：再加 <code>stack</code></td>
+                  <td>—</td>
+                  <td>5：无 <code>stack</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span><code>merge</code> ≡ 默认 <code>mergeWith</code></td>
+                  <td>对齐</td>
+                  <td>对齐（noop）</td>
+                  <td>不同</td>
+                  <td>自身即默认路径</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>是否改 target</td>
+                  <td colspan="4">改，并返回它</td>
+                </tr>
+                <tr>
+                  <td><span class="dot info"></span>多 source</td>
+                  <td>否，两次调用或 <code>reduce</code></td>
+                  <td>rest 参数</td>
+                  <td>否</td>
+                  <td>否</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption">对照版本：lodash 4.17.21 · es-toolkit 1.50.0 · xstools packages/utility/src/object/merge*.ts</p>
+        </div>
+
+        <div class="section">
+          <h2>默认合并策略</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>规则</th>
+                  <th>xstools</th>
+                  <th>lodash 4</th>
+                  <th>es-toolkit merge</th>
+                  <th>es-toolkit mergeWith 默认</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dot success"></span>POJO + POJO</td>
+                  <td colspan="4">递归合进 target</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>Array + Array</td>
+                  <td>按下标合，不 concat</td>
+                  <td>按下标合</td>
+                  <td>按下标合</td>
+                  <td>按下标合</td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span>target POJO + source Array</td>
+                  <td>换成 clone 后的数组</td>
+                  <td>换成新数组再合（source 赢）</td>
+                  <td>保住对象，写入 0/1/… 下标</td>
+                  <td>换成 clone 后的数组</td>
+                </tr>
+                <tr>
+                  <td><span class="dot danger"></span>target Array + source POJO</td>
+                  <td>换成 clone 后的对象</td>
+                  <td>保住数组，对象 key 挂到数组上</td>
+                  <td>保住数组，对象 key 挂到数组上</td>
+                  <td>换成 clone 后的对象</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>source 嵌套 POJO/Array 且 target 非同型</td>
+                  <td>clone 进 <code>{}</code> / <code>[]</code></td>
+                  <td>clone（initCloneObject / <code>[]</code>）</td>
+                  <td>clone 进 <code>{}</code> / <code>[]</code></td>
+                  <td>clone 进 <code>{}</code> / <code>[]</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>已有同型嵌套</td>
+                  <td colspan="4">原地改 target 里的那个对象/数组</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span><code>undefined</code> 覆盖已有值</td>
+                  <td colspan="4">否</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>缺 key 时写入 <code>undefined</code></td>
+                  <td>是</td>
+                  <td>是（key not in object）</td>
+                  <td>是</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span><code>null</code></td>
+                  <td colspan="4">覆盖</td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>Date / class / Map / 函数</td>
+                  <td>按引用赋</td>
+                  <td>按引用赋（非 plain）</td>
+                  <td>按引用赋</td>
+                  <td>按引用赋</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>键、安全、环</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>维度</th>
+                  <th>xstools</th>
+                  <th>lodash 4</th>
+                  <th>es-toolkit 现代</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dot success"></span>扫描哪些 key</td>
+                  <td><code>Object.keys</code>（自有可枚举字符串）</td>
+                  <td><code>keysIn</code>（含原型链）</td>
+                  <td><code>Object.keys</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>symbol</td>
+                  <td colspan="3">忽略</td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span>继承属性</td>
+                  <td>忽略</td>
+                  <td>会合进来</td>
+                  <td>忽略</td>
+                </tr>
+                <tr>
+                  <td><span class="dot info"></span>写路径 unsafe</td>
+                  <td><code>__proto__</code> / <code>constructor</code> / <code>prototype</code> 全跳过</td>
+                  <td><code>safeGet</code> 跳过 <code>__proto__</code> 与函数 constructor；仍可能 defineProperty 写 <code>__proto__</code></td>
+                  <td>只跳过 <code>__proto__</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span>环引用</td>
+                  <td>WeakMap：再遇到同一 source 复用已合并对象</td>
+                  <td>Stack，同样复用</td>
+                  <td>无，会爆栈</td>
+                </tr>
+                <tr>
+                  <td><span class="dot info"></span>菱形引用</td>
+                  <td>两个 key 共享同一 clone</td>
+                  <td>共享</td>
+                  <td>各 clone 一次（无 stack）</td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span>非 object target/source</td>
+                  <td>原样返回 target（no-op）</td>
+                  <td>primitive target 会 <code>Object(target)</code> 装箱</td>
+                  <td>给 null/undefined 赋值会 TypeError</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="cases" class="panel" role="tabpanel">
+        <p>
+          下列「es-toolkit mergeWith」均指 customizer 返回 <code>undefined</code> 的默认路径。本库
+          <code>merge(a, b)</code> 与这条路径相同。
+        </p>
+
+        <div class="section">
+          <h2>大家都一样</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>输入</th>
+                  <th>结果</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>merge({ a: 1, b: { x: 1 } }, { b: { y: 2 }, c: 5 })</code></td>
+                  <td><code>{ a: 1, b: { x: 1, y: 2 }, c: 5 }</code></td>
+                </tr>
+                <tr>
+                  <td><code>merge({ a: [1, 2] }, { a: [3] })</code></td>
+                  <td><code>{ a: [3, 2] }</code>（下标覆盖，多余元素保留）</td>
+                </tr>
+                <tr>
+                  <td><code>merge({ a: [{ b: 2 }, { d: 4 }] }, { a: [{ c: 3 }, { e: 5 }] })</code></td>
+                  <td><code>{ a: [{ b: 2, c: 3 }, { d: 4, e: 5 }] }</code></td>
+                </tr>
+                <tr>
+                  <td><code>merge({ a: 1, b: 2 }, { b: undefined, c: 3 })</code></td>
+                  <td><code>{ a: 1, b: 2, c: 3 }</code></td>
+                </tr>
+                <tr>
+                  <td><code>merge({ a: { x: 1 } }, { a: null })</code></td>
+                  <td><code>{ a: null }</code></td>
+                </tr>
+                <tr>
+                  <td><code>merge({ a: null }, { a: [1, 2] })</code></td>
+                  <td><code>{ a: [1, 2] }</code></td>
+                </tr>
+                <tr>
+                  <td><code>merge({}, { a: new Date() }).a</code></td>
+                  <td>同一 Date 引用</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>会分叉的用例</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>输入</th>
+                  <th>xstools</th>
+                  <th>lodash</th>
+                  <th>es-toolkit merge</th>
+                  <th>es-toolkit mergeWith</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dot warning"></span><code>merge({ x: {} }, { x: [1, 2] })</code></td>
+                  <td><code>{ x: [1, 2] }</code></td>
+                  <td><code>{ x: [1, 2] }</code></td>
+                  <td><code>{ x: { 0: 1, 1: 2 } }</code></td>
+                  <td><code>{ x: [1, 2] }</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot danger"></span><code>merge({ x: [] }, { x: { a: 1 } })</code></td>
+                  <td><code>{ x: { a: 1 } }</code></td>
+                  <td><code>{ x: [] }</code> 且带 <code>a: 1</code></td>
+                  <td><code>{ x: [] }</code> 且带 <code>a: 1</code></td>
+                  <td><code>{ x: { a: 1 } }</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot success"></span><code>merge({ x: 's' }, { x: { a: 1 } })</code></td>
+                  <td colspan="4"><code>{ x: { a: 1 } }</code> clone</td>
+                </tr>
+                <tr>
+                  <td><span class="dot info"></span><code>n.self = n; merge({ b: 2 }, n)</code></td>
+                  <td><code>{ a: 1, b: 2, self: 结果自己 }</code></td>
+                  <td>同左（Stack）</td>
+                  <td>RangeError 爆栈</td>
+                  <td>RangeError 爆栈</td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span>继承属性 + 自有 <code>own</code></td>
+                  <td><code>{ own: 2 }</code></td>
+                  <td><code>{ inherited: 1, own: 2 }</code></td>
+                  <td><code>{ own: 2 }</code></td>
+                  <td><code>{ own: 2 }</code></td>
+                </tr>
+                <tr>
+                  <td><span class="dot info"></span><code>merge({ a: 1 }, { constructor, a: 2 })</code></td>
+                  <td><code>{ a: 2 }</code>（constructor 不写）</td>
+                  <td>可能写入 constructor</td>
+                  <td>可能写入 constructor</td>
+                  <td>可能写入 constructor</td>
+                </tr>
+                <tr>
+                  <td><span class="dot warning"></span><code>merge(null, { a: 1 })</code></td>
+                  <td>返回 <code>null</code></td>
+                  <td>装箱后的对象</td>
+                  <td>TypeError</td>
+                  <td>TypeError</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption">
+            第 2 行是 lodash 著名不对称：数组作 source 会换掉对象，对象作 source 却合进数组。本库两边都是 source 赢。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>mergeWith customizer</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>行为</th>
+                  <th>xstools</th>
+                  <th>lodash</th>
+                  <th>es-toolkit 现代</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>返回非 undefined</td>
+                  <td>直接赋给 <code>target[key]</code></td>
+                  <td>assignMergeValue</td>
+                  <td>直接赋</td>
+                </tr>
+                <tr>
+                  <td>返回 undefined</td>
+                  <td>走默认策略</td>
+                  <td>走默认策略</td>
+                  <td>走默认策略（与 merge 不同）</td>
+                </tr>
+                <tr>
+                  <td>返回 null</td>
+                  <td colspan="3">保留 null，不回退</td>
+                </tr>
+                <tr>
+                  <td>无法用 customizer 写成 undefined</td>
+                  <td colspan="3">是（undefined 表示回退）</td>
+                </tr>
+                <tr>
+                  <td>传入 stack</td>
+                  <td>否</td>
+                  <td>第 6 参</td>
+                  <td>否</td>
+                </tr>
+                <tr>
+                  <td>unsafe key 是否仍调 customizer</td>
+                  <td>否，先 skip</td>
+                  <td>会进循环，safeGet 读不到</td>
+                  <td>先 skip __proto__</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <strong>从 lodash 迁过来最容易踩的</strong>
+          <code>merge({ x: [1, 2] }, { x: { a: 1 } })</code>
+          lodash / es-toolkit <code>merge</code> 得到带 named property 的数组；本库得到
+          <code>{ x: { a: 1 } }</code>。数组 concat 仍然要自己写 mergeWith。
+        </div>
+      </section>
+
+      <section id="gaps" class="panel" role="tabpanel">
+        <div class="section">
+          <h2>lodash / es-toolkit compat 有、本库没有</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>能力</th>
+                  <th>lodash / compat</th>
+                  <th>为何不做</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>...sources</code> rest</td>
+                  <td>一次合多个 source</td>
+                  <td>与 difference 等二元 API 一致；调用方可 reduce</td>
+                </tr>
+                <tr>
+                  <td>keysIn 继承属性</td>
+                  <td>class 实例原型上的可枚举字段也会合</td>
+                  <td>本库 object 域只扫 Object.keys</td>
+                </tr>
+                <tr>
+                  <td>symbol 键</td>
+                  <td>compat 会合 getSymbols</td>
+                  <td>与 pick / omitBy / shake 一致，忽略</td>
+                </tr>
+                <tr>
+                  <td>Buffer / TypedArray 深拷</td>
+                  <td>cloneBuffer / cloneTypedArray</td>
+                  <td>当非 POJO，按引用赋</td>
+                </tr>
+                <tr>
+                  <td>arguments 转普通对象</td>
+                  <td>toPlainObject</td>
+                  <td>极少见，避免 isArguments 依赖</td>
+                </tr>
+                <tr>
+                  <td>customizer stack</td>
+                  <td>给用户看环检测结构</td>
+                  <td>环只做内部 WeakMap，不泄漏实现</td>
+                </tr>
+                <tr>
+                  <td>数组 array-like 互转</td>
+                  <td>有 length 的类数组可当成数组底</td>
+                  <td>只认 Array.isArray</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>相对 es-toolkit 现代版多做的</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>点</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>merge ≡ mergeWith 默认</td>
+                  <td>es-toolkit 现代版这两条默认路径在对象↔数组上不一致</td>
+                </tr>
+                <tr>
+                  <td>环 + 菱形引用</td>
+                  <td>clone 嵌套 POJO 时必须记 visited，否则带自引用的配置图会爆栈</td>
+                </tr>
+                <tr>
+                  <td>写路径三条 unsafe key</td>
+                  <td>merge 是写；只挡 __proto__ 不够</td>
+                </tr>
+                <tr>
+                  <td>非 object 入参 no-op</td>
+                  <td>不抛 TypeError，也不装箱</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr />
+        <div class="section">
+          <h3>一句话</h3>
+          <p>
+            日常 POJO / 数组下标深合并、undefined 跳过、mergeWith concat —— 三家一样。分叉集中在「对象和数组交叉」和「要不要
+            lodash 那套特殊对象 / 继承属性」。本库选了可讲清的规则：同型才递归，异型 source 赢并 clone。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const buttons = [...document.querySelectorAll("[data-tab]")];
+      const panels = {
+        overview: document.getElementById("overview"),
+        cases: document.getElementById("cases"),
+        gaps: document.getElementById("gaps"),
+      };
+
+      const show = (tab) => {
+        buttons.forEach((button) => {
+          button.setAttribute("aria-selected", String(button.dataset.tab === tab));
+        });
+        Object.entries(panels).forEach(([id, panel]) => {
+          panel.classList.toggle("active", id === tab);
+        });
+        history.replaceState(null, "", "#" + tab);
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => show(button.dataset.tab));
+      });
+
+      const initial = location.hash.slice(1);
+      if (panels[initial]) {
+        show(initial);
+      }
+    </script>
+  </body>
+</html>
