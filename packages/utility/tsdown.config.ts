@@ -5,6 +5,7 @@ export default defineConfig({
   entry: [
     'src/_exports/cuid2/index.ts',
     'src/_exports/date-fns/index.ts',
+    'src/_exports/date-fns/locale/index.ts',
     'src/_exports/nanoid/index.ts',
     'src/_exports/ohash/index.ts',
     'src/array/index.ts',

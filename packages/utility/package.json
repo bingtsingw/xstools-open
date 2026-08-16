@@ -22,6 +22,10 @@
       "types": "./dist/_exports/date-fns/index.d.ts",
       "default": "./dist/_exports/date-fns/index.js"
     },
+    "./date-fns/locale": {
+      "types": "./dist/_exports/date-fns/locale/index.d.ts",
+      "default": "./dist/_exports/date-fns/locale/index.js"
+    },
     "./nanoid": {
       "types": "./dist/_exports/nanoid/index.d.ts",
       "default": "./dist/_exports/nanoid/index.js"
