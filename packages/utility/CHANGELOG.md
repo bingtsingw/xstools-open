@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 1.0.0-beta.2
+
+### Minor Changes
+
+- [#36](https://github.com/bingtsingw/xstools-open/pull/36) [`9feef30`](https://github.com/bingtsingw/xstools-open/commit/9feef3094b99e173047cb951ee5c8c1af7f909db) Thanks [@HanShoujun](https://github.com/HanShoujun)! - reexport date-fns local
+
 ## 1.0.0-beta.1
 
 ### Minor Changes
