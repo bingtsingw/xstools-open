@@ -89,9 +89,11 @@
   "eslintConfig": {
     "extends": "@xstools-dev/eslint-config/base"
   },
+  "dependencies": {
+    "date-fns": "~4.4.0"
+  },
   "devDependencies": {
     "@paralleldrive/cuid2": "3.3.0",
-    "date-fns": "4.4.0",
     "nanoid": "6.0.0",
     "ohash": "2.0.11"
   },

@@ -22,7 +22,7 @@ export default defineConfig({
 
   // 2. 产物格式与后缀配置
   format: ['esm'],
-  outExtension() {
+  outExtensions() {
     return {
       js: '.js',
     };
