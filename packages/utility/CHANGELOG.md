@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- [`886020f`](https://github.com/bingtsingw/xstools-open/commit/886020f26d0d8da3c190e006a2dce065fdf0546e) Thanks [@bingtsingw](https://github.com/bingtsingw)! - stop bundling date-fns so named function and locale imports can tree-shake
+
 ## 1.0.0-beta.2
 
 ### Minor Changes
