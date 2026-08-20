@@ -1,7 +1,7 @@
 /**
  * Character-set constants for ID / alphabet generation.
  *
- * Used by vendored helpers such as `@xstools/utility/nanoid`.
+ * Used by helpers such as `@xstools/utility/nanoid`.
  *
  * Reference: https://github.com/CyberAP/nanoid-dictionary
  */

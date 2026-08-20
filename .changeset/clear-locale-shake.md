@@ -2,4 +2,4 @@
 '@xstools/utility': patch
 ---
 
-stop bundling date-fns so named function and locale imports can tree-shake
+keep \_exports third-party libs as dependencies so named imports can tree-shake and dedupe

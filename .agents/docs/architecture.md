@@ -12,7 +12,7 @@
 | 强制子路径   | `package.json` 无 `"."`，也无根 `src/index.ts`；只能 `@xstools/utility/<subpath>` |
 | 自实现优先   | 对标 es-toolkit / lodash API，不依赖它们                                          |
 | 业务一等公民 | `business` / VIP 日期 / 中文星期等与通用工具同级                                  |
-| 三方统一出口 | `_exports`：cuid2/nanoid/ohash 打进 `dist`；`date-fns` 作 runtime 依赖以保留 tree-shake |
+| 三方统一出口 | `_exports` 薄封装 / 再导出；上游放 `dependencies`，不 bundle |
 | 错误模型     | `error`（Tagged Error：`_tag` + 静态 `is()`）                                    |
 
 ```ts
@@ -34,7 +34,7 @@ packages/utility/
 ├── package.json          # 仅子路径 exports
 ├── tsdown.config.ts      # 与 exports 一一对应的多入口
 ├── src/
-│   ├── _exports/         # 三方 vendoring（发布为 ./cuid2 等）
+│   ├── _exports/         # 三方统一出口（发布为 ./cuid2 等）
 │   ├── _internal/        # 包内私有：实现 + 测试夹具（不发布）
 │   ├── array/
 │   ├── business/
@@ -92,12 +92,12 @@ flowchart TB
 ### 3.1 自实现域（`src/<domain>/`）
 
 - 一文件一主 API（或同主题多导出）+ 域级 `index.ts` barrel
-- 自实现域无 runtime 依赖；唯一例外是 `./date-fns` 透传的 `date-fns`
+- 自实现域无 runtime 依赖；`_exports` 的上游在 `dependencies`
 - JSDoc 常带 `Reference(s)` 指向 es-toolkit / lodash 等
 
-### 3.2 Vendoring（`src/_exports/`）
+### 3.2 三方出口（`src/_exports/`）
 
-薄封装（cuid2 / nanoid / ohash）放 **devDependencies**，构建打进产物。`date-fns` 放 **dependencies**、构建标 external：它是按文件拆的大库，bundle 进单文件会毁掉 tree-shake（`import { zhCN }` 会带上全部 locale）。
+全部放 **dependencies**（`^`），构建不 bundle：保留上游分文件 / export conditions，并与业务仓已装的同包去重。tsdown 对 `dependencies` 默认 external，不必再改配置。
 
 | 子路径       | 形态        | 说明                                                      |
 | ------------ | ----------- | --------------------------------------------------------- |
@@ -262,7 +262,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 ## 7. 构建与发布
 
 - `format: ['esm']`，`dts` / `sourcemap` / `treeshake` / `clean`
-- cuid2 / nanoid / ohash 构建期打入 `dist`；`date-fns` 作为 runtime 依赖不打入
+- `_exports` 的三方库在 `dependencies`，不打入 `dist`
 - `files: ["dist"]`，`publishConfig.access: public`
 
 ---
@@ -274,5 +274,5 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 3. 新域：同步改 `package.json` `exports` 与 `tsdown.config.ts` entry
 4. 旁路 `*.spec.ts` + JSDoc
 5. 私有逻辑 → `_internal`；不要加 `/_internal` 公开子路径
-6. Vendoring → `_exports/<name>` + `devDependencies`，确认打进 dist。**不要**把 `date-fns` 打进 dist
+6. 三方出口 → `_exports/<name>` + `dependencies`（`^`），确认未打进 dist
 7. 有公开行为变化时按 `.agents/rules/package.md` 写 changeset

@@ -6,8 +6,7 @@
 
 - 只通过子路径导入：`@xstools/utility/<domain>`
 - 无根入口 `"."`，不要新增 `@xstools/utility` 整包导出（除非明确要改架构）
-- 三方库默认走 `_exports` + `devDependencies`，构建打进 `dist`，不要往 runtime `dependencies` 塞
-- 例外：`date-fns` 必须放 `dependencies` 且不要 bundle。它靠分文件 `export *` 做 tree-shake，打进单文件会把全部 locale / 函数一齐带上
+- `_exports` 对应的三方库放 `dependencies`（`^` 范围），不要 bundle，以便 tree-shake 和与业务仓去重
 - 新域必须同步改 `package.json` `exports` 与 `tsdown`配置
 
 ## changeset
