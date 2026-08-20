@@ -1,5 +1,11 @@
 # @xstools/utility
 
+## 1.0.0-beta.4
+
+### Minor Changes
+
+- [`71e1855`](https://github.com/bingtsingw/xstools-open/commit/71e185589e3b507865ab5de5c9fd89ba968ed020) Thanks [@bingtsingw](https://github.com/bingtsingw)! - remove addVipDays and cnWeekDay from business
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
