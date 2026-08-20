@@ -41,5 +41,3 @@ startOfDay(date, { in: ot('+08:00') });
 | --- | --- |
 | Mini 未覆盖的原生 formatter（`toString` / `toDateString` / `toLocale*` 等） | 仍按 **宿主** TZ 格式化 |
 | `./date` 的 `getTimezoneOffset()` | **有意**读系统偏移 |
-| `addVipDays` 的「当前时刻」 | `new Date()`（瞬时本身无 TZ；展示另说） |
-| `cnWeekDay`（`./business`） | 按 **UTC 日历日** 取周几，与宿主无关 |

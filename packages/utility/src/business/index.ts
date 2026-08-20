@@ -1,5 +1,3 @@
-export * from './addVipDays';
-export * from './cnWeekDay';
 export * from './getDistance';
 export * from './getDistrict';
 export * from './oid';

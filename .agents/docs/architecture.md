@@ -11,7 +11,7 @@
 | ------------ | --------------------------------------------------------------------------------- |
 | 强制子路径   | `package.json` 无 `"."`，也无根 `src/index.ts`；只能 `@xstools/utility/<subpath>` |
 | 自实现优先   | 对标 es-toolkit / lodash API，不依赖它们                                          |
-| 业务一等公民 | `business` / VIP 日期 / 中文星期等与通用工具同级                                  |
+| 业务一等公民 | `business` / 距离 / 区划 / 订单 ID 等与通用工具同级 |
 | 三方统一出口 | `_exports` 薄封装 / 再导出；上游放 `dependencies`，不 bundle |
 | 错误模型     | `error`（Tagged Error：`_tag` + 静态 `is()`）                                    |
 
@@ -65,8 +65,6 @@ flowchart TB
     array --> object
     array --> error
     business --> error
-    business --> datefns
-    business --> date_fns_exp
     date --> error
     date_fns_exp --> date
     date_fns_exp --> datefns
@@ -129,8 +127,6 @@ flowchart TB
 | 符号 | 用途 |
 | --- | --- |
 | `oid` | 20 位业务 ID |
-| `addVipDays` | VIP 到期按业务 offset 延长 / 扣减；非法入参 → `ParamError` |
-| `cnWeekDay` | ISO 日期 → 中文「周x」（UTC 日历日）；非法 → `ParamError` |
 | `ossImageCrop` | 阿里云 OSS 图片裁剪 query |
 | `getDistrict` / `isDistrictAcceptable` / `addressTrimParenthesis` / `addressTrimEnd` | 中文地址区划 |
 | `getDistance` | Haversine 距离（米）；非 number / 非有限抛 `ParamError` |
@@ -224,7 +220,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | 语义 | 逻辑 / 参数 / 中止 / 超时 |
 | 导出 | 具名类 + factory |
 
-包内：`getDistance` / `cnWeekDay` / `addVipDays` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
+包内：`getDistance` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
 
 ---
 
@@ -245,7 +241,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 | 类型     | 约定                                      | 示例                                          |
 | -------- | ----------------------------------------- | --------------------------------------------- |
-| 函数文件 | camelCase，**与主导出同名**               | `groupBy.ts`、`cnWeekDay.ts`、`parseOffset.ts` |
+| 函数文件 | camelCase，**与主导出同名**               | `groupBy.ts`、`getDistance.ts`、`parseOffset.ts` |
 | 类文件   | PascalCase，与类名同名                    | `UTCDateMini.ts`、`OTDateMini.ts`             |
 | 主题聚合 | 短名 camelCase（同文件多导出时）          | `case.ts`、`trim.ts`、`intervalsOverlap.ts` |
 | 私有     | `_` 前缀                                  | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
