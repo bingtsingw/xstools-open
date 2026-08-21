@@ -26,4 +26,16 @@ describe('template', () => {
   test('do not support {}', () => {
     expect(template('hello { name }', {})).toBe('hello { name }');
   });
+
+  test('inserts $-sequences in values literally', () => {
+    expect(template('price {{ p }}', { p: '$5' })).toBe('price $5');
+    expect(template('x {{ v }}', { v: '$$' })).toBe('x $$');
+    expect(template('y {{ v }}', { v: 'a$&b' })).toBe('y a$&b');
+    expect(template('z {{ v }}', { v: "$`$'" })).toBe("z $`$'");
+  });
+
+  test('does not re-expand injected placeholders or mis-handle repeats', () => {
+    expect(template('{{ a }} {{ b }}', { a: '{{ b }}', b: 'x' })).toBe('{{ b }} x');
+    expect(template('{{ a }}-{{ a }}', { a: '1' })).toBe('1-1');
+  });
 });
