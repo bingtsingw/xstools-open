@@ -20,10 +20,8 @@ export const template = (str: MaybeString, data: Record<string, unknown>): strin
 
   const regex = /\{\{\s*(.+?)\s*\}\}/g;
 
-  return Array.from(str.matchAll(regex)).reduce((acc, match) => {
-    const toReplace = match[0]; // {{ xxx }}
-    const key = match[1]!; // xxx
+  return str.replace(regex, (_match, key: string) => {
     const value = data[key];
-    return acc.replace(toReplace, value === null || value === undefined ? '' : String(value));
-  }, str);
+    return value === null || value === undefined ? '' : String(value);
+  });
 };
