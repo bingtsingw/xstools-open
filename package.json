@@ -8,7 +8,7 @@
     "changeset-publish": "npm run check-publish && changeset publish",
     "changeset-version": "changeset version",
     "check-mono": "sherif",
-    "check-publish": "npm run build && npm run format && npm run lint:js && npm run check-type && npm run test",
+    "check-publish": "npm run build && npm run fmt && npm run lint && npm run check-type && npm run test",
     "check-type": "turbo run check-type",
     "clean": "del **/dist **/.build **/.swc **/.malagu **/.turbo **/node_modules !node_modules",
     "commit": "cz",

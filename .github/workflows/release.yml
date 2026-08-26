@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-      - uses: bingtsingw/composite-actions/pnpm-install@v2
+      - uses: actions/checkout@v7
+      - uses: bingtsingw/composite-actions/setup-node@e51185c8475a406df2d2d731f4d3ccbb2a8ba6c0
 
       - uses: changesets/action@v1
         with:
