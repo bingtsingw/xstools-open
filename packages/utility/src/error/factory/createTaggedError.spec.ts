@@ -20,7 +20,7 @@ class HttpException extends createTaggedError<string>('HTTP_EXCEPTION') {
 }
 
 class HttpExceptionNotFound extends HttpException {
-  public override readonly _tag: 'HTTP_EXCEPTION:NOT_FOUND' = 'HTTP_EXCEPTION:NOT_FOUND';
+  public override readonly _tag = 'HTTP_EXCEPTION:NOT_FOUND' as const;
   static {
     (this.prototype as { _tag: string })._tag = 'HTTP_EXCEPTION:NOT_FOUND';
   }
@@ -37,7 +37,7 @@ class HttpExceptionNotFound extends HttpException {
 }
 
 class HttpExceptionBadRequest extends HttpException {
-  public override readonly _tag: 'HTTP_EXCEPTION:BAD_REQUEST' = 'HTTP_EXCEPTION:BAD_REQUEST';
+  public override readonly _tag = 'HTTP_EXCEPTION:BAD_REQUEST' as const;
   static {
     (this.prototype as { _tag: string })._tag = 'HTTP_EXCEPTION:BAD_REQUEST';
   }
@@ -111,10 +111,10 @@ describe('createTaggedError', () => {
   test('warning: 多层继承: `_tag`设置, `static`未设置, `is()`方法识别范围有问题', () => {
     class IS_A extends createTaggedError<string>('IS_A') {}
     class IS_B extends IS_A {
-      public override readonly _tag: 'IS_B' = 'IS_B';
+      public override readonly _tag = 'IS_B' as const;
     }
     class IS_C extends IS_A {
-      public override readonly _tag: 'IS_C' = 'IS_C';
+      public override readonly _tag = 'IS_C' as const;
     }
 
     const a = new IS_A('a');
@@ -137,13 +137,13 @@ describe('createTaggedError', () => {
   test('warning: 多层继承: `_tag`设置, `static`设置, `is()`方法能够正确识别类型', () => {
     class IS_A extends createTaggedError<string>('IS_A') {}
     class IS_B extends IS_A {
-      public override readonly _tag: 'IS_B' = 'IS_B';
+      public override readonly _tag = 'IS_B' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_B';
       }
     }
     class IS_C extends IS_A {
-      public override readonly _tag: 'IS_C' = 'IS_C';
+      public override readonly _tag = 'IS_C' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_C';
       }
@@ -281,13 +281,13 @@ describe('createTaggedError 模拟跨包多实例', () => {
   test('深度子类的跨实例识别', () => {
     class IS_A_PkgA extends createTaggedError<string>('IS_A') {}
     class IS_B_PkgA extends IS_A_PkgA {
-      public override readonly _tag: 'IS_B' = 'IS_B';
+      public override readonly _tag = 'IS_B' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_B';
       }
     }
     class IS_C_PkgA extends IS_A_PkgA {
-      public override readonly _tag: 'IS_C' = 'IS_C';
+      public override readonly _tag = 'IS_C' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_C';
       }
@@ -295,13 +295,13 @@ describe('createTaggedError 模拟跨包多实例', () => {
 
     class IS_A_PkgB extends createTaggedError<string>('IS_A') {}
     class IS_B_PkgB extends IS_A_PkgB {
-      public override readonly _tag: 'IS_B' = 'IS_B';
+      public override readonly _tag = 'IS_B' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_B';
       }
     }
     class IS_C_PkgB extends IS_A_PkgB {
-      public override readonly _tag: 'IS_C' = 'IS_C';
+      public override readonly _tag = 'IS_C' as const;
       static {
         (this.prototype as { _tag: string })._tag = 'IS_C';
       }

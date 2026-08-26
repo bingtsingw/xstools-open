@@ -100,7 +100,6 @@ describe('get', () => {
     expect(get(null, 'constructor.prototype.valueOf')).toEqual(undefined);
 
     // @ts-expect-error
-    // eslint-disable-next-line no-extend-native
     Number.prototype.a = { b: 2 };
     expect(get<number>(0, 'a.b')).toEqual(2);
 

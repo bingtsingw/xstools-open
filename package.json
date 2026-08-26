@@ -13,41 +13,29 @@
     "clean": "del **/dist **/.build **/.swc **/.malagu **/.turbo **/node_modules !node_modules",
     "commit": "cz",
     "dev": "turbo run dev",
-    "format": "prettier . --check",
-    "format:fix": "prettier . --write",
-    "lint:js": "turbo run lint:js",
-    "lint:js:fix": "turbo run lint:js:fix",
-    "prepare": "simple-git-hooks",
+    "fmt": "vp fmt --check",
+    "fmt:fix": "vp fmt",
+    "lint": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "prepare": "vp hooks enable",
     "test": "turbo run test"
   },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx commitlint --edit $1"
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "@types/node": "24.13.3",
+    "@xstools-dev/mix": "0.19.2",
+    "typescript": "5.8.3",
+    "vite-plus": "^0.3.0"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,html,css,md,json}": "prettier --check",
-    "**/*.{js,jsx,ts,tsx}": "eslint"
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "prettier": "@xstools-dev/prettier-config/base",
-  "eslintConfig": {
-    "extends": "@xstools-dev/eslint-config/base"
-  },
-  "devDependencies": {
-    "@types/bun": "1.3.14",
-    "@types/node": "24.13.3",
-    "@xstools-dev/mix": "0.19.2",
-    "tsdown": "^0.22.14",
-    "typescript": "5.8.3"
   },
   "packageManager": "pnpm@10.34.5"
 }

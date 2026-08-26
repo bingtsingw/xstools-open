@@ -1,42 +1,37 @@
 {
   "name": "@xstools/request",
   "version": "2.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bingtsingw/xstools-open.git",
-    "directory": "packages/request"
-  },
   "license": "MIT",
   "author": {
     "name": "bingtsingw",
     "email": "bingtsingw@gmail.com",
     "url": "https://github.com/bingtsingw"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingtsingw/xstools-open.git",
+    "directory": "packages/request"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "exports": {
     "types": "./dist/index.d.ts",
     "default": "./dist/index.js"
   },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsdown",
-    "check-type": "tsc --noEmit",
-    "dev": "tsdown --watch",
-    "lint:js": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
-    "lint:js:fix": "eslint . --cache --ext .js,.jsx,.ts,.tsx --fix",
-    "test": "bun test"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
-  "eslintConfig": {
-    "extends": "@xstools-dev/eslint-config/base"
+  "scripts": {
+    "build": "vp pack",
+    "check-type": "tsc --noEmit",
+    "dev": "vp pack --watch",
+    "test": "bun test"
   },
   "dependencies": {
     "@xstools/utility": "workspace:^",
     "axios": "^1.19.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org"
   }
 }

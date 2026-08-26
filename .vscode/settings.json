@@ -4,10 +4,9 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.oxc": "explicit"
   },
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
   "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
