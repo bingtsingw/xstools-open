@@ -1,6 +1,17 @@
 {
   "name": "@xstools/hono-toolkit",
   "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "bingtsingw",
+    "email": "bingtsingw@gmail.com",
+    "url": "https://github.com/bingtsingw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingtsingw/xstools-open.git",
+    "directory": "packages/hono-toolkit"
+  },
   "files": [
     "dist"
   ],
@@ -8,6 +19,10 @@
   "exports": {
     "types": "./dist/index.d.ts",
     "default": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "scripts": {
     "build": "vp pack",
