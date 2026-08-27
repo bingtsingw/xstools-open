@@ -24,6 +24,19 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(@types/node@24.13.3)(esbuild@0.27.2)(jiti@2.6.1)(less@4.5.1)(sass@1.97.3)(typescript@5.8.3)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.27.2)(jiti@2.6.1)(less@4.5.1)(sass@1.97.3)(yaml@2.8.2))(yaml@2.8.2)
 
+  packages/hono-toolkit:
+    dependencies:
+      '@hono/zod-validator':
+        specifier: ^0.4.2
+        version: 0.4.3(hono@4.13.5)(zod@3.23.8)
+    devDependencies:
+      hono:
+        specifier: ^4.13.2
+        version: 4.13.5
+      zod:
+        specifier: 3.23.8
+        version: 3.23.8
+
   packages/request:
     dependencies:
       '@xstools/utility':
@@ -1239,6 +1252,12 @@ packages:
   '@eslint/js@8.57.1':
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@hono/zod-validator@0.4.3':
+    resolution: {integrity: sha512-xIgMYXDyJ4Hj6ekm9T9Y27s080Nl9NXHcJkOvkXPhubOLj8hZkOL8pDnnXfvCf5xEE8Q4oMFenQUZZREUY2gqQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.19.1
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -5145,6 +5164,10 @@ packages:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
     engines: {node: '>=0.10.0'}
 
+  hono@4.13.5:
+    resolution: {integrity: sha512-O6+/eCYRkzzzy0rPWwKLiGBR1nFuUPZynnwjxN1MBA62NNqbT0wQEzQyK2gSO5yDIDB336sXQleAhOHrzlYyKw==}
+    engines: {node: '>=16.9.0'}
+
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
 
@@ -8595,6 +8618,9 @@ packages:
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
@@ -10102,6 +10128,11 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.57.1': {}
+
+  '@hono/zod-validator@0.4.3(hono@4.13.5)(zod@3.23.8)':
+    dependencies:
+      hono: 4.13.5
+      zod: 3.23.8
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -14597,6 +14628,8 @@ snapshots:
     dependencies:
       parse-passwd: 1.0.0
 
+  hono@4.13.5: {}
+
   hosted-git-info@2.8.9: {}
 
   hosted-git-info@8.1.0:
@@ -18284,5 +18317,7 @@ snapshots:
   zod-validation-error@4.0.2(zod@4.3.6):
     dependencies:
       zod: 4.3.6
+
+  zod@3.23.8: {}
 
   zod@4.3.6: {}
