@@ -1,3 +1,5 @@
+neverBuiltDependencies: []
+autoInstallPeers: false
+
 packages:
   - 'packages/**'
-neverBuiltDependencies: []

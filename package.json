@@ -3,39 +3,27 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "check": "vp check",
+    "check:fix": "vp check --fix",
     "build": "turbo run build",
     "changeset-add": "changeset add",
     "changeset-publish": "npm run check-publish && changeset publish",
     "changeset-version": "changeset version",
     "check-mono": "sherif",
-    "check-publish": "npm run build && npm run fmt && npm run lint && npm run check-type && npm run test",
-    "check-type": "turbo run check-type",
+    "check-publish": "npm run build && npm run check && npm run test",
     "clean": "del **/dist **/.build **/.swc **/.malagu **/.turbo **/node_modules !node_modules",
-    "commit": "cz",
+    "commit": "czg",
     "dev": "turbo run dev",
-    "fmt": "vp fmt --check",
-    "fmt:fix": "vp fmt",
-    "lint": "vp lint",
-    "lint:fix": "vp lint --fix",
     "prepare": "vp hooks enable",
     "test": "turbo run test"
   },
   "devDependencies": {
     "@types/bun": "1.3.14",
     "@types/node": "24.13.3",
-    "@xstools-dev/mix": "0.19.2",
+    "@xstools-dev/cli-toolkit": "^0.2.0",
+    "@xstools-dev/config-ts": "^0.1.0",
     "typescript": "5.8.3",
     "vite-plus": "^0.3.0"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "packageManager": "pnpm@10.34.5"
 }
