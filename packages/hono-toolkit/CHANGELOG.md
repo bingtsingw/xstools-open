@@ -1,5 +1,11 @@
 # @xstools/hono-toolkit
 
+## 1.1.0
+
+### Minor Changes
+
+- [`4028bde`](https://github.com/bingtsingw/xstools-open/commit/4028bdeb4ec9cf19b754ae76f3e070d538dbc93b) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add apiValidate
+
 ## 1.0.0
 
 ### Major Changes
