@@ -1,5 +1,11 @@
 # @xstools/hono-toolkit
 
+## 1.2.0
+
+### Minor Changes
+
+- [`a14d057`](https://github.com/bingtsingw/xstools-open/commit/a14d057eeb69be4bd1fd1839907e07a6d14d0645) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add zod to peer deps
+
 ## 1.1.0
 
 ### Minor Changes
