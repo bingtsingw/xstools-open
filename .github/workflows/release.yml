@@ -21,12 +21,11 @@ jobs:
       - uses: actions/checkout@v7
       - uses: bingtsingw/composite-actions/setup-node@e51185c8475a406df2d2d731f4d3ccbb2a8ba6c0
 
-      - uses: changesets/action@v1
+      - uses: changesets/action@v2
         with:
-          version: pnpm changeset version
-          publish: pnpm changeset-publish
-          commit: 'chore: version packages'
+          version-script: pnpm changeset version
+          publish-script: pnpm changeset-publish
+          commit-message: 'chore: version packages'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           npm_config_registry: https://registry.npmjs.org
