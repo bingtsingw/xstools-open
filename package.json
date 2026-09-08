@@ -11,7 +11,7 @@
     "changeset-version": "changeset version",
     "check-mono": "sherif",
     "check-publish": "pnpm run build && pnpm run check && pnpm run test",
-    "clean": "del **/dist **/.build **/.swc **/.malagu **/.turbo **/node_modules !node_modules",
+    "clean": "del **/dist **/.build **/.swc **/.turbo **/node_modules !node_modules",
     "commit": "czg",
     "dev": "turbo run dev",
     "prepare": "vp hooks enable",
@@ -25,5 +25,5 @@
     "typescript": "5.8.3",
     "vite-plus": "^0.3.0"
   },
-  "packageManager": "pnpm@10.34.5"
+  "packageManager": "pnpm@12.3.4"
 }
