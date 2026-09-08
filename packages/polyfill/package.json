@@ -1,0 +1,40 @@
+{
+  "name": "@xstools/polyfill",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "bingtsingw",
+    "email": "bingtsingw@gmail.com",
+    "url": "https://github.com/bingtsingw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingtsingw/xstools-open.git",
+    "directory": "packages/polyfill"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": true,
+  "exports": {
+    "./mini-abort-controller": {
+      "types": "./dist/miniAbortController.d.ts",
+      "default": "./dist/miniAbortController.js"
+    },
+    "./object-has-own": {
+      "types": "./dist/objectHasOwn.d.ts",
+      "default": "./dist/objectHasOwn.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "prepack": "pnpm run build",
+    "test": "bun test"
+  }
+}
