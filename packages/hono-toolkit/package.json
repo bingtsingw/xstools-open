@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "vp pack",
-    "check-type": "tsc --noEmit",
     "dev": "vp pack --watch",
     "test": "bun test"
   },
@@ -34,7 +33,7 @@
     "@hono/zod-validator": "^0.4.2"
   },
   "devDependencies": {
-    "hono": "^4.13.2",
+    "hono": "^4.13.7",
     "zod": "3.23.8"
   },
   "peerDependencies": {

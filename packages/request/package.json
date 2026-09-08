@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "vp pack",
-    "check-type": "tsc --noEmit",
     "dev": "vp pack --watch",
     "test": "bun test"
   },
