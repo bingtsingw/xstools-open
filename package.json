@@ -16,12 +16,12 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@types/bun": "1.3.14",
+    "@types/bun": "1.4.2",
     "@types/node": "24.13.3",
-    "@xstools-dev/cli-toolkit": "^0.2.0",
-    "@xstools-dev/config-ts": "^0.1.0",
+    "@xstools-dev/cli-toolkit": "^0.3.0",
+    "@xstools-dev/config-ts": "^0.2.0",
     "typescript": "5.8.3",
-    "vite-plus": "^0.3.0"
+    "vite-plus": "^0.3.1"
   },
   "packageManager": "pnpm@12.3.4"
 }

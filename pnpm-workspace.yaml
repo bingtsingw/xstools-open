@@ -1,4 +1,5 @@
 autoInstallPeers: false
+minimumReleaseAge: 0
 
 packages:
   - 'packages/**'
