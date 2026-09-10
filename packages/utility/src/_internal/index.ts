@@ -4,5 +4,6 @@
  */
 export * from './constants';
 export * from './pathToSegments';
+export * from './stripEmoji';
 export * from './stub';
 export * from './toArgs';

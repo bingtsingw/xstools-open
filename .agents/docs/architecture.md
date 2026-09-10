@@ -73,6 +73,7 @@ flowchart TB
     error --> predicate
     predicate --> object
     object --> internal["_internal"]
+    string --> internal["_internal"]
     nanoid_exp["./nanoid"] --> string
   end
 
@@ -166,6 +167,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | --------------------- | ------------------------------------------------------------------------------ |
 | `get`                 | 深路径取值（重载；path 不为数组）                                               |
 | `getTag`              | `Object.prototype.toString` 风格 tag                                           |
+| `mapValues`           | 映射自有可枚举字符串键的值；忽略 symbol；nullish / 非对象 → `{}`              |
 | `merge` / `mergeWith` | 深合并，原地改 target；默认同型递归、异型 source 赢并 clone；`undefined` 不覆盖已有值 |
 | `omitBy`              | 按谓词剔除自有可枚举属性                                                        |
 | `pick`                | 按 key 列表取自有属性                                                          |
@@ -192,6 +194,7 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 | `case*` / `capitalize` / `getWords` | 命名风格与分词                                     |
 | `trim` / `trimStart` / `trimEnd`    | 可指定字符集                                       |
 | `subString`                         | Unicode code point 截取；非 string 抛 `ParamError` |
+| `removeEmoji`                       | 删除完整 emoji 序列；非 string 原样返回            |
 | `template`                          | `{{ key }}` 模板                                   |
 | `MaybeString`                       | `string \| null \| undefined`；只吞 nullish        |
 | `DIC_*`                             | 字符表常量                                         |
