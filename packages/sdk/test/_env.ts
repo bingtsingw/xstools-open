@@ -10,7 +10,7 @@ export const ENV = {
   // WECHAT_COMPONENT_APPSECRET: process.env['WECHAT_COMPONENT_APPSECRET']!,
   // WECHAT_COMPONENT_MESSAGE_KEY: process.env['WECHAT_COMPONENT_MESSAGE_KEY']!,
   // WECHAT_COMPONENT_MESSAGE_TOKEN: process.env['WECHAT_COMPONENT_MESSAGE_TOKEN']!,
-  // XCLOUD_AK: process.env['XCLOUD_AK']!,
+
   // ALICLOUD_OSS_AK: process.env['ALICLOUD_OSS_AK']!,
   // ALICLOUD_OSS_SK: process.env['ALICLOUD_OSS_SK']!,
   // ALICLOUD_OSS_REGION: process.env['ALICLOUD_OSS_REGION']!,
@@ -19,6 +19,9 @@ export const ENV = {
 
   DINGTALK_MESSAGE_AK: process.env['DINGTALK_MESSAGE_AK']!,
   DINGTALK_MESSAGE_SK: process.env['DINGTALK_MESSAGE_SK']!,
+
+  XCLOUD_AK: process.env['XCLOUD_AK']!,
+  XCLOUD_BASE_URL: process.env['XCLOUD_BASE_URL']!,
 
   // YZH_DEALER_ID: process.env['YZH_DEALER_ID']!,
   // YZH_BROKER_ID: process.env['YZH_BROKER_ID']!,
