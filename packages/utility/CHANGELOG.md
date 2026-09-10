@@ -1,5 +1,13 @@
 # @xstools/utility
 
+## 1.1.0
+
+### Minor Changes
+
+- [`1ace417`](https://github.com/bingtsingw/xstools-open/commit/1ace417a7b35cfe44d90436851dcc32d4081ad39) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add string/removeEmoji
+
+- [`1ace417`](https://github.com/bingtsingw/xstools-open/commit/1ace417a7b35cfe44d90436851dcc32d4081ad39) Thanks [@bingtsingw](https://github.com/bingtsingw)! - add object/mapValues
+
 ## 1.0.0
 
 ### Major Changes

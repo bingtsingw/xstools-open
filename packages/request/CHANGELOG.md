@@ -1,5 +1,13 @@
 # @xstools/request
 
+## 2.0.2
+
+### Patch Changes
+
+- [`8700509`](https://github.com/bingtsingw/xstools-open/commit/8700509283f90875aee276f70919cabec7a76a81) Thanks [@bingtsingw](https://github.com/bingtsingw)! - upgrade axios
+- Updated dependencies [[`1ace417`](https://github.com/bingtsingw/xstools-open/commit/1ace417a7b35cfe44d90436851dcc32d4081ad39), [`1ace417`](https://github.com/bingtsingw/xstools-open/commit/1ace417a7b35cfe44d90436851dcc32d4081ad39)]:
+  - @xstools/utility@1.1.0
+
 ## 2.0.1
 
 ### Patch Changes

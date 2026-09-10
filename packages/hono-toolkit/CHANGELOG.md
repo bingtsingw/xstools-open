@@ -1,5 +1,19 @@
 # @xstools/hono-toolkit
 
+## 2.0.0
+
+### Major Changes
+
+- [`7536641`](https://github.com/bingtsingw/xstools-open/commit/75366411700adcd4a535c53a524055a62bc7e2b7) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 移除页码分页的 `pageSkip` 配置
+
+### Minor Changes
+
+- [`7536641`](https://github.com/bingtsingw/xstools-open/commit/75366411700adcd4a535c53a524055a62bc7e2b7) Thanks [@bingtsingw](https://github.com/bingtsingw)! - 分页改为 `pagination.page()` / `pagination.cursor()`，在 Hono in 上留下 `__paginationKind`，供 API 生成器识别分页端点。`pagination()` 不再可直接调用。
+
+### Patch Changes
+
+- [`fb81685`](https://github.com/bingtsingw/xstools-open/commit/fb816852793d50d4571a69cd273246ca9ab11af1) Thanks [@bingtsingw](https://github.com/bingtsingw)! - fix: generate pagination namespace declarations
+
 ## 1.2.0
 
 ### Minor Changes
