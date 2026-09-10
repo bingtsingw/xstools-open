@@ -65,7 +65,8 @@
   "scripts": {
     "build": "vp pack",
     "dev": "vp pack --watch",
-    "test": "bun test --preload ./test/_setup.ts"
+    "test": "bun test src/ --preload ./test/_setup.ts",
+    "sdk:test": "bun --env-file=.env.local test test/ --only"
   },
   "dependencies": {
     "@xstools/utility": "workspace:^",

@@ -1,3 +1,8 @@
 {
-  "extends": "@xstools-dev/config-ts/v5/tsconfig.modern.json"
+  "extends": "@xstools-dev/config-ts/v5/tsconfig.modern.json",
+  "compilerOptions": {
+    "paths": {
+      "@/src/*": ["./src/*"]
+    }
+  }
 }
