@@ -2,7 +2,7 @@ import type { AxiosResponse } from 'axios';
 import { describe, expect, test } from 'bun:test';
 import { createInstance, createRequest } from './request';
 
-describe('request', () => {
+describe('createInstance', () => {
   test('keeps successful responses intact and preserves response generics', async () => {
     const response: AxiosResponse<{ ok: boolean }> = await createInstance({
       baseURL: 'https://example.com',
@@ -55,7 +55,9 @@ describe('request', () => {
       },
     });
   });
+});
 
+describe('createRequest', () => {
   test('refreshes and overrides Authorization for every request', async () => {
     let tokenCalls = 0;
     const request = createRequest({

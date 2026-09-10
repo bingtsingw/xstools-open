@@ -106,33 +106,39 @@ describe('jwt', () => {
     });
   });
 
-  test('jwtVerify rejects wrong secret', async () => {
-    const token = await jwtSign({ secret: 'secret', sub: 'authId', expiresIn: 60 });
-    expect(jwtVerify({ secret: 'other', token })).rejects.toThrow();
+  describe('jwtVerify', () => {
+    test('rejects a wrong secret', async () => {
+      const token = await jwtSign({ secret: 'secret', sub: 'authId', expiresIn: 60 });
+      expect(jwtVerify({ secret: 'other', token })).rejects.toThrow();
+    });
   });
 
-  test('jwtResponse', async () => {
-    expect(jwtResponse({ token: 'abc123' })).toEqual({ token: 'abc123', type: 'Bearer' });
-    expect(jwtResponse({ token: '' })).toEqual({ token: '', type: 'Bearer' });
-    expect(jwtResponse({ token: '1234567890' })).toEqual({ token: '1234567890', type: 'Bearer' });
+  describe('jwtResponse', () => {
+    test('returns a bearer-token response', () => {
+      expect(jwtResponse({ token: 'abc123' })).toEqual({ token: 'abc123', type: 'Bearer' });
+      expect(jwtResponse({ token: '' })).toEqual({ token: '', type: 'Bearer' });
+      expect(jwtResponse({ token: '1234567890' })).toEqual({ token: '1234567890', type: 'Bearer' });
+    });
   });
 
-  test('jwtExtractSub reads Bearer token and raw token', async () => {
-    const secret = 'secret';
-    const token = await jwtSign({ secret, sub: 'authId', expiresIn: 60 });
+  describe('jwtExtractSub', () => {
+    test('reads Bearer and raw tokens', async () => {
+      const secret = 'secret';
+      const token = await jwtSign({ secret, sub: 'authId', expiresIn: 60 });
 
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(`Bearer ${token}`) })).toEqual('authId');
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(`bearer ${token}`) })).toEqual('authId');
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(token) })).toEqual('authId');
-  });
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(`Bearer ${token}`) })).toEqual('authId');
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(`bearer ${token}`) })).toEqual('authId');
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth(token) })).toEqual('authId');
+    });
 
-  test('jwtExtractSub returns false when auth is missing or invalid', async () => {
-    const secret = 'secret';
-    const token = await jwtSign({ secret, sub: 'authId', expiresIn: 60 });
+    test('returns false when authorization is missing or invalid', async () => {
+      const secret = 'secret';
+      const token = await jwtSign({ secret, sub: 'authId', expiresIn: 60 });
 
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth() })).toEqual(false);
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth('') })).toEqual(false);
-    expect(await jwtExtractSub({ secret, ctx: ctxWithAuth('Bearer bad') })).toEqual(false);
-    expect(await jwtExtractSub({ secret: 'other', ctx: ctxWithAuth(`Bearer ${token}`) })).toEqual(false);
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth() })).toEqual(false);
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth('') })).toEqual(false);
+      expect(await jwtExtractSub({ secret, ctx: ctxWithAuth('Bearer bad') })).toEqual(false);
+      expect(await jwtExtractSub({ secret: 'other', ctx: ctxWithAuth(`Bearer ${token}`) })).toEqual(false);
+    });
   });
 });
