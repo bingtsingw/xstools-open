@@ -1,0 +1,3 @@
+{
+  "extends": "@xstools-dev/config-ts/v5/tsconfig.modern.json"
+}

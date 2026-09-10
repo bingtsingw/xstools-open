@@ -1,0 +1,77 @@
+{
+  "name": "@xstools/sdk",
+  "version": "2.0.0-beta.0",
+  "license": "MIT",
+  "author": {
+    "name": "bingtsingw",
+    "email": "bingtsingw@gmail.com",
+    "url": "https://github.com/bingtsingw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingtsingw/xstools-open.git",
+    "directory": "packages/sdk"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./alicloud": {
+      "types": "./dist/alicloud/index.d.ts",
+      "default": "./dist/alicloud/index.js"
+    },
+    "./dingtalk": {
+      "types": "./dist/dingtalk/index.d.ts",
+      "default": "./dist/dingtalk/index.js"
+    },
+    "./wechat-miniprogram": {
+      "types": "./dist/wechat-miniprogram/index.d.ts",
+      "default": "./dist/wechat-miniprogram/index.js"
+    },
+    "./wechat-oplatform": {
+      "types": "./dist/wechat-oplatform/index.d.ts",
+      "default": "./dist/wechat-oplatform/index.js"
+    },
+    "./wechat-pay": {
+      "types": "./dist/wechat-pay/index.d.ts",
+      "default": "./dist/wechat-pay/index.js"
+    },
+    "./wechat-pay-partner": {
+      "types": "./dist/wechat-pay-partner/index.d.ts",
+      "default": "./dist/wechat-pay-partner/index.js"
+    },
+    "./wechat-supplier": {
+      "types": "./dist/wechat-supplier/index.d.ts",
+      "default": "./dist/wechat-supplier/index.js"
+    },
+    "./xcloud": {
+      "types": "./dist/xcloud/index.d.ts",
+      "default": "./dist/xcloud/index.js"
+    },
+    "./yzh": {
+      "types": "./dist/yzh/index.d.ts",
+      "default": "./dist/yzh/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "bun test --preload ./test/_setup.ts"
+  },
+  "dependencies": {
+    "@xstools/utility": "workspace:^",
+    "fast-xml-parser": "5.11.1",
+    "file-type": "22.0.2",
+    "ky": "2.1.0",
+    "ufo": "1.6.4"
+  }
+}
