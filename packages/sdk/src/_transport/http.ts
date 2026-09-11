@@ -25,6 +25,7 @@ export class SdkHttp {
       headers?: HeadersInit;
       json?: unknown;
       body?: BodyInit | null;
+      retry?: number;
     },
   ): Promise<Response> {
     return this.#client(url, init);
