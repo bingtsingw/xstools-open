@@ -7,7 +7,6 @@ export {
   WECHAT_OPLATFORM,
   WECHAT_PAY,
   WECHAT_PAY_PARTNER,
-  WECHAT_SUPPLIER,
   XCLOUD,
   YZH,
 } from './source';

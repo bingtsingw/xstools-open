@@ -45,10 +45,6 @@
       "types": "./dist/wechat-pay-partner/index.d.ts",
       "default": "./dist/wechat-pay-partner/index.js"
     },
-    "./wechat-supplier": {
-      "types": "./dist/wechat-supplier/index.d.ts",
-      "default": "./dist/wechat-supplier/index.js"
-    },
     "./xcloud": {
       "types": "./dist/xcloud/index.d.ts",
       "default": "./dist/xcloud/index.js"

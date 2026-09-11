@@ -10,7 +10,6 @@ export default defineConfig({
       // 'src/wechat-oplatform/index.ts',
       // 'src/wechat-pay/index.ts',
       // 'src/wechat-pay-partner/index.ts',
-      // 'src/wechat-supplier/index.ts',
       'src/xcloud/index.ts',
       // 'src/yzh/index.ts',
     ],
