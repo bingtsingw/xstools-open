@@ -134,7 +134,7 @@ describe('XcloudClient', () => {
         },
       );
 
-      expect(client.doRequest<{ accepted: boolean }>(request)).resolves.toEqual({ data: { accepted: true } });
+      expect(client.doRequest<{ data: { accepted: boolean } }>(request)).resolves.toEqual({ data: { accepted: true } });
     });
   });
 });

@@ -14,12 +14,12 @@ export class XcloudClient {
     this.#request = new XcloudRequest(XcloudClient.NAME, requestConfig, httpOptions);
   }
 
-  public async doRequest<T>(requestOption: XcloudRequestOption): Promise<{ data: T }> {
+  public async doRequest<T>(requestOption: XcloudRequestOption): Promise<T> {
     return this.#request.doRequest<T>(requestOption);
   }
 
   public async geoIpToLocation({ ip }: Xcloud.GeoIpToLocationInput): Promise<string> {
-    const res = await this.#request.doRequest<{ location: string }>({
+    const res = await this.#request.doRequest<{ data: { location: string } }>({
       operation: 'geoIpToLocation',
       method: 'POST',
       path: 'geo/ipToLocation',
@@ -30,7 +30,7 @@ export class XcloudClient {
   }
 
   public async canvasDraw({ templateKey, templateParam }: Xcloud.CanvasDrawInput): Promise<string> {
-    const res = await this.#request.doRequest<{ url: string }>({
+    const res = await this.#request.doRequest<{ data: { url: string } }>({
       operation: 'canvasDraw',
       method: 'POST',
       path: 'canvas/draw',
@@ -41,7 +41,7 @@ export class XcloudClient {
   }
 
   public async citySearch({ name }: Xcloud.CitySearchInput): Promise<Xcloud.CitySearchOutput | null> {
-    const res = await this.#request.doRequest<Xcloud.CitySearchOutput | null>({
+    const res = await this.#request.doRequest<{ data: Xcloud.CitySearchOutput | null }>({
       operation: 'citySearch',
       method: 'GET',
       path: 'city/search',

@@ -14,6 +14,7 @@ export type XcloudRequestOption =
   | { operation?: string; method: 'GET'; path: string; params?: QueryObject }
   | { operation?: string; method: 'POST'; path: string; body: SdkJsonObject };
 
+/** xcloud是标准的的http status code，`getResponse`内置流程就能处理 */
 const isErrorXcloud: SdkIsError = () => null;
 
 export class XcloudRequest {
@@ -29,7 +30,7 @@ export class XcloudRequest {
     this.#http = new SdkHttp(http);
   }
 
-  public async doRequest<T>(requestOption: XcloudRequestOption): Promise<{ data: T }> {
+  public async doRequest<T>(requestOption: XcloudRequestOption): Promise<T> {
     const operation = requestOption.operation ?? 'doRequest';
     let url = resolveURL(this.#baseUrl, requestOption.path);
     const init =
@@ -41,7 +42,7 @@ export class XcloudRequest {
       url = withQuery(url, requestOption.params);
     }
 
-    return getResponse<{ data: T }>({
+    return getResponse<T>({
       request: () =>
         this.#http.request(url, {
           ...init,

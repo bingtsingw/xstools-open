@@ -109,6 +109,7 @@ export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => 
   const { request, source, operation, isError, read, map } = input;
   let response: Response;
 
+  // request 错误
   try {
     response = await request();
   } catch (cause) {
@@ -118,6 +119,7 @@ export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => 
   const data = await readBody(response, source, operation, read);
   const picked = isError({ response, data }) || null;
 
+  // response http 错误
   if (!response.ok) {
     throw new SdkExceptionResponse({
       source,
@@ -126,6 +128,7 @@ export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => 
     });
   }
 
+  // 通过 `vendor.isError` 判断, 一般是业务错误码
   if (picked) {
     throw new SdkExceptionResponse({
       source,
