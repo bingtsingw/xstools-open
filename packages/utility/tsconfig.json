@@ -1,4 +1,7 @@
 {
   "extends": "@xstools-dev/config-ts/v5/tsconfig.modern.json",
+  "compilerOptions": {
+    "types": ["bun", "node"]
+  },
   "include": ["src"]
 }
