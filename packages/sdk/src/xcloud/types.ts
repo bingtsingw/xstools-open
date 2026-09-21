@@ -23,4 +23,16 @@ export namespace Xcloud {
     pinyin: string;
     tz: string;
   }
+
+  export interface CaptchaPhoneSendInput {
+    phone: string;
+    scene: string;
+    useSms: boolean;
+  }
+
+  export interface CaptchaPhoneValidateInput {
+    phone: string;
+    scene: string;
+    value: string;
+  }
 }

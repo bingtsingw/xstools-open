@@ -50,4 +50,26 @@ export class XcloudClient {
 
     return res.data;
   }
+
+  public async captchaPhoneSend(input: Xcloud.CaptchaPhoneSendInput) {
+    const res = await this.#request.doRequest<{ data: { code: string } }>({
+      operation: 'captchaPhoneSend',
+      method: 'POST',
+      path: 'captcha/phone/send',
+      body: { ...input },
+    });
+
+    return res.data.code;
+  }
+
+  public async captchaPhoneValidate(input: Xcloud.CaptchaPhoneValidateInput) {
+    const res = await this.#request.doRequest<{ data: { validate: boolean } }>({
+      operation: 'captchaPhoneValidate',
+      method: 'POST',
+      path: 'captcha/phone/validate',
+      body: { ...input },
+    });
+
+    return res.data.validate;
+  }
 }
