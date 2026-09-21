@@ -34,7 +34,9 @@ describe('AlicloudClientOss20190517', () => {
       });
       expect(client.objectPut({ input: stream, limitSize: 1 / 1024 })).rejects.toMatchObject({
         _tag: '__XSTOOLS_SDK__EXCEPTION_INTERNAL_ERROR',
-        log: '[XSTOOLS_SDK:ALI-OSS(objectPut)]: Exceeded limit file size',
+        source: 'ALI-OSS',
+        operation: 'objectPut',
+        message: 'Exceeded limit file size',
       });
       expect(produced).toBe(100);
       expect(requests).toBe(0);
@@ -206,7 +208,9 @@ describe('AlicloudClientOss20190517', () => {
           object: 'missing-object',
         }),
       ).rejects.toMatchObject({
-        log: expect.stringContaining('"errcode":"NoSuchKey"'),
+        source: 'ALI-OSS',
+        operation: 'doRequest',
+        message: expect.stringContaining('"errcode":"NoSuchKey"'),
       });
     });
   });

@@ -75,7 +75,7 @@ export class AlicloudClientOss20190517 {
       throw new SdkExceptionInternalError(
         {
           source: AlicloudClientOss20190517.NAME,
-          method: 'objectPut',
+          operation: 'objectPut',
           message: cause instanceof Error ? cause.message : 'Failed to read upload data',
         },
         { cause },
@@ -87,6 +87,7 @@ export class AlicloudClientOss20190517 {
     const object = prefix ? `${prefix}/${nanoid()}` : nanoid();
 
     await this.#request.doRequest({
+      operation: 'objectPut',
       method: 'PUT',
       body: data,
       object,
@@ -106,6 +107,7 @@ export class AlicloudClientOss20190517 {
       : `/${this.#config.bucket}/${encodeOssObjectKey(sourceKey)}`;
 
     await this.#request.doRequest({
+      operation: 'objectCopy',
       method: 'PUT',
       object: target,
       headers: {
@@ -116,6 +118,7 @@ export class AlicloudClientOss20190517 {
 
   public async objectDelete(object: string) {
     await this.#request.doRequest({
+      operation: 'objectDelete',
       method: 'DELETE',
       object,
     });

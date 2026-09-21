@@ -30,6 +30,7 @@ export class AlicloudClientDysmsapi20170525 {
 
   public async sendSms(input: Alicloud.Dysms.Send): Promise<void> {
     await this.#request.doRequest({
+      operation: 'sendSms',
       method: 'GET',
       action: 'SendSms',
       params: mapValues(input, (value) => removeEmoji(value)),

@@ -4,6 +4,7 @@ import { resolveURL, withQuery, type QueryObject } from '../_utils/url';
 import { isErrorDingtalk } from './_utils/isErrorResponse';
 
 export interface DingTalkRequestOption {
+  operation?: string;
   method: 'GET' | 'POST';
   path: string;
   params?: QueryObject;
@@ -20,7 +21,13 @@ export class DingTalkRequest {
     this.#http = new SdkHttp(http);
   }
 
-  public async doRequest<T>({ method, path, params, body }: DingTalkRequestOption): Promise<T> {
+  public async doRequest<T>({
+    operation = 'doRequest',
+    method,
+    path,
+    params,
+    body,
+  }: DingTalkRequestOption): Promise<T> {
     let url = resolveURL(this.#baseUrl, path);
 
     if (params) {
@@ -30,8 +37,9 @@ export class DingTalkRequest {
     return getResponse<T>({
       request: () => this.#http.request(url, { method, json: body }),
       source: this.#clientName,
+      operation,
       isError: isErrorDingtalk,
-      read: (response) => readJsonContent(response, this.#clientName),
+      read: (response) => readJsonContent(response, this.#clientName, operation),
     });
   }
 }

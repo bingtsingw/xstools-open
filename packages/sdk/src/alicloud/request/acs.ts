@@ -12,6 +12,7 @@ interface Config {
 }
 
 export interface RequestAcsOption {
+  operation?: string;
   action: string;
   method: 'GET' | 'POST';
   headers?: Record<string, string>;
@@ -31,7 +32,15 @@ export class RequestAcs {
     this.#http = new SdkHttp(http);
   }
 
-  public async doRequest<T>({ action, method, headers, params, body, retry }: RequestAcsOption): Promise<T> {
+  public async doRequest<T>({
+    operation = 'doRequest',
+    action,
+    method,
+    headers,
+    params,
+    body,
+    retry,
+  }: RequestAcsOption): Promise<T> {
     const url = `https://${this.#config.endpoint}?${stringify(params)}`;
 
     const requestHeaders = Object.fromEntries(
@@ -64,6 +73,7 @@ export class RequestAcs {
           ...(retry === undefined ? {} : { retry }),
         }),
       source: this.#clientName,
+      operation,
       isError: isErrorAlicloudCode,
       read: readJsonBody,
     });

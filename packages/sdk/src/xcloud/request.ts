@@ -11,8 +11,8 @@ import { resolveURL, withQuery, type QueryObject } from '../_utils/url';
 import type { Xcloud } from './types';
 
 export type XcloudRequestOption =
-  | { method: 'GET'; path: string; params?: QueryObject }
-  | { method: 'POST'; path: string; body: SdkJsonObject };
+  | { operation?: string; method: 'GET'; path: string; params?: QueryObject }
+  | { operation?: string; method: 'POST'; path: string; body: SdkJsonObject };
 
 const isErrorXcloud: SdkIsError = () => null;
 
@@ -30,6 +30,7 @@ export class XcloudRequest {
   }
 
   public async doRequest<T>(requestOption: XcloudRequestOption): Promise<{ data: T }> {
+    const operation = requestOption.operation ?? 'doRequest';
     let url = resolveURL(this.#baseUrl, requestOption.path);
     const init =
       requestOption.method === 'GET'
@@ -49,8 +50,9 @@ export class XcloudRequest {
           },
         }),
       source: this.#clientName,
+      operation,
       isError: isErrorXcloud,
-      read: (response) => readJsonContent(response, this.#clientName),
+      read: (response) => readJsonContent(response, this.#clientName, operation),
     });
   }
 }

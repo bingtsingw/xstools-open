@@ -32,15 +32,17 @@ describe('alicloud-oss', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-OSS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-OSS',
+      operation: 'objectDelete',
+      message: JSON.stringify({
         status: 400,
         statusText: 'Bad Request',
         errcode: 'InvalidArgument',
         errmsg: 'Invalid signing region in Authorization header.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('client error: bad token', async () => {
@@ -61,15 +63,19 @@ describe('alicloud-oss', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toMatch(
-      `[XSTOOLS_SDK:ALI-OSS(#getResponse)]: ${JSON.stringify({
-        status: 403,
-        statusText: 'Forbidden',
-        errcode: 'InvalidAccessKeyId',
-        errmsg: 'The specified access key id contains non-acceptable characters',
-      })}`.replace(/"}$/, ''),
-    );
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-OSS',
+      operation: 'objectDelete',
+      message: expect.stringMatching(
+        JSON.stringify({
+          status: 403,
+          statusText: 'Forbidden',
+          errcode: 'InvalidAccessKeyId',
+          errmsg: 'The specified access key id contains non-acceptable characters',
+        }).replace(/"}$/, ''),
+      ),
+    });
   });
 
   test('getUploadSignature', async () => {
@@ -100,15 +106,17 @@ describe('alicloud-oss', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-OSS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-OSS',
+      operation: 'objectCopy',
+      message: JSON.stringify({
         status: 404,
         statusText: 'Not Found',
         errcode: 'NoSuchKey',
         errmsg: 'The specified key does not exist.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('objectMove non-exist throw', async () => {
@@ -124,15 +132,17 @@ describe('alicloud-oss', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-OSS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-OSS',
+      operation: 'objectCopy',
+      message: JSON.stringify({
         status: 404,
         statusText: 'Not Found',
         errcode: 'NoSuchKey',
         errmsg: 'The specified key does not exist.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('objectPut', async () => {

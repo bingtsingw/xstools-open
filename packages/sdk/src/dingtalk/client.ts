@@ -28,6 +28,7 @@ export class DingTalkClient {
     const sign = encodeURIComponent(hmac.update(`${timestamp}\n${data.secret}`).digest('base64'));
 
     await this.#request.doRequest({
+      operation: 'customRobotsSendGroupMessages',
       method: 'POST',
       path: `/robot/send?access_token=${data.accessToken}&timestamp=${timestamp}&sign=${sign}`,
       body: data.message,

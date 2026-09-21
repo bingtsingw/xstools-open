@@ -24,15 +24,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 400,
         statusText: 'Bad Request',
         errcode: 'MissingAccessKeyId',
         errmsg: 'AccessKeyId is mandatory for this action.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('bad ak', async () => {
@@ -50,15 +52,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 404,
         statusText: 'Not Found',
         errcode: 'InvalidAccessKeyId.NotFound',
         errmsg: 'Specified access key is not found.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('bad sk', async () => {
@@ -76,15 +80,19 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toMatch(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
-        status: 400,
-        statusText: 'Bad Request',
-        errcode: 'SignatureDoesNotMatch',
-        errmsg: 'Specified signature does not match our calculation.',
-      })}`.replace(/"}$/, ''),
-    );
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: expect.stringMatching(
+        JSON.stringify({
+          status: 400,
+          statusText: 'Bad Request',
+          errcode: 'SignatureDoesNotMatch',
+          errmsg: 'Specified signature does not match our calculation.',
+        }).replace(/"}$/, ''),
+      ),
+    });
   });
 
   test('sendSms miss sign', async () => {
@@ -102,15 +110,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 400,
         statusText: 'Bad Request',
         errcode: 'MissingSignName',
         errmsg: 'SignName is mandatory for this action.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('sendSms bad sign', async () => {
@@ -128,15 +138,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 200,
         statusText: 'OK',
         errcode: 'isv.SMS_SIGNATURE_ILLEGAL',
         errmsg: '该账号下找不到对应签名',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('sendSms miss template code', async () => {
@@ -154,15 +166,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 400,
         statusText: 'Bad Request',
         errcode: 'MissingTemplateCode',
         errmsg: 'TemplateCode is mandatory for this action.',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('sendSms bad param', async () => {
@@ -180,15 +194,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 200,
         statusText: 'OK',
         errcode: 'isv.INVALID_JSON_PARAM',
         errmsg: '模板变量JSON格式错误 或 JSON变量属性与模板占位符不一致',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('sendSms bad template code', async () => {
@@ -206,15 +222,17 @@ describe('alicloud-sms', () => {
 
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
-    expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:ALI-DYSMS(#getResponse)]: ${JSON.stringify({
+    expect(responseError).toMatchObject({
+      _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
+      source: 'ALI-DYSMS',
+      operation: 'sendSms',
+      message: JSON.stringify({
         status: 200,
         statusText: 'OK',
         errcode: 'isv.SMS_TEMPLATE_ILLEGAL',
         errmsg: '该账号下找不到对应模板',
-      })}`,
-    );
+      }),
+    });
   });
 
   test('sendSms', async () => {

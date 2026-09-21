@@ -50,6 +50,8 @@ describe('AlicloudClientDysmsapi20170525', () => {
         throw new Error('expected to throw');
       } catch (error) {
         expect(SdkExceptionInternalError.is(error)).toBe(true);
+        expect((error as SdkExceptionInternalError).source).toBe('ALI-DYSMS');
+        expect((error as SdkExceptionInternalError).operation).toBe('sendSms');
       }
 
       expect(calls).toBe(1);
@@ -145,6 +147,8 @@ describe('AlicloudClientDysmsapi20170525', () => {
           status: 502,
           detail: '<html>oops</html>',
         });
+        expect((error as SdkExceptionResponse).source).toBe('ALI-DYSMS');
+        expect((error as SdkExceptionResponse).operation).toBe('CustomAction');
       }
     });
   });

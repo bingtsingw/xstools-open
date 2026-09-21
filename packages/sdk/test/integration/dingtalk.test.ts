@@ -23,13 +23,15 @@ describe('dingtalk', () => {
       expect(SdkExceptionResponse.is(error)).toBe(true);
       const responseError = error as SdkExceptionResponse;
       expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-      expect(responseError.log).toBe(
-        `[XSTOOLS_SDK:DINGTALK(#getResponse)]: ${JSON.stringify({
+      expect(responseError.source).toBe('DINGTALK');
+      expect(responseError.operation).toBe('customRobotsSendGroupMessages');
+      expect(responseError.message).toBe(
+        JSON.stringify({
           status: 200,
           statusText: 'OK',
           errcode: 300005,
           errmsg: 'token is not exist',
-        })}`,
+        }),
       );
     });
 

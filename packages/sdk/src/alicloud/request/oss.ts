@@ -7,6 +7,7 @@ import { signOss } from '../_utils/signOss';
 import type { Alicloud } from '../types';
 
 export interface RequestOssOption {
+  operation?: string;
   method: 'PUT' | 'DELETE';
   object: string;
   body?: ArrayBuffer | Uint8Array;
@@ -47,7 +48,7 @@ export class RequestOss {
     this.#clientName = clientName;
   }
 
-  public async doRequest<T>({ method, object, body, headers }: RequestOssOption): Promise<T> {
+  public async doRequest<T>({ operation = 'doRequest', method, object, body, headers }: RequestOssOption): Promise<T> {
     const objectKey = getOssObjectKey(object);
     const url = getOssObjectUrl(this.#config.host, objectKey);
 
@@ -59,6 +60,7 @@ export class RequestOss {
           body: body as BodyInit | undefined,
         }),
       source: this.#clientName,
+      operation,
       isError: isErrorAlicloudCode,
       read: readOssBody,
     });
