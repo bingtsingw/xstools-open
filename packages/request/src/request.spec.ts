@@ -1,5 +1,5 @@
-import type { AxiosResponse } from 'axios';
 import { describe, expect, test } from 'bun:test';
+import type { AxiosResponse } from 'axios';
 import { createInstance, createRequest } from './request';
 
 describe('createInstance', () => {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
@@ -22,8 +22,8 @@
         --callout-info: #ddf4ff;
         --callout-warn: #fff8c5;
         --radius: 8px;
-        --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -153,7 +153,7 @@
         cursor: pointer;
       }
 
-      .pills button[aria-selected="true"] {
+      .pills button[aria-selected='true'] {
         background: var(--accent);
         border-color: var(--accent);
         color: var(--on-accent);
@@ -286,8 +286,8 @@
       <header>
         <h1>merge / mergeWith 对照</h1>
         <p class="lede">
-          本库当前实现 vs lodash 4.17.21 vs es-toolkit 1.50.0 现代 API（<code>es-toolkit/object</code>）。es-toolkit
-          的 <code>merge</code> 与 <code>mergeWith</code> 默认路径不一致，表中分开写。
+          本库当前实现 vs lodash 4.17.21 vs es-toolkit 1.50.0 现代 API（<code>es-toolkit/object</code>）。es-toolkit 的
+          <code>merge</code> 与 <code>mergeWith</code> 默认路径不一致，表中分开写。
         </p>
       </header>
 
@@ -372,7 +372,9 @@
               </tbody>
             </table>
           </div>
-          <p class="caption">对照版本：lodash 4.17.21 · es-toolkit 1.50.0 · xstools packages/utility/src/object/merge*.ts</p>
+          <p class="caption">
+            对照版本：lodash 4.17.21 · es-toolkit 1.50.0 · xstools packages/utility/src/object/merge*.ts
+          </p>
         </div>
 
         <div class="section">
@@ -484,7 +486,10 @@
                 <tr>
                   <td><span class="dot info"></span>写路径 unsafe</td>
                   <td><code>__proto__</code> / <code>constructor</code> / <code>prototype</code> 全跳过</td>
-                  <td><code>safeGet</code> 跳过 <code>__proto__</code> 与函数 constructor；仍可能 defineProperty 写 <code>__proto__</code></td>
+                  <td>
+                    <code>safeGet</code> 跳过 <code>__proto__</code> 与函数 constructor；仍可能 defineProperty 写
+                    <code>__proto__</code>
+                  </td>
                   <td>只跳过 <code>__proto__</code></td>
                 </tr>
                 <tr>
@@ -776,33 +781,34 @@
         <div class="section">
           <h3>一句话</h3>
           <p>
-            日常 POJO / 数组下标深合并、undefined 跳过、mergeWith concat —— 三家一样。分叉集中在「对象和数组交叉」和「要不要
-            lodash 那套特殊对象 / 继承属性」。本库选了可讲清的规则：同型才递归，异型 source 赢并 clone。
+            日常 POJO / 数组下标深合并、undefined 跳过、mergeWith concat ——
+            三家一样。分叉集中在「对象和数组交叉」和「要不要 lodash 那套特殊对象 /
+            继承属性」。本库选了可讲清的规则：同型才递归，异型 source 赢并 clone。
           </p>
         </div>
       </section>
     </main>
 
     <script>
-      const buttons = [...document.querySelectorAll("[data-tab]")];
+      const buttons = [...document.querySelectorAll('[data-tab]')];
       const panels = {
-        overview: document.getElementById("overview"),
-        cases: document.getElementById("cases"),
-        gaps: document.getElementById("gaps"),
+        overview: document.getElementById('overview'),
+        cases: document.getElementById('cases'),
+        gaps: document.getElementById('gaps'),
       };
 
       const show = (tab) => {
         buttons.forEach((button) => {
-          button.setAttribute("aria-selected", String(button.dataset.tab === tab));
+          button.setAttribute('aria-selected', String(button.dataset.tab === tab));
         });
         Object.entries(panels).forEach(([id, panel]) => {
-          panel.classList.toggle("active", id === tab);
+          panel.classList.toggle('active', id === tab);
         });
-        history.replaceState(null, "", "#" + tab);
+        history.replaceState(null, '', '#' + tab);
       };
 
       buttons.forEach((button) => {
-        button.addEventListener("click", () => show(button.dataset.tab));
+        button.addEventListener('click', () => show(button.dataset.tab));
       });
 
       const initial = location.hash.slice(1);

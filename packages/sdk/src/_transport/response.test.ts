@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { DINGTALK } from '../_errors/source';
 import { SdkExceptionInternalError, SdkExceptionResponse } from '../_errors';
+import { DINGTALK } from '../_errors/source';
 import { SdkHttp } from './http';
 import { getResponse, readJsonBody, readJsonContent, responseStatus, type SdkIsError } from './response';
 

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, setSystemTime, test } from 'bun:test';
 import { isSameDay, parseISO, startOfDay } from 'date-fns';
 import { ParamError } from '../../../error';
-import { UTCDateMini } from './UTCDateMini';
 import { utc } from './utc';
+import { UTCDateMini } from './UTCDateMini';
 
 describe('UTCDateMini', () => {
   test('rejects date component arguments', () => {

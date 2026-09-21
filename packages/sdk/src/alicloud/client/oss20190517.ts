@@ -1,11 +1,11 @@
-import { nanoid } from '@xstools/utility/nanoid';
 import { createHmac } from 'crypto';
+import { nanoid } from '@xstools/utility/nanoid';
 import { ALI_OSS, SdkExceptionInternalError } from '../../_errors';
 import { getDataInfo } from '../../_utils/getDataInfo';
 import type { SdkClientOptions } from '../../_utils/sdkClient';
+import { encodeOssObjectKey, getOssObjectKey, getOssObjectUrl } from '../_utils/object';
 import { RequestOss, type RequestOssOption } from '../request';
 import type { Alicloud } from '../types';
-import { encodeOssObjectKey, getOssObjectKey, getOssObjectUrl } from '../_utils/object';
 
 export class AlicloudClientOss20190517 {
   public static readonly NAME = ALI_OSS;

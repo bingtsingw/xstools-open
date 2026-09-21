@@ -1,5 +1,5 @@
-import type { AxiosResponse } from 'axios';
 import { describe, expect, test } from 'bun:test';
+import type { AxiosResponse } from 'axios';
 import { ApiError } from './ApiError';
 import { ResponseError } from './ResponseError';
 

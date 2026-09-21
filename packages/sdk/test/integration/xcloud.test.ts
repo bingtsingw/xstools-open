@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
-import { ENV } from '../_env';
-import { XcloudClient } from '@/src/xcloud';
 import { SdkExceptionResponse } from '@/src/_errors';
+import { XcloudClient } from '@/src/xcloud';
+import { ENV } from '../_env';
 
 describe('xcloud', () => {
   const client = new XcloudClient({ ak: ENV.XCLOUD_AK, baseUrl: ENV.XCLOUD_BASE_URL });

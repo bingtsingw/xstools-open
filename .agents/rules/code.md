@@ -14,5 +14,6 @@
 - 文件命名：函数文件 camelCase 与主导出同名；类文件 PascalCase 与类名同名；禁止 kebab-case 实现文件
 
 ## code detail
+
 - 抛出错误优先使用`Tagged Error`
 - 为了兼容性，使用`Object.prototype.hasOwnProperty.call`，不使用`Object.hasOwn`

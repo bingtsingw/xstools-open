@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
 import type { MiddlewareHandler } from 'hono';
 import { Hono } from 'hono';
-import { pagination, type CursorPagination } from './index';
 import type { PaginationKind } from './_utils';
+import { pagination, type CursorPagination } from './index';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;

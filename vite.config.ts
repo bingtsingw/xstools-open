@@ -52,5 +52,10 @@ export default defineConfig({
     printWidth: 120,
     proseWrap: 'never',
     singleQuote: true,
+    sortPackageJson: true,
+    sortImports: {
+      newlinesBetween: false,
+      partitionByNewlinez: true,
+    },
   },
 });

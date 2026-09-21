@@ -1,7 +1,7 @@
 import { describe, expect, spyOn, test } from 'bun:test';
-import { FileTypeParser } from 'file-type';
 import { Readable } from 'node:stream';
 import { runInNewContext } from 'node:vm';
+import { FileTypeParser } from 'file-type';
 import { bufferToArrayBuffer, bufferToStream } from './buffer';
 import { getDataInfo } from './getDataInfo';
 

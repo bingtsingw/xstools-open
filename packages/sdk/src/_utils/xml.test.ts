@@ -1,7 +1,7 @@
 import { describe, expect, spyOn, test } from 'bun:test';
 import { XMLParser } from 'fast-xml-parser';
-import { parseXML } from './xml';
 import { SdkExceptionInternalError } from '../_errors';
+import { parseXML } from './xml';
 
 describe('xml', () => {
   test('retains parser failure cause and utility source', () => {

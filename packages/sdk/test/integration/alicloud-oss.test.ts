@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
+import { SdkExceptionResponse } from '@/src/_errors';
 import { AlicloudClientOss20190517 } from '@/src/alicloud';
 import { ENV } from '../_env';
-import { SdkExceptionResponse } from '@/src/_errors';
 
 const PREFIX = 'xstools-sdk-test';
 

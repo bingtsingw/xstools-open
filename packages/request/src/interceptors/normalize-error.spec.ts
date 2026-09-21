@@ -1,6 +1,6 @@
+import { describe, expect, test } from 'bun:test';
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { AxiosError } from 'axios';
-import { describe, expect, test } from 'bun:test';
 import { CanceledError, NetworkError, ResponseError, TimeoutError } from '../errors';
 import { getCode, getMessage, normalizeError } from './normalize-error';
 

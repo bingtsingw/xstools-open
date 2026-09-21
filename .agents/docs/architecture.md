@@ -11,9 +11,9 @@
 | ------------ | --------------------------------------------------------------------------------- |
 | 强制子路径   | `package.json` 无 `"."`，也无根 `src/index.ts`；只能 `@xstools/utility/<subpath>` |
 | 自实现优先   | 对标 es-toolkit / lodash API，不依赖它们                                          |
-| 业务一等公民 | `business` / 距离 / 区划 / 订单 ID 等与通用工具同级 |
-| 三方统一出口 | `_exports` 薄封装 / 再导出；上游放 `dependencies`，不 bundle |
-| 错误模型     | `error`（Tagged Error：`_tag` + 静态 `is()`）                                    |
+| 业务一等公民 | `business` / 距离 / 区划 / 订单 ID 等与通用工具同级                               |
+| 三方统一出口 | `_exports` 薄封装 / 再导出；上游放 `dependencies`，不 bundle                      |
+| 错误模型     | `error`（Tagged Error：`_tag` + 静态 `is()`）                                     |
 
 ```ts
 import { difference, weightedSample } from '@xstools/utility/array';
@@ -98,11 +98,11 @@ flowchart TB
 
 全部放 **dependencies**（`^`），构建不 bundle：保留上游分文件 / export conditions，并与业务仓已装的同包去重。tsdown 对 `dependencies` 默认 external，不必再改配置。
 
-| 子路径       | 形态        | 说明                                                      |
-| ------------ | ----------- | --------------------------------------------------------- |
-| `./cuid2`    | 薄封装      | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度 |
-| `./nanoid`   | 预配置      | `DIC_ALPHANUMERIC`、长度 21                               |
-| `./ohash`    | 精选再导出  | `hash` / `serialize` / `isEqual` / `digest`               |
+| 子路径       | 形态          | 说明                                                                                  |
+| ------------ | ------------- | ------------------------------------------------------------------------------------- |
+| `./cuid2`    | 薄封装        | `cuid2` / `createCuid2` / `isCuid2`；`cuid2(length?)` 仅正整数覆盖默认长度            |
+| `./nanoid`   | 预配置        | `DIC_ALPHANUMERIC`、长度 21                                                           |
+| `./ohash`    | 精选再导出    | `hash` / `serialize` / `isEqual` / `digest`                                           |
 | `./date-fns` | 再导出 + 扩展 | 透传 `date-fns`（含 `./locale`）+ `utc`/`UTCDateMini` + `ot`/`OTDateMini` + `extends` |
 
 `import { format } from '@xstools/utility/date-fns'`、`import { zhCN } from '@xstools/utility/date-fns/locale'` 与直连 `date-fns` 一样可摇树。`ot` / `OTDateMini` 依赖 `./date` 的 `parseOffset`。
@@ -113,15 +113,14 @@ flowchart TB
 
 ### `./array`
 
-| 符号                                             | 用途                                         |
-| ------------------------------------------------ | -------------------------------------------- |
-| `difference` / `differenceBy` / `differenceWith` | 差集                                         |
-| `groupBy`                                        | 按 key 分组                                  |
-| `head`                                           | 首元素（重载）                               |
+| 符号                                             | 用途                                               |
+| ------------------------------------------------ | -------------------------------------------------- |
+| `difference` / `differenceBy` / `differenceWith` | 差集                                               |
+| `groupBy`                                        | 按 key 分组                                        |
+| `head`                                           | 首元素（重载）                                     |
 | `rankByPath`                                     | 按路径排序并写入名次字段（默认 `_rank`，可自定义） |
 
-| `sample` / `weightedSample`                      | 均匀 / 加权随机取样；非法权重抛 `ParamError` |
-| `xor`                                            | 对称差（两数组）                             |
+| `sample` / `weightedSample` | 均匀 / 加权随机取样；非法权重抛 `ParamError` | | `xor` | 对称差（两数组） |
 
 ### `./business`
 
@@ -134,11 +133,11 @@ flowchart TB
 
 ### `./date`
 
-| 符号                | 用途                                               |
-| ------------------- | -------------------------------------------------- |
-| `parseOffset`       | 固定 offset 字符串 → 分钟；非法抛 `ParamError` |
+| 符号                               | 用途                                                        |
+| ---------------------------------- | ----------------------------------------------------------- |
+| `parseOffset`                      | 固定 offset 字符串 → 分钟；非法抛 `ParamError`              |
 | `parseStrictISOString` / `toEpoch` | 严格瞬时 ISO → epoch；非法格式抛 `ParamError`（不校验日历） |
-| `getTimezoneOffset` | 当前系统偏移，如 `+08:00`（可信度由调用方把控） |
+| `getTimezoneOffset`                | 当前系统偏移，如 `+08:00`（可信度由调用方把控）             |
 
 > `areIntervalsOverlap(s)` 在 `@xstools/utility/date-fns`。日初/月初用 `startOfDay`/`startOfMonth` + `{ in: ot(offset) }`。
 
@@ -155,23 +154,23 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### `./format`
 
-| 符号                            | 用途                |
-| ------------------------------- | ------------------- |
+| 符号                            | 用途                                        |
+| ------------------------------- | ------------------------------------------- |
 | `formatBytes`                   | 字节可读化；非法 → `'0 B'`；`{ decimals? }` |
-| `formatCurrency`                | 分 → 元（默认 `¥`）；非有限按 `0` 处理       |
+| `formatCurrency`                | 分 → 元（默认 `¥`）；非有限按 `0` 处理      |
 | `starlizeName` / `starlizeCard` | 姓名 / 卡号脱敏；`MaybeString`              |
 
 ### `./object`
 
-| 符号                  | 用途                                                                           |
-| --------------------- | ------------------------------------------------------------------------------ |
-| `get`                 | 深路径取值（重载；path 不为数组）                                               |
-| `getTag`              | `Object.prototype.toString` 风格 tag                                           |
-| `mapValues`           | 映射自有可枚举字符串键的值；忽略 symbol；nullish / 非对象 → `{}`              |
+| 符号                  | 用途                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `get`                 | 深路径取值（重载；path 不为数组）                                                     |
+| `getTag`              | `Object.prototype.toString` 风格 tag                                                  |
+| `mapValues`           | 映射自有可枚举字符串键的值；忽略 symbol；nullish / 非对象 → `{}`                      |
 | `merge` / `mergeWith` | 深合并，原地改 target；默认同型递归、异型 source 赢并 clone；`undefined` 不覆盖已有值 |
-| `omitBy`              | 按谓词剔除自有可枚举属性                                                        |
-| `pick`                | 按 key 列表取自有属性                                                          |
-| `shake`               | 默认剔除 `undefined`；可自定义谓词                                             |
+| `omitBy`              | 按谓词剔除自有可枚举属性                                                              |
+| `pick`                | 按 key 列表取自有属性                                                                 |
+| `shake`               | 默认剔除 `undefined`；可自定义谓词                                                    |
 
 与 lodash / es-toolkit 的行为对照见 `.agents/docs/merge.md`（交互页 `.agents/docs/merge.html`）。
 
@@ -216,12 +215,12 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 统一使用 `./error`（Tagged Error）：
 
-| 维度 | 约定 |
-| ---- | ---- |
+| 维度 | 约定                                     |
+| ---- | ---------------------------------------- |
 | 形态 | `createTaggedError(tag)` 的 `Error` 子类 |
-| 身份 | `_tag` + 静态 `is()` / `isTaggedError` |
-| 语义 | 逻辑 / 参数 / 中止 / 超时 |
-| 导出 | 具名类 + factory |
+| 身份 | `_tag` + 静态 `is()` / `isTaggedError`   |
+| 语义 | 逻辑 / 参数 / 中止 / 超时                |
+| 导出 | 具名类 + factory                         |
 
 包内：`getDistance` / `weightedSample` / `subString` → `ParamError`；`areIntervalsOverlap`（`./date-fns`）→ `ParamError`；`uuid25` → `LogicError`。
 
@@ -242,12 +241,12 @@ Tagged Error：`_tag` + 静态 `is()`，跨包识别。
 
 ### 命名
 
-| 类型     | 约定                                      | 示例                                          |
-| -------- | ----------------------------------------- | --------------------------------------------- |
-| 函数文件 | camelCase，**与主导出同名**               | `groupBy.ts`、`getDistance.ts`、`parseOffset.ts` |
-| 类文件   | PascalCase，与类名同名                    | `UTCDateMini.ts`、`OTDateMini.ts`             |
-| 主题聚合 | 短名 camelCase（同文件多导出时）          | `case.ts`、`trim.ts`、`intervalsOverlap.ts` |
-| 私有     | `_` 前缀                                  | `_exports/`、`_internal/`、`uuid25/_utils.ts` |
+| 类型     | 约定                             | 示例                                             |
+| -------- | -------------------------------- | ------------------------------------------------ |
+| 函数文件 | camelCase，**与主导出同名**      | `groupBy.ts`、`getDistance.ts`、`parseOffset.ts` |
+| 类文件   | PascalCase，与类名同名           | `UTCDateMini.ts`、`OTDateMini.ts`                |
+| 主题聚合 | 短名 camelCase（同文件多导出时） | `case.ts`、`trim.ts`、`intervalsOverlap.ts`      |
+| 私有     | `_` 前缀                         | `_exports/`、`_internal/`、`uuid25/_utils.ts`    |
 
 禁止 kebab-case 实现文件名（如 `cn-week-day.ts`）。
 

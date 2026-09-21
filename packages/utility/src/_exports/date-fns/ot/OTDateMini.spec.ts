@@ -2,8 +2,8 @@ import { describe, expect, test } from 'bun:test';
 import { constructFrom, startOfDay, startOfMonth } from 'date-fns';
 import { ParamError } from '../../../error';
 import { utc } from '../utc';
-import { OTDateMini } from './OTDateMini';
 import { ot } from './ot';
+import { OTDateMini } from './OTDateMini';
 
 describe('OTDateMini', () => {
   test('requires a fixed offset', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { DINGTALK } from './source';
 import { SdkException, SdkExceptionInternalError, SdkExceptionLogicRejected, SdkExceptionResponse } from './exception';
+import { DINGTALK } from './source';
 
 describe('exception', async () => {
   test('utility exceptions preserve non-Error causes and remain distinguishable', () => {

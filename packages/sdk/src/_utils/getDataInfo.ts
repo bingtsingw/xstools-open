@@ -1,6 +1,6 @@
-import { fileTypeFromBuffer } from 'file-type';
 import { Readable } from 'node:stream';
 import { isAnyArrayBuffer } from 'node:util/types';
+import { fileTypeFromBuffer } from 'file-type';
 import { arrayBufferToBuffer, streamToBuffer } from './buffer';
 import { utilsError } from './utilsError';
 

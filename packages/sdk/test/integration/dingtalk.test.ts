@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
+import { SdkExceptionResponse } from '@/src/_errors';
 import { DingTalkClient } from '@/src/dingtalk';
 import { ENV } from '../_env';
-import { SdkExceptionResponse } from '@/src/_errors';
 
 describe('dingtalk', () => {
   const client = new DingTalkClient();
