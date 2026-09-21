@@ -2,7 +2,7 @@ import { createTaggedError } from '@xstools/utility/error';
 import type { SDK_CLIENT_NAMES } from './source';
 
 /**
- * `log`用于记录日志、通知运维，`message`用于通知用户(LogicRejected异常时)
+ * `log`用于记录日志、通知运维，`message`用于通知用户
  */
 export class SdkException extends createTaggedError<string>('__XSTOOLS_SDK__EXCEPTION') {
   public log = '';

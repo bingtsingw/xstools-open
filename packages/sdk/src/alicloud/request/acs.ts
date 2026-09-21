@@ -1,15 +1,8 @@
 import { stringify, type ParsedUrlQueryInput } from 'querystring';
-import { SdkExceptionResponse, type SDK_CLIENT_NAMES } from '../../_errors';
-import {
-  checkResponseError,
-  formatResponseErrorMessage,
-  readJsonBody,
-  SdkHttp,
-  type SdkHttpOptions,
-  type SdkJsonObject,
-} from '../../_transport';
-import { isErrorAlicloudCode } from '../_shared/response';
-import { signV3 } from './signV3';
+import type { SDK_CLIENT_NAMES } from '../../_errors';
+import { getResponse, readJsonBody, SdkHttp, type SdkHttpOptions, type SdkJsonObject } from '../../_transport';
+import { isErrorAlicloudCode } from '../_utils/isErrorResponse';
+import { signV3 } from '../_utils/signV3';
 
 interface Config {
   accessKeyId: string;
@@ -55,35 +48,24 @@ export class RequestAcs {
       requestHeaders['content-type'] ||= 'application/json; charset=utf-8';
     }
 
-    const response = await this.#http.request(url, {
-      method,
-      headers: signV3({
-        method,
-        url,
-        headers: requestHeaders,
-        body: requestBody,
-        ak: this.#config.accessKeyId,
-        sk: this.#config.accessKeySecret,
-      }).headers,
-      body: requestBody,
-      ...(retry === undefined ? {} : { retry }),
+    return getResponse<T>({
+      request: () =>
+        this.#http.request(url, {
+          method,
+          headers: signV3({
+            method,
+            url,
+            headers: requestHeaders,
+            body: requestBody,
+            ak: this.#config.accessKeyId,
+            sk: this.#config.accessKeySecret,
+          }).headers,
+          body: requestBody,
+          ...(retry === undefined ? {} : { retry }),
+        }),
+      source: this.#clientName,
+      isError: isErrorAlicloudCode,
+      read: readJsonBody,
     });
-
-    return this.#getResponse<T>(response);
-  }
-
-  async #getResponse<T>(response: Response): Promise<T> {
-    const data = await readJsonBody(response);
-    const error = checkResponseError(response, data, isErrorAlicloudCode);
-
-    if (error) {
-      throw new SdkExceptionResponse({
-        source: this.#clientName,
-        method: '#getResponse',
-        message: formatResponseErrorMessage(error),
-      });
-    }
-
-    return data as T;
   }
 }

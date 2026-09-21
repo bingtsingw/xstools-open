@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { isErrorAlicloudCode } from './response';
+import { isErrorAlicloudCode } from './isErrorResponse';
 
 describe('isErrorAlicloudCode', () => {
   test('detects top-level and nested Aliyun error codes', () => {
@@ -18,9 +18,7 @@ describe('isErrorAlicloudCode', () => {
     );
   });
 
-  test('treats HTTP failures as errors even without a code', () => {
-    expect(isErrorAlicloudCode({ response: new Response(null, { status: 500 }), data: undefined })).toMatchObject({
-      status: 500,
-    });
+  test('ignores HTTP status without a Code', () => {
+    expect(isErrorAlicloudCode({ response: new Response(null, { status: 500 }), data: undefined })).toBeNull();
   });
 });

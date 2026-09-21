@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test';
+import { SdkExceptionResponse } from '../_errors';
 import type { SdkHttpOptions } from '../_transport';
 import { XcloudClient } from './client';
 import type { XcloudRequestOption } from './index';
@@ -87,6 +88,27 @@ describe('XcloudClient', () => {
       const location = await client.geoIpToLocation({ ip: '1.2.3.4' });
 
       expect(location).toContain('Beijing');
+    });
+
+    test('throws SdkExceptionResponse on 401 and keeps JSON detail', async () => {
+      const client = new XcloudClient(
+        { ak: 'ak_test', baseUrl: BASE_URL },
+        {
+          fetch: async () => Response.json({ error: 'unauthorized' }, { status: 401, statusText: 'Unauthorized' }),
+        },
+      );
+
+      try {
+        await client.geoIpToLocation({ ip: '1.2.3.4' });
+        throw new Error('expected to throw');
+      } catch (error) {
+        expect(SdkExceptionResponse.is(error)).toBe(true);
+        expect(JSON.parse((error as SdkExceptionResponse).message)).toMatchObject({
+          status: 401,
+          statusText: 'Unauthorized',
+          detail: '{"error":"unauthorized"}',
+        });
+      }
     });
   });
 

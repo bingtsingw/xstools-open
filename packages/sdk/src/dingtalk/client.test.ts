@@ -94,5 +94,15 @@ describe('DingTalkClient', () => {
         value: 'ok',
       });
     });
+
+    test('throws when a 2xx response has no content-type', async () => {
+      const client = new DingTalkClient({
+        fetch: async () => new Response('{"errcode":0}', { status: 200 }),
+      });
+
+      expect(client.doRequest({ method: 'GET', path: '/v1.0/custom' })).rejects.toMatchObject({
+        message: 'Content-Type Invalid',
+      });
+    });
   });
 });

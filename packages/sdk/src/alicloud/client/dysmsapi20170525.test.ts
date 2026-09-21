@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { SdkExceptionResponse } from '../../_errors';
+import { SdkExceptionInternalError, SdkExceptionResponse } from '../../_errors';
 import type { SdkHttpOptions } from '../../_transport';
 import { AlicloudClientDysmsapi20170525 } from './dysmsapi20170525';
 
@@ -47,8 +47,9 @@ describe('AlicloudClientDysmsapi20170525', () => {
           TemplateCode: 'SMS_123',
           TemplateParam: '{}',
         });
-      } catch {
-        // The assertion below verifies the request was not retried.
+        throw new Error('expected to throw');
+      } catch (error) {
+        expect(SdkExceptionInternalError.is(error)).toBe(true);
       }
 
       expect(calls).toBe(1);
@@ -128,6 +129,23 @@ describe('AlicloudClientDysmsapi20170525', () => {
           params: { PhoneNumbers: '13800138000' },
         }),
       ).rejects.toThrow(SdkExceptionResponse);
+    });
+
+    test('throws SdkExceptionResponse for a non-2xx HTML body', async () => {
+      const client = new AlicloudClientDysmsapi20170525(config, {
+        fetch: async () => new Response('<html>oops</html>', { status: 502, statusText: 'Bad Gateway' }),
+      });
+
+      try {
+        await client.doRequest({ method: 'POST', action: 'CustomAction' });
+        throw new Error('expected to throw');
+      } catch (error) {
+        expect(SdkExceptionResponse.is(error)).toBe(true);
+        expect(JSON.parse((error as SdkExceptionResponse).message)).toMatchObject({
+          status: 502,
+          detail: '<html>oops</html>',
+        });
+      }
     });
   });
 });

@@ -5,7 +5,7 @@ import { ALI_OSS, SdkExceptionInternalError } from '../../_errors';
 import { getDataInfo } from '../../_utils/getDataInfo';
 import { RequestOss, type RequestOssOption } from '../request';
 import type { Alicloud } from '../types';
-import { encodeOssObjectKey, getOssObjectKey, getOssObjectUrl } from '../request/object';
+import { encodeOssObjectKey, getOssObjectKey, getOssObjectUrl } from '../_utils/object';
 
 export class AlicloudClientOss20190517 {
   public static readonly NAME = ALI_OSS;

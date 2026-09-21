@@ -19,12 +19,10 @@ describe('xcloud', () => {
     expect(SdkExceptionResponse.is(error)).toBe(true);
     const responseError = error as SdkExceptionResponse;
     expect(responseError._tag).toBe('__XSTOOLS_SDK__EXCEPTION_RESPONSE');
-    expect(responseError.log).toBe(
-      `[XSTOOLS_SDK:XCLOUD(#getResponse)]: ${JSON.stringify({
-        status: 401,
-        statusText: 'Unauthorized',
-      })}`,
-    );
+    expect(JSON.parse(responseError.message)).toMatchObject({
+      status: 401,
+      statusText: 'Unauthorized',
+    });
   });
 
   test('geoIpToLocation', async () => {
