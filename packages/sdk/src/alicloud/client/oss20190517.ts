@@ -1,8 +1,8 @@
 import { nanoid } from '@xstools/utility/nanoid';
 import { createHmac } from 'crypto';
-import type { SdkHttpOptions } from '../../_transport';
 import { ALI_OSS, SdkExceptionInternalError } from '../../_errors';
 import { getDataInfo } from '../../_utils/getDataInfo';
+import type { SdkClientOptions } from '../../_utils/sdkClient';
 import { RequestOss, type RequestOssOption } from '../request';
 import type { Alicloud } from '../types';
 import { encodeOssObjectKey, getOssObjectKey, getOssObjectUrl } from '../_utils/object';
@@ -13,13 +13,14 @@ export class AlicloudClientOss20190517 {
   #config: Alicloud.Oss.ClientConfig;
   #request: RequestOss;
 
-  public constructor(config: Alicloud.Oss.ClientConfig, http?: SdkHttpOptions) {
+  public constructor(config: Alicloud.Oss.ClientConfig, options?: SdkClientOptions) {
+    const { logger: _, ...httpOptions } = options ?? {};
     this.#config = {
       ...config,
       host: config.host.replace(/^(https|http):\/\//, ''),
       region: config.region.startsWith('oss-') ? config.region : `oss-${config.region}`,
     };
-    this.#request = new RequestOss(AlicloudClientOss20190517.NAME, this.#config, http);
+    this.#request = new RequestOss(AlicloudClientOss20190517.NAME, this.#config, httpOptions);
   }
 
   public async doRequest<T>(requestOption: RequestOssOption): Promise<T> {

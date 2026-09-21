@@ -1,7 +1,7 @@
 import { mapValues } from '@xstools/utility/object';
 import { removeEmoji } from '@xstools/utility/string';
-import type { SdkHttpOptions } from '../../_transport';
 import { ALI_DYSMS } from '../../_errors';
+import type { SdkClientOptions } from '../../_utils/sdkClient';
 import { RequestAcs, type RequestAcsOption } from '../request';
 import type { Alicloud } from '../types';
 
@@ -10,7 +10,8 @@ export class AlicloudClientDysmsapi20170525 {
 
   #request: RequestAcs;
 
-  public constructor(config: Alicloud.ClientConfig, http?: SdkHttpOptions) {
+  public constructor(config: Alicloud.ClientConfig, options?: SdkClientOptions) {
+    const { logger: _, ...httpOptions } = options ?? {};
     this.#request = new RequestAcs(
       AlicloudClientDysmsapi20170525.NAME,
       {
@@ -19,7 +20,7 @@ export class AlicloudClientDysmsapi20170525 {
         endpoint: 'dysmsapi.aliyuncs.com',
         version: '2017-05-25',
       },
-      http,
+      httpOptions,
     );
   }
 

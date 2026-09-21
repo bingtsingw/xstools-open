@@ -1,6 +1,6 @@
 import { createHmac } from 'crypto';
-import type { SdkHttpOptions } from '../_transport';
 import { DINGTALK } from '../_errors';
+import type { SdkClientOptions } from '../_utils/sdkClient';
 import { DingTalkRequest, type DingTalkRequestOption } from './request';
 import type { DingTalk } from './types';
 
@@ -9,8 +9,9 @@ export class DingTalkClient {
 
   #request: DingTalkRequest;
 
-  public constructor(http?: SdkHttpOptions) {
-    this.#request = new DingTalkRequest(DingTalkClient.NAME, http);
+  public constructor(options?: SdkClientOptions) {
+    const { logger: _, ...httpOptions } = options ?? {};
+    this.#request = new DingTalkRequest(DingTalkClient.NAME, httpOptions);
   }
 
   public async doRequest<T>(requestOption: DingTalkRequestOption): Promise<T> {

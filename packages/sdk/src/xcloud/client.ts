@@ -1,5 +1,5 @@
-import type { SdkHttpOptions } from '../_transport';
 import { XCLOUD } from '../_errors';
+import type { SdkClientOptions } from '../_utils/sdkClient';
 import type { XcloudRequestOption } from './request';
 import { XcloudRequest } from './request';
 import type { Xcloud } from './types';
@@ -9,8 +9,9 @@ export class XcloudClient {
 
   #request: XcloudRequest;
 
-  public constructor(requestConfig: Xcloud.ClientConfig, http?: SdkHttpOptions) {
-    this.#request = new XcloudRequest(XcloudClient.NAME, requestConfig, http);
+  public constructor(requestConfig: Xcloud.ClientConfig, options?: SdkClientOptions) {
+    const { logger: _, ...httpOptions } = options ?? {};
+    this.#request = new XcloudRequest(XcloudClient.NAME, requestConfig, httpOptions);
   }
 
   public async doRequest<T>(requestOption: XcloudRequestOption): Promise<{ data: T }> {

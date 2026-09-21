@@ -19,6 +19,7 @@ export default defineConfig({
           argsIgnorePattern: '^_',
           caughtErrors: 'all',
           caughtErrorsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
       'no-fallthrough': 'error',
