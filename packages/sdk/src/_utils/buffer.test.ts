@@ -22,7 +22,8 @@ describe('bufferToArrayBuffer', () => {
       expect(SdkExceptionInternalError.is(error)).toBe(true);
       expect(error).toMatchObject({
         cause: expect.any(TypeError),
-        log: expect.stringContaining('UTILS(bufferToArrayBuffer)'),
+        source: 'UTILS',
+        operation: 'bufferToArrayBuffer',
       });
     }
   });
@@ -61,7 +62,8 @@ describe('arrayBufferToBuffer', () => {
     } catch (error) {
       expect(error).toMatchObject({
         cause: expect.any(TypeError),
-        log: expect.stringContaining('UTILS(arrayBufferToBuffer)'),
+        source: 'UTILS',
+        operation: 'arrayBufferToBuffer',
       });
     }
   });
@@ -98,7 +100,8 @@ describe('streamToBuffer', () => {
     } catch (error) {
       expect(SdkExceptionInternalError.is(error)).toBe(true);
       expect((error as Error).cause).toBe(cause);
-      expect((error as SdkException).log).toContain('UTILS(streamToBuffer)');
+      expect((error as SdkException).source).toBe('UTILS');
+      expect((error as SdkException).operation).toBe('streamToBuffer');
     }
     expect(stream.destroyed).toBe(true);
   });

@@ -1,7 +1,5 @@
 import { SdkException, SdkExceptionInternalError, SdkExceptionResponse, type SDK_CLIENT_NAMES } from '../_errors';
 
-/** HTTP 管道日志目前固定为 `#getResponse`。业务方法名、console.info、error.log 字段会整份 log 方案一起改，见 `docs/response.md`。 */
-const GET_RESPONSE_METHOD = '#getResponse';
 const DETAIL_LIMIT = 2048;
 
 interface SdkResponseErrorInfo {
@@ -60,17 +58,21 @@ export const readJsonBody = async (response: Response): Promise<unknown> => {
 /**
  * Require a JSON Content-Type on 2xx. Non-2xx skips the header check so gateway HTML still becomes HTTP error.
  *
- * @example await readJsonContent(response, 'DINGTALK');
+ * @example await readJsonContent(response, 'DINGTALK', 'doRequest');
  * @throws {SdkExceptionResponse} 2xx response has a missing or non-JSON Content-Type.
  * @throws {SyntaxError} 2xx body is not JSON.
  */
-export const readJsonContent = async (response: Response, source: SDK_CLIENT_NAMES): Promise<unknown> => {
+export const readJsonContent = async (
+  response: Response,
+  source: SDK_CLIENT_NAMES,
+  operation: string,
+): Promise<unknown> => {
   if (response.ok) {
     const contentType = response.headers.get('content-type');
     if (!contentType) {
       throw new SdkExceptionResponse({
         source,
-        method: GET_RESPONSE_METHOD,
+        operation,
         message: 'Content-Type Invalid',
       });
     }
@@ -78,7 +80,7 @@ export const readJsonContent = async (response: Response, source: SDK_CLIENT_NAM
     if (!contentType.includes('application/json')) {
       throw new SdkExceptionResponse({
         source,
-        method: GET_RESPONSE_METHOD,
+        operation,
         message: 'Content-Type Unsupported',
       });
     }
@@ -90,6 +92,7 @@ export const readJsonContent = async (response: Response, source: SDK_CLIENT_NAM
 interface GetResponseInput<T> {
   request: () => Promise<Response>;
   source: SDK_CLIENT_NAMES;
+  operation: string;
   isError: SdkIsError;
   read: (response: Response) => Promise<unknown>;
   map?: (data: unknown) => T;
@@ -98,27 +101,27 @@ interface GetResponseInput<T> {
 /**
  * Send a vendor HTTP request then interpret the response: read body, fail every non-2xx, then business codes.
  *
- * @example await getResponse({ request: () => http.request(url, init), source, isError, read: readJsonBody });
+ * @example await getResponse({ request: () => http.request(url, init), source, operation, isError, read: readJsonBody });
  * @throws {SdkExceptionResponse} Non-2xx HTTP status or vendor business error.
  * @throws {SdkExceptionInternalError} Transport failure, 2xx parse failure, or `map` throwing a non-SDK error.
  */
 export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => {
-  const { request, source, isError, read, map } = input;
+  const { request, source, operation, isError, read, map } = input;
   let response: Response;
 
   try {
     response = await request();
   } catch (cause) {
-    throw toInternalError(source, cause, 'Request failed');
+    throw toInternalError(source, operation, cause, 'Request failed');
   }
 
-  const data = await readBody(response, source, read);
+  const data = await readBody(response, source, operation, read);
   const picked = isError({ response, data }) || null;
 
   if (!response.ok) {
     throw new SdkExceptionResponse({
       source,
-      method: GET_RESPONSE_METHOD,
+      operation,
       message: JSON.stringify(mergeHttpErrorInfo(response, data, picked)),
     });
   }
@@ -126,7 +129,7 @@ export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => 
   if (picked) {
     throw new SdkExceptionResponse({
       source,
-      method: GET_RESPONSE_METHOD,
+      operation,
       message: JSON.stringify(picked),
     });
   }
@@ -134,13 +137,14 @@ export const getResponse = async <T>(input: GetResponseInput<T>): Promise<T> => 
   try {
     return (map ? map(data) : data) as T;
   } catch (cause) {
-    throw toInternalError(source, cause, 'Failed to map response data');
+    throw toInternalError(source, operation, cause, 'Failed to map response data');
   }
 };
 
 const readBody = async (
   response: Response,
   source: SDK_CLIENT_NAMES,
+  operation: string,
   read: (response: Response) => Promise<unknown>,
 ): Promise<unknown> => {
   try {
@@ -154,7 +158,7 @@ const readBody = async (
       return undefined;
     }
 
-    throw toInternalError(source, cause, 'Failed to read response body');
+    throw toInternalError(source, operation, cause, 'Failed to read response body');
   }
 };
 
@@ -223,7 +227,7 @@ const truncateDetail = (text: string): string => {
   return text.slice(0, DETAIL_LIMIT);
 };
 
-const toInternalError = (source: SDK_CLIENT_NAMES, cause: unknown, fallback: string): never => {
+const toInternalError = (source: SDK_CLIENT_NAMES, operation: string, cause: unknown, fallback: string): never => {
   if (SdkException.is(cause)) {
     throw cause;
   }
@@ -231,7 +235,7 @@ const toInternalError = (source: SDK_CLIENT_NAMES, cause: unknown, fallback: str
   throw new SdkExceptionInternalError(
     {
       source,
-      method: GET_RESPONSE_METHOD,
+      operation,
       message: cause instanceof Error ? cause.message : fallback,
     },
     { cause },

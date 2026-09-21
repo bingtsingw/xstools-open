@@ -17,7 +17,9 @@ describe('xml', () => {
         expect(error).toMatchObject({
           _tag: '__XSTOOLS_SDK__EXCEPTION_INTERNAL_ERROR',
           cause,
-          log: '[XSTOOLS_SDK:UTILS(parseXML)]: parser failure',
+          source: 'UTILS',
+          operation: 'parseXML',
+          message: 'parser failure',
         });
       }
     } finally {

@@ -7,11 +7,12 @@ describe('utilsError', () => {
     'preserves %s identity, source and cause through multiple utility layers',
     (Exception) => {
       const cause = new Error('original failure');
-      const error = new Exception({ source: 'ALI-OSS', method: 'objectPut', message: 'failed' }, { cause });
+      const error = new Exception({ source: 'ALI-OSS', operation: 'objectPut', message: 'failed' }, { cause });
       const result = utilsError('getDataInfo', utilsError('streamToBuffer', error));
       expect(result).toBe(error);
       expect(result.cause).toBe(cause);
-      expect(result.log).toBe('[XSTOOLS_SDK:ALI-OSS(objectPut)]: failed');
+      expect(result.source).toBe('ALI-OSS');
+      expect(result.operation).toBe('objectPut');
     },
   );
 
@@ -23,7 +24,8 @@ describe('utilsError', () => {
     expect(error.cause).toBe(cause);
     expect((error.cause as Error).cause).toBe(root);
     expect(error.message).toBe('cannot read source');
-    expect(error.log).toBe('[XSTOOLS_SDK:UTILS(streamToBuffer)]: cannot read source');
+    expect(error.source).toBe('UTILS');
+    expect(error.operation).toBe('streamToBuffer');
     expect(utilsError('getDataInfo', error)).toBe(error);
   });
 

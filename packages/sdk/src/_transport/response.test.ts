@@ -38,12 +38,16 @@ describe('readJsonBody', () => {
 
 describe('readJsonContent', () => {
   test('requires JSON content-type on 2xx', async () => {
-    expect(readJsonContent(new Response('{"ok":true}', { status: 200 }), DINGTALK)).rejects.toMatchObject({
+    expect(readJsonContent(new Response('{"ok":true}', { status: 200 }), DINGTALK, 'doRequest')).rejects.toMatchObject({
       message: 'Content-Type Invalid',
     });
 
     expect(
-      readJsonContent(new Response('{"ok":true}', { status: 200, headers: { 'content-type': 'text/html' } }), DINGTALK),
+      readJsonContent(
+        new Response('{"ok":true}', { status: 200, headers: { 'content-type': 'text/html' } }),
+        DINGTALK,
+        'doRequest',
+      ),
     ).rejects.toMatchObject({ message: 'Content-Type Unsupported' });
   });
 
@@ -52,12 +56,15 @@ describe('readJsonContent', () => {
       await readJsonContent(
         new Response('{"ok":true}', { status: 200, headers: { 'content-type': 'application/json' } }),
         DINGTALK,
+        'doRequest',
       ),
     ).toEqual({ ok: true });
   });
 
   test('skips the content-type check on non-2xx', async () => {
-    expect(await readJsonContent(new Response('gateway failure', { status: 502 }), DINGTALK)).toBe('gateway failure');
+    expect(await readJsonContent(new Response('gateway failure', { status: 502 }), DINGTALK, 'doRequest')).toBe(
+      'gateway failure',
+    );
   });
 });
 
@@ -66,6 +73,7 @@ describe('getResponse', () => {
     const data = await getResponse({
       request: respond(new Response('{"ok":true}', { status: 200 })),
       source: DINGTALK,
+      operation: 'doRequest',
       isError: isErrorByErrcode,
       read: readJsonBody,
     });
@@ -78,6 +86,7 @@ describe('getResponse', () => {
       await getResponse({
         request: respond(new Response('{"errcode":40001,"errmsg":"invalid credential"}', { status: 200 })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: isErrorByErrcode,
         read: readJsonBody,
       });
@@ -102,17 +111,20 @@ describe('getResponse', () => {
           }),
         ),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: isErrorByErrcode,
         read: readJsonBody,
       }),
     ).rejects.toMatchObject({
       _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
-      log: `[XSTOOLS_SDK:DINGTALK(#getResponse)]: ${JSON.stringify({
+      source: DINGTALK,
+      operation: 'doRequest',
+      message: JSON.stringify({
         status: 401,
         statusText: 'Unauthorized',
         errcode: 40001,
         errmsg: 'invalid credential',
-      })}`,
+      }),
     });
   });
 
@@ -123,6 +135,7 @@ describe('getResponse', () => {
       await getResponse({
         request: respond(new Response(raw, { status: 502, statusText: 'Bad Gateway' })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: readJsonBody,
       });
@@ -144,16 +157,19 @@ describe('getResponse', () => {
           Response.json({ message: 'server failure' }, { status: 500, statusText: 'Internal Server Error' }),
         ),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: isErrorByErrcode,
         read: readJsonBody,
       }),
     ).rejects.toMatchObject({
       _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
-      log: `[XSTOOLS_SDK:DINGTALK(#getResponse)]: ${JSON.stringify({
+      source: DINGTALK,
+      operation: 'doRequest',
+      message: JSON.stringify({
         status: 500,
         statusText: 'Internal Server Error',
         detail: '{"message":"server failure"}',
-      })}`,
+      }),
     });
   });
 
@@ -162,15 +178,18 @@ describe('getResponse', () => {
       getResponse({
         request: respond(new Response(new Uint8Array([0x89]), { status: 503, statusText: 'Service Unavailable' })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: async (current) => current.arrayBuffer(),
       }),
     ).rejects.toMatchObject({
       _tag: '__XSTOOLS_SDK__EXCEPTION_RESPONSE',
-      log: `[XSTOOLS_SDK:DINGTALK(#getResponse)]: ${JSON.stringify({
+      source: DINGTALK,
+      operation: 'doRequest',
+      message: JSON.stringify({
         status: 503,
         statusText: 'Service Unavailable',
-      })}`,
+      }),
     });
   });
 
@@ -179,6 +198,7 @@ describe('getResponse', () => {
       await getResponse({
         request: respond(new Response('not-json', { status: 200 })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: readJsonBody,
       });
@@ -186,7 +206,8 @@ describe('getResponse', () => {
     } catch (error) {
       expect(SdkExceptionInternalError.is(error)).toBe(true);
       const internal = error as SdkExceptionInternalError;
-      expect(internal.log).toStartWith('[XSTOOLS_SDK:DINGTALK(#getResponse)]:');
+      expect(internal.source).toBe(DINGTALK);
+      expect(internal.operation).toBe('doRequest');
       expect(internal.cause).toBeInstanceOf(SyntaxError);
     }
   });
@@ -194,7 +215,7 @@ describe('getResponse', () => {
   test('rethrows SdkException from read without rewriting source', async () => {
     const original = new SdkExceptionResponse({
       source: DINGTALK,
-      method: '#getResponse',
+      operation: 'doRequest',
       message: 'Content-Type Invalid',
     });
 
@@ -202,6 +223,7 @@ describe('getResponse', () => {
       await getResponse({
         request: respond(new Response('{}', { status: 200 })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: async () => {
           throw original;
@@ -217,6 +239,7 @@ describe('getResponse', () => {
     const data = await getResponse({
       request: respond(new Response('{"data":{"id":1}}', { status: 200 })),
       source: DINGTALK,
+      operation: 'doRequest',
       isError: noopIsError,
       read: readJsonBody,
       map: (body) => (body as { data: { id: number } }).data,
@@ -230,6 +253,7 @@ describe('getResponse', () => {
       await getResponse({
         request: respond(new Response('{"data":"cipher"}', { status: 200 })),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: readJsonBody,
         map: () => {
@@ -252,6 +276,7 @@ describe('getResponse', () => {
     const data = await getResponse({
       request: () => http.request('https://example.test/ok', { method: 'POST', retry: 0 }),
       source: DINGTALK,
+      operation: 'doRequest',
       isError: noopIsError,
       read: readJsonBody,
     });
@@ -270,6 +295,7 @@ describe('getResponse', () => {
       await getResponse({
         request: () => http.request('https://example.test/fail', { method: 'POST', retry: 0 }),
         source: DINGTALK,
+        operation: 'doRequest',
         isError: noopIsError,
         read: readJsonBody,
       });
@@ -277,9 +303,25 @@ describe('getResponse', () => {
     } catch (error) {
       expect(SdkExceptionInternalError.is(error)).toBe(true);
       const internal = error as SdkExceptionInternalError;
-      expect(internal.log).toStartWith('[XSTOOLS_SDK:DINGTALK(#getResponse)]:');
-      expect(internal.log).toContain('network error');
+      expect(internal.source).toBe(DINGTALK);
+      expect(internal.operation).toBe('doRequest');
+      expect(internal.message).toContain('network error');
       expect(internal.cause).toBeInstanceOf(Error);
     }
+  });
+
+  test('puts the provided operation on the exception', async () => {
+    expect(
+      getResponse({
+        request: respond(new Response('gateway', { status: 502, statusText: 'Bad Gateway' })),
+        source: DINGTALK,
+        operation: 'customRobotsSendGroupMessages',
+        isError: noopIsError,
+        read: readJsonBody,
+      }),
+    ).rejects.toMatchObject({
+      source: DINGTALK,
+      operation: 'customRobotsSendGroupMessages',
+    });
   });
 });

@@ -20,7 +20,9 @@ describe('getDataInfo', () => {
       expect(getDataInfo(Buffer.from('content'))).rejects.toMatchObject({
         _tag: '__XSTOOLS_SDK__EXCEPTION_INTERNAL_ERROR',
         cause,
-        log: '[XSTOOLS_SDK:UTILS(getDataInfo)]: detector failed',
+        source: 'UTILS',
+        operation: 'getDataInfo',
+        message: 'detector failed',
       });
       expect(detector).toHaveBeenCalledTimes(1);
     } finally {
@@ -38,7 +40,9 @@ describe('getDataInfo', () => {
     expect(getDataInfo(stream)).rejects.toMatchObject({
       _tag: '__XSTOOLS_SDK__EXCEPTION_INTERNAL_ERROR',
       cause,
-      log: '[XSTOOLS_SDK:UTILS(streamToBuffer)]: input failure',
+      source: 'UTILS',
+      operation: 'streamToBuffer',
+      message: 'input failure',
     });
     expect(stream.destroyed).toBe(true);
   });

@@ -1,19 +1,26 @@
 import { createTaggedError } from '@xstools/utility/error';
 import type { SDK_CLIENT_NAMES } from './source';
 
+type SdkExceptionSource = SDK_CLIENT_NAMES | 'UTILS';
+
 /**
- * `log`用于记录日志、通知运维，`message`用于通知用户
+ * SDK 异常。`source` / `operation` 标识调用方。
+ *
+ * @example
+ * throw new SdkException({ source: 'DINGTALK', operation: 'doRequest', message: 'failed' });
  */
 export class SdkException extends createTaggedError<string>('__XSTOOLS_SDK__EXCEPTION') {
-  public log = '';
+  public readonly source: SdkExceptionSource;
+  public readonly operation: string;
 
   public constructor(
-    props: { source: SDK_CLIENT_NAMES | 'UTILS'; method: string; message: string },
+    props: { source: SdkExceptionSource; operation: string; message: string },
     options?: { cause?: unknown },
   ) {
     super(props.message, options);
 
-    this.log = `[XSTOOLS_SDK:${props.source}(${props.method})]: ${this.message}`;
+    this.source = props.source;
+    this.operation = props.operation;
   }
 }
 

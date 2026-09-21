@@ -4,15 +4,13 @@ import { sdkLoggerConsole, sdkLoggerNoop } from './logger';
 describe('sdkLoggerConsole', () => {
   const info = console.info;
   const debug = console.debug;
-  const error = console.error;
 
   afterEach(() => {
     console.info = info;
     console.debug = debug;
-    console.error = error;
   });
 
-  test('prints source, action and message', () => {
+  test('prints source, operation and message', () => {
     const spy = mock((message?: unknown) => {
       void message;
     });
@@ -20,7 +18,7 @@ describe('sdkLoggerConsole', () => {
 
     sdkLoggerConsole.info({
       source: 'WECHAT-MINIPROGRAM',
-      action: 'securityCheckMsg',
+      operation: 'securityCheckMsg',
       message: 'DONE',
     });
 
@@ -36,7 +34,7 @@ describe('sdkLoggerConsole', () => {
 
     sdkLoggerConsole.debug({
       source: 'WECHAT-MINIPROGRAM',
-      action: 'securityCheckMsg',
+      operation: 'securityCheckMsg',
       message: 'label',
       data: { openid: 'o_xxx' },
     });
@@ -46,9 +44,8 @@ describe('sdkLoggerConsole', () => {
 
   test('noop does not throw', () => {
     expect(() => {
-      sdkLoggerNoop.info({ source: 'DINGTALK', action: 'x', message: 'y' });
-      sdkLoggerNoop.debug({ source: 'DINGTALK', action: 'x', message: 'y' });
-      sdkLoggerNoop.error({ source: 'DINGTALK', action: 'x', message: 'y' });
+      sdkLoggerNoop.info({ source: 'DINGTALK', operation: 'x', message: 'y' });
+      sdkLoggerNoop.debug({ source: 'DINGTALK', operation: 'x', message: 'y' });
     }).not.toThrow();
   });
 });
