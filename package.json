@@ -21,7 +21,7 @@
     "@xstools-dev/cli-toolkit": "^0.3.0",
     "@xstools-dev/config-ts": "^0.2.0",
     "typescript": "5.8.3",
-    "vite-plus": "^0.3.1"
+    "vite-plus": "^1.0.0"
   },
   "packageManager": "pnpm@12.3.4"
 }
